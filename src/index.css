@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    
+    /* Greenish Botanical Palette */
+    --color-sage-50: #f5f7f4;
+    --color-sage-100: #e8ede7;
+    --color-sage-200: #d4ded3;
+    --color-sage-300: #b5c7b3;
+    --color-sage-500: #627b61;
+    --color-sage-700: #3f553f;
+    --color-sage-900: #1d2b1d;
+    --color-forest: #142016;
+    
+    --radius-pill: 9999px;
+    --radius-card: 28px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #e4eae2;
+    color: #1a251b;
+    overflow-x: hidden;
+  }
+
+  /* Universal Premium Title Styling - Refined Editorial Weight */
+  h1, h2, h3, h4, .font-heading, .title-styled {
+    font-family: var(--font-heading);
+    letter-spacing: -0.022em;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 {
+    letter-spacing: -0.028em;
+    font-weight: 700;
+  }
+
+  h2 {
+    letter-spacing: -0.024em;
+    font-weight: 700;
+  }
+
+  h3 {
+    letter-spacing: -0.018em;
+    font-weight: 600;
+  }
+
+  #root {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #e2e8df;
+}
+::-webkit-scrollbar-thumb {
+  background: #9ab398;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6a8c67;
+}
+
+/* Glassmorphism helpers */
+.glass-pill {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 20px 40px -15px rgba(28, 48, 30, 0.08), 0 0 1px 1px rgba(255, 255, 255, 0.9) inset;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* GPU-Accelerated Gentle Card Floating Animations */
+@keyframes floatSlow1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatSlow2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+@keyframes floatSlow3 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.card-float-1 {
+  animation: floatSlow1 6.5s ease-in-out infinite 1.8s;
+}
+
+.card-float-2 {
+  animation: floatSlow2 7s ease-in-out infinite 2.1s;
+}
+
+.card-float-3 {
+  animation: floatSlow3 6.8s ease-in-out infinite 2.4s;
+}
