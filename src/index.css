@@ -6,7 +6,19 @@
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
     
-    /* Greenish Botanical Palette */
+    /* Aaramam Royal Gold Palette (Harmonized from Logo) */
+    --color-gold-light: #fbef91;
+    --color-gold-champagne: #fae788;
+    --color-gold-primary: #d4a034;
+    --color-gold-rich: #c49126;
+    --color-gold-deep: #946726;
+    --color-gold-bronze: #6c4a1b;
+
+    /* Aaramam Greenish Sanctuary Palette */
+    --color-ayur-dark: #122214;
+    --color-ayur-forest: #162a1b;
+    --color-ayur-emerald: #25462c;
+    --color-ayur-leaf: #3d6a45;
     --color-sage-50: #f5f7f4;
     --color-sage-100: #e8ede7;
     --color-sage-200: #d4ded3;
@@ -101,11 +113,23 @@ html.lenis, html.lenis body {
   background: #e2e8df;
 }
 ::-webkit-scrollbar-thumb {
-  background: #9ab398;
+  background: #8b9d88;
   border-radius: 9999px;
+  border: 2px solid #e2e8df;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #6a8c67;
+  background: #d4a034;
+}
+
+/* Gold Gradient & Glowing Utilities */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fbef91 0%, #d4a034 50%, #946726 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 4px 20px -2px rgba(212, 160, 52, 0.35);
 }
 
 /* Glassmorphism helpers */

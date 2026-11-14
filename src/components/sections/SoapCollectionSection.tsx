@@ -1,65 +1,69 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, ShoppingBag, Eye, Heart, Sparkles } from 'lucide-react';
-import { NATURAL_BATH_SOAP_COLLECTION } from '../../data/products';
+import { Star, Eye, Sparkles, Clock, Calendar } from 'lucide-react';
+import { AYURVEDA_TREATMENTS_COLLECTION } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 import type { Product } from '../../types/product';
 
 export const SoapCollectionSection: React.FC = () => {
-  const { addToCart, openQuickView, isInWishlist, toggleWishlist } = useCart();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'calm' | 'detox' | 'gentle'>('all');
+  const { addToCart, openQuickView } = useCart();
+  const [activeFilter, setActiveFilter] = useState<'all' | 'abhyanga' | 'shirodhara' | 'kizhi' | 'panchakarma'>('all');
 
-  const filteredProducts = NATURAL_BATH_SOAP_COLLECTION.filter((soap) => {
-    if (activeFilter === 'calm') return soap.id === 'soap-2';
-    if (activeFilter === 'detox') return soap.id === 'soap-1' || soap.id === 'soap-3';
-    if (activeFilter === 'gentle') return soap.id === 'soap-4';
+  const filteredTreatments = AYURVEDA_TREATMENTS_COLLECTION.filter((treatment) => {
+    if (activeFilter === 'abhyanga') return treatment.id === 'treatment-abhyanga';
+    if (activeFilter === 'shirodhara') return treatment.id === 'treatment-shirodhara';
+    if (activeFilter === 'kizhi') return treatment.id === 'treatment-kizhi';
+    if (activeFilter === 'panchakarma') return treatment.id === 'treatment-panchakarma';
     return true;
   });
 
   return (
-    <section id="products" className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto">
+    <section id="services" className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
+      <div id="products" className="absolute -top-24 left-0 pointer-events-none" />
+      
       {/* Section Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl"
         >
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#d6e3d4] text-[#283f2a] text-xs font-bold uppercase tracking-wider mb-4">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Master Crafted Cold-Process Soap</span>
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#162b19]/10 border border-[#d4a034]/40 text-[#122314] text-xs font-bold uppercase tracking-wider mb-4">
+            <Sparkles className="w-3.5 h-3.5 text-[#d4a034]" />
+            <span>Classical Ayurvedic Therapies</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#162317] tracking-tight leading-[1.14]">
-            Pure Botanical Bath Bars for Radiant Skin
+            Authentic Healing Treatments for Vitality &amp; Balance
           </h2>
           <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-[17px] text-[#4a584b] leading-relaxed">
-            Slow-cured for six weeks to retain natural organic glycerin, active plant saponins, and unrefined nourishing butters.
+            Prescribed by traditional Ayurvedic physicians and administered with warm medicated herbal thailams, steam poultices, and dosha-balancing botanical formulations.
           </p>
         </motion.div>
 
         {/* Filter Pills */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="flex flex-wrap gap-2"
         >
           {[
-            { id: 'all', label: 'All Bars' },
-            { id: 'detox', label: 'Detox & Matcha' },
-            { id: 'calm', label: 'Calming Lavender' },
-            { id: 'gentle', label: 'Baby-Mild Honey' },
+            { id: 'all', label: 'All Treatments' },
+            { id: 'abhyanga', label: 'Abhyanga Massage' },
+            { id: 'shirodhara', label: 'Shirodhara Stream' },
+            { id: 'kizhi', label: 'Herbal Kizhi' },
+            { id: 'panchakarma', label: 'Panchakarma Detox' },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveFilter(tab.id as 'all' | 'calm' | 'detox' | 'gentle')}
+              onClick={() => setActiveFilter(tab.id as 'all' | 'abhyanga' | 'shirodhara' | 'kizhi' | 'panchakarma')}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 activeFilter === tab.id
-                  ? 'bg-[#1b271d] text-white shadow-md'
-                  : 'bg-white/80 hover:bg-white text-[#2a3a2c] border border-gray-200/60'
+                  ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
+                  : 'bg-white/80 hover:bg-white text-[#2a3a2c] border border-gray-200/80 hover:border-[#d4a034]/40'
               }`}
             >
               {tab.label}
@@ -68,105 +72,107 @@ export const SoapCollectionSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Product Cards Grid - Increased Height & Edge-to-Edge Image */}
+      {/* Modern Stunning Treatment Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-        {filteredProducts.map((product: Product, index: number) => {
-          const isWished = isInWishlist(product.id);
-
+        {filteredTreatments.map((treatment: Product, index: number) => {
           return (
             <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="group bg-white rounded-[24px] overflow-hidden shadow-[0_8px_24px_rgba(25,38,26,0.06)] hover:shadow-[0_16px_36px_rgba(25,38,26,0.12)] border border-white flex flex-col justify-between transition-all duration-300"
+              key={treatment.id}
+              initial={{ opacity: 0, y: 45, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 1.1, delay: index * 0.14, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+              className="group bg-white rounded-[26px] overflow-hidden shadow-[0_10px_30px_rgba(20,35,22,0.06)] hover:shadow-[0_20px_45px_rgba(20,35,22,0.14)] border border-[#d4a034]/25 hover:border-[#d4a034]/60 flex flex-col justify-between transition-all duration-300"
             >
               <div>
-                {/* Edge-to-edge image container with increased, comfortable height (aspect-[16/11.5]) */}
-                <div className="relative w-full aspect-[16/11.5] overflow-hidden bg-[#e8ede7]">
+                {/* Edge-to-edge Treatment Image with Zoom & Badges */}
+                <div className="relative w-full aspect-[16/11.5] overflow-hidden bg-[#eef3ed]">
                   <img
-                    src={product.image}
-                    alt={product.name}
+                    src={treatment.image}
+                    alt={treatment.name}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                   />
 
-                  {/* Badges */}
-                  {product.isBestSeller && (
-                    <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 bg-[#1a251b] text-white text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md">
-                      Best Seller
+                  {/* Gradient vignette for badges */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/25 pointer-events-none" />
+
+                  {/* Best Seller / Signature Badge */}
+                  {treatment.isBestSeller && (
+                    <span className="absolute top-2.5 left-2.5 px-3 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md flex items-center space-x-1">
+                      <Sparkles className="w-2.5 h-2.5 text-[#d4a034]" />
+                      <span>Signature</span>
                     </span>
                   )}
 
-                  {/* Wishlist Button - Liquid Glass Effect */}
-                  <button
-                    onClick={() => toggleWishlist(product.id)}
-                    className={`absolute top-2.5 right-2.5 w-7 h-7 rounded-full flex items-center justify-center transition-all ${
-                      isWished
-                        ? 'bg-rose-50 text-rose-600 shadow-md'
-                        : 'bg-white/85 hover:bg-white text-gray-700 shadow-md backdrop-blur-md'
-                    }`}
-                    aria-label="Add to Wishlist"
-                  >
-                    <Heart className={`w-3.5 h-3.5 ${isWished ? 'fill-current' : ''}`} />
-                  </button>
+                  {/* Duration Pill */}
+                  <div className="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-md border border-white/60 text-[#112314] text-[10px] font-bold shadow-sm flex items-center space-x-1">
+                    <Clock className="w-3 h-3 text-[#d4a034]" />
+                    <span>{treatment.size}</span>
+                  </div>
 
                   {/* Quick View Button Hover Overlay */}
                   <div className="absolute inset-x-2.5 bottom-2.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center">
                     <button
-                      onClick={() => openQuickView(product)}
-                      className="w-full py-2 bg-white/95 backdrop-blur-md rounded-full text-[#19241a] text-[11px] font-bold shadow-md hover:bg-white flex items-center justify-center space-x-1.5 transition-all cursor-pointer"
+                      onClick={() => openQuickView(treatment)}
+                      className="w-full py-2.5 bg-[#112314]/92 hover:bg-[#112314] backdrop-blur-md text-[#fae788] border border-[#d4a034]/50 rounded-full text-[11px] font-bold shadow-lg flex items-center justify-center space-x-1.5 transition-all cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Quick View</span>
+                      <Eye className="w-3.5 h-3.5 text-[#fae788]" />
+                      <span>View Treatment Details</span>
                     </button>
                   </div>
                 </div>
 
-                {/* Card Content with spacious, refined vertical spacing */}
-                <div className="p-4 sm:p-4.5">
-                  {/* Scent notes & Rating */}
-                  <div className="flex items-center justify-between text-xs text-gray-500">
-                    <div className="flex items-center space-x-1 text-amber-500 font-semibold">
-                      <Star className="w-3.5 h-3.5 fill-current" />
-                      <span>{product.rating}</span>
-                      <span className="text-gray-400">({product.reviewsCount})</span>
+                {/* Card Content */}
+                <div className="p-4 sm:p-5">
+                  {/* Rating & Category Tag */}
+                  <div className="flex items-center justify-between text-xs">
+                    <div className="flex items-center space-x-1 text-[#d4a034] font-bold">
+                      <Star className="w-3.5 h-3.5 fill-[#d4a034] text-[#d4a034]" />
+                      <span>{treatment.rating}</span>
+                      <span className="text-gray-400 font-normal">({treatment.reviewsCount})</span>
                     </div>
-                    <span className="font-medium text-gray-400 text-xs">{product.size}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#2e5433] bg-[#edf4ed] px-2.5 py-0.5 rounded-full">
+                      Ayurvedic Therapy
+                    </span>
                   </div>
 
-                  {/* Title */}
+                  {/* Treatment Title */}
                   <h3
-                    onClick={() => openQuickView(product)}
-                    className="mt-1.5 text-[15px] sm:text-base font-bold text-[#141f15] leading-snug hover:text-[#374e3a] cursor-pointer line-clamp-1"
+                    onClick={() => openQuickView(treatment)}
+                    className="mt-2 text-[16px] sm:text-[17px] font-heading font-extrabold text-[#112314] leading-snug hover:text-[#b18137] cursor-pointer line-clamp-1 transition-colors"
                   >
-                    {product.name}
+                    {treatment.name}
                   </h3>
 
-                  {/* Scent tags */}
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {product.scentNotes.slice(0, 2).map((scent) => (
+                  {/* Short Description */}
+                  <p className="mt-1.5 text-xs text-[#526353] line-clamp-2 leading-relaxed">
+                    {treatment.shortDesc}
+                  </p>
+
+                  {/* Key Herbs & Formulations Tags */}
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {treatment.scentNotes.slice(0, 2).map((herb) => (
                       <span
-                        key={scent}
-                        className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#eef3ed] text-[#334b35] font-semibold"
+                        key={herb}
+                        className="text-[10px] px-2.5 py-0.5 rounded-full bg-[#f4f7f3] border border-[#dce6db] text-[#244227] font-semibold"
                       >
-                        {scent}
+                        {herb}
                       </span>
                     ))}
                   </div>
                 </div>
               </div>
 
-              {/* Price & Add to Cart button */}
-              <div className="px-4 pb-4 sm:px-4.5 sm:pb-4.5 pt-0 flex items-center justify-between">
+              {/* Price & Book Session CTA Button */}
+              <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-0 flex items-center justify-between">
                 <div>
-                  <span className="text-base sm:text-lg font-black text-[#141d15]">
-                    ${product.price.toFixed(2)}
+                  <span className="text-lg sm:text-xl font-black text-[#112314]">
+                    ${treatment.price.toFixed(2)}
                   </span>
-                  {product.originalPrice && (
-                    <span className="ml-1 text-[11px] text-gray-400 line-through">
-                      ${product.originalPrice.toFixed(2)}
+                  {treatment.originalPrice && (
+                    <span className="ml-1.5 text-xs text-gray-400 line-through">
+                      ${treatment.originalPrice.toFixed(2)}
                     </span>
                   )}
                 </div>
@@ -174,11 +180,11 @@ export const SoapCollectionSection: React.FC = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  onClick={() => addToCart(product, 1)}
-                  className="px-3.5 py-2 rounded-full bg-[#162317] hover:bg-[#2c402d] text-white text-[11px] font-bold flex items-center space-x-1.5 transition-all shadow-sm cursor-pointer"
+                  onClick={() => addToCart(treatment, 1)}
+                  className="px-4 py-2 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] border border-[#d4a034]/40 hover:border-[#fae788]/70 text-xs font-bold flex items-center space-x-1.5 transition-all shadow-md cursor-pointer"
                 >
-                  <ShoppingBag className="w-3.5 h-3.5" />
-                  <span>Add to Cart</span>
+                  <Calendar className="w-3.5 h-3.5 text-[#d4a034]" />
+                  <span>Book Session</span>
                 </motion.button>
               </div>
             </motion.div>
@@ -188,4 +194,3 @@ export const SoapCollectionSection: React.FC = () => {
     </section>
   );
 };
-

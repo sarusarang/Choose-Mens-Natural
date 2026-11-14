@@ -1,5 +1,56 @@
 import type { Product } from '../types/product';
 
+export const HERO_TREATMENTS: Product[] = [
+  {
+    id: 'treatment-1',
+    name: 'Abhyanga Herbal Massage',
+    category: 'treatment',
+    price: 75.00,
+    size: '60 Mins Session',
+    image: '/images/treatment_abhyanga_1794639675730.jpg',
+    rating: 4.9,
+    reviewsCount: 420,
+    shortDesc: 'Full-body traditional warm medicinal herbal oil therapy for deep relaxation, vitality, and cellular detox.',
+    description: 'Abhyanga is the quintessential Ayurvedic therapy: continuous rhythmic body massage using warm, herb-infused classical medicated oils. Balances Vata and Pitta doshas, enhances lymphatic circulation, and nourishes the tissues (Dhatus).',
+    scentNotes: ['Warm Sesame Oil', 'Bala & Ashwagandha', 'Brahmi Infusion'],
+    keyIngredients: ['Ksheerabala Thailam', 'Dhanwantharam Thailam', 'Organic Cold-Pressed Sesame'],
+    skinType: 'All body types, stress relief, stiffness & fatigue',
+    isHeroFeatured: true
+  },
+  {
+    id: 'treatment-2',
+    name: 'Shirodhara Warm Oil Therapy',
+    category: 'treatment',
+    price: 95.00,
+    size: '45 Mins Session',
+    image: '/images/treatment_shirodhara_1794639618350.jpg',
+    rating: 5.0,
+    reviewsCount: 610,
+    shortDesc: 'Continuous warm medicinal herbal stream over the forehead, balancing doshas and melting away stress.',
+    description: 'An ancient therapy where a continuous, rhythmic stream of warm herbalized medicated oil flows gently across the forehead (Ajna chakra). Induces deep mental calm, relieves chronic insomnia, migraines, and calms an overactive nervous system.',
+    scentNotes: ['Brahmi Herbal Nectar', 'Kshirabala Taila', 'Sandalwood Essence'],
+    keyIngredients: ['Classical Brahmi Medicated Oil', 'Pure Coconut Milk Decoction', 'Vetiver Root Extracts'],
+    skinType: 'Insomnia, mental exhaustion, anxiety & hypertension',
+    isHeroFeatured: true
+  },
+  {
+    id: 'treatment-3',
+    name: 'Herbal Kizhi Poultice',
+    category: 'treatment',
+    price: 85.00,
+    size: '60 Mins Session',
+    image: '/images/treatment_kizhi_1794639697200.jpg',
+    rating: 4.9,
+    reviewsCount: 340,
+    shortDesc: 'Warm steamed herbal bolus massage therapy relieving joint stiffness, inflammation, and fatigue.',
+    description: 'Herbal Kizhi uses bundles of medicinal leaves, herbal powders, and rock salt sauteed in medicated oils, pressed rhythmically over the entire body. Excellent for arthritis, muscle soreness, back pain, and metabolic stimulation.',
+    scentNotes: ['Eucalyptus Leaves', 'Camphor & Moringa', 'Kottamchukkadi'],
+    keyIngredients: ['Kottamchukkadi Thailam', 'Castor & Calotropis Leaves', 'Rock Salt Powders'],
+    skinType: 'Joint pain, muscular stiffness, sports recovery',
+    isHeroFeatured: true
+  }
+];
+
 export const HERO_PRODUCTS: Product[] = [
   {
     id: 'hero-1',
@@ -51,70 +102,75 @@ export const HERO_PRODUCTS: Product[] = [
   }
 ];
 
-export const NATURAL_BATH_SOAP_COLLECTION: Product[] = [
+export const AYURVEDA_TREATMENTS_COLLECTION: Product[] = [
   {
-    id: 'soap-1',
-    name: 'Matcha & Eucalyptus Cold-Process Soap Bar',
-    category: 'soap',
-    price: 22.50,
-    originalPrice: 28.00,
-    size: '140g e / 5.0 oz',
-    image: '/images/product-matcha-bar.jpg',
+    id: 'treatment-abhyanga',
+    name: 'Abhyanga Herbal Body Therapy',
+    category: 'treatment',
+    price: 75.00,
+    originalPrice: 90.00,
+    size: '60 Mins Session',
+    image: '/images/treatment_abhyanga_1794639675730.jpg',
     rating: 4.9,
-    reviewsCount: 412,
-    shortDesc: 'Artisanal cold-processed cleansing bar rich in antioxidant Japanese Uji matcha and invigorating eucalyptus.',
-    description: 'Handcrafted in small batches and cured for six weeks. This invigorating bath soap combines organic ceremonial matcha, eucalyptus essential oil, unrefined shea butter, and extra virgin olive oil for a dense, silky lather that detoxifies and restores tired skin.',
-    scentNotes: ['Wild Blue Eucalyptus', 'Ceremonial Matcha Tea', 'Crisp Pine Needle'],
-    keyIngredients: ['Organic Ceremonial Matcha', 'Eucalyptus Globulus Leaf Oil', 'Fair-Trade Shea Butter', 'Saponified Olive Oil'],
-    skinType: 'Ideal for normal, combination, and post-workout skin',
+    reviewsCount: 420,
+    shortDesc: 'Synchronized whole-body warm herbal oil therapy for deep relaxation, vitality, and cellular detox.',
+    description: 'Classical whole-body rhythmic massage using warm, herb-infused medicated oils. Relieves muscle tension, pacifies Vata and Pitta doshas, nourishes joints, and enhances lymphatic circulation.',
+    scentNotes: ['Bala & Ashwagandha', 'Warm Medicated Sesame', 'Ksheerabala Thailam'],
+    keyIngredients: ['Ksheerabala Thailam', 'Dhanwantharam Thailam', 'Cold-Pressed Sesame', 'Brahmi Infusion'],
+    skinType: 'Body fatigue, stiffness, stress, and nervous exhaustion',
     isBestSeller: true
   },
   {
-    id: 'soap-2',
-    name: 'Wild Lavender & Oat Calming Bath Soap Bar',
-    category: 'soap',
-    price: 24.00,
-    size: '140g e / 5.0 oz',
-    image: '/images/product-lavender-bar.jpg',
+    id: 'treatment-shirodhara',
+    name: 'Shirodhara Medicated Oil Stream',
+    category: 'treatment',
+    price: 95.00,
+    originalPrice: 115.00,
+    size: '45 Mins Session',
+    image: '/images/treatment_shirodhara_1794639618350.jpg',
     rating: 5.0,
     reviewsCount: 630,
-    shortDesc: 'Ultra-gentle soothing soap with French alpine lavender, colloidal oat milk, and chamomile botanicals.',
-    description: 'Formulated specifically for delicate, sensitive bath rituals. Enriched with whole colloidal oat grain and creamy coconut milk to create a cushiony lather that relieves dryness and calms the senses before rest.',
-    scentNotes: ['French Alpine Lavender', 'Creamy Warm Oat', 'Roman Chamomile'],
-    keyIngredients: ['Whole Colloidal Oat', 'Wild French Lavender Oil', 'Coconut Milk Cream', 'Raw Sweet Almond Oil'],
-    skinType: 'Sensitive, dry, and eczema-prone skin',
+    shortDesc: 'Continuous warm medicinal herbal stream over the forehead, balancing doshas and melting away mental fatigue.',
+    description: 'An ancient meditative therapy where a rhythmic stream of warm herbalized medicated oil flows gently across the third eye chakra. Induces deep mental tranquility, cures chronic insomnia, eases migraines, and calms an overstimulated nervous system.',
+    scentNotes: ['Brahmi Decoction', 'Kshirabala Taila', 'Vetiver & Sandalwood'],
+    keyIngredients: ['Classical Brahmi Medicated Oil', 'Pure Coconut Milk Decoction', 'Vetiver Root Extracts', 'Wild Ashwagandha'],
+    skinType: 'Insomnia, chronic anxiety, burnout, and mental fatigue',
     isBestSeller: true
   },
   {
-    id: 'soap-3',
-    name: 'French Pink Clay & Rosehip Polish Bar',
-    category: 'soap',
-    price: 22.00,
-    size: '135g e / 4.8 oz',
-    image: '/images/product-matcha-bar.jpg',
-    rating: 4.8,
-    reviewsCount: 245,
-    shortDesc: 'Mineral-dense exfoliating clay bar for smooth, luminous, polished body skin.',
-    description: 'Soft French montmorillonite pink clay draws out impurities while organic rosehip seed oil supplies essential fatty acids for silky, radiant suppleness.',
-    scentNotes: ['Damask Rose Petals', 'Pink Grapefruit', 'Bergamot Peel'],
-    keyIngredients: ['French Pink Kaolin Clay', 'Wild Rosehip Seed Oil', 'Saponified Coconut Oil', 'Cocoa Butter'],
-    skinType: 'Dull, uneven, and combination skin'
+    id: 'treatment-kizhi',
+    name: 'Herbal Kizhi Poultice Therapy',
+    category: 'treatment',
+    price: 85.00,
+    originalPrice: 100.00,
+    size: '60 Mins Session',
+    image: '/images/treatment_kizhi_1794639697200.jpg',
+    rating: 4.9,
+    reviewsCount: 345,
+    shortDesc: 'Steamed medicinal leaf bolus therapy to relieve joint inflammation, arthritis, and muscular stiffness.',
+    description: 'Herbal Kizhi uses bundles of fresh medicinal leaves, therapeutic herbal powders, and mineral salts sauteed in medicated oils, pressed rhythmically over the entire body. Highly effective for pain relief, sciatica, and joint rejuvenation.',
+    scentNotes: ['Medicinal Camphor', 'Moringa & Castor Leaves', 'Warm Kottamchukkadi'],
+    keyIngredients: ['Kottamchukkadi Thailam', 'Castor & Calotropis Leaves', 'Medicinal Rock Salt', 'Kolakulathadi Churna'],
+    skinType: 'Joint stiffness, back pain, muscular aches, and sports recovery'
   },
   {
-    id: 'soap-4',
-    name: 'Golden Honey & Calendula Baby-Mild Bar',
-    category: 'soap',
-    price: 26.00,
-    size: '145g e / 5.1 oz',
-    image: '/images/product-lavender-bar.jpg',
-    rating: 4.9,
+    id: 'treatment-panchakarma',
+    name: 'Panchakarma Deep Detox & Renewal',
+    category: 'treatment',
+    price: 130.00,
+    originalPrice: 155.00,
+    size: '90 Mins Session',
+    image: '/images/treatment_panchakarma_1794639720577.jpg',
+    rating: 5.0,
     reviewsCount: 310,
-    shortDesc: 'Fragrance-free raw honey bath bar steeped in organic solar-infused calendula petals.',
-    description: 'A 100% natural, unscented artisan bar formulated with raw wildflower honey and triple-infused calendula blossoms. Deeply hydrating for even the most sensitive skin barriers.',
-    scentNotes: ['Raw Wildflower Nectar (Natural)', 'Sun-Drenched Calendula'],
-    keyIngredients: ['Raw Wildflower Honey', 'Solar Calendula Petals', 'Cold-Pressed Avocado Oil', 'Castor Seed Oil'],
-    skinType: 'Extra sensitive, baby-safe, allergy-prone'
+    shortDesc: 'Comprehensive multi-stage Ayurvedic purification protocol purging deep cellular toxins and restoring Ojas.',
+    description: 'The quintessential classical Ayurvedic protocol. Combines Snehana (internal oleation), Swedana (herbal steam therapy), and therapeutic detoxification to eliminate accumulated metabolic toxins (Ama) and rekindle digestive fire (Agni).',
+    scentNotes: ['Triphala Decoction', 'Dashamoola Herbs', 'Organic Ghee & Guggulu'],
+    keyIngredients: ['Triphala Organic Infusion', 'Dashamoola Herbal Steam', 'Shodana Medicated Oils', 'Pure Forest Honey'],
+    skinType: 'Sluggish metabolism, seasonal detox, and immune rebuilding'
   }
 ];
 
-export const ALL_PRODUCTS: Product[] = [...HERO_PRODUCTS, ...NATURAL_BATH_SOAP_COLLECTION];
+export const NATURAL_BATH_SOAP_COLLECTION: Product[] = AYURVEDA_TREATMENTS_COLLECTION;
+
+export const ALL_PRODUCTS: Product[] = [...HERO_TREATMENTS, ...HERO_PRODUCTS, ...AYURVEDA_TREATMENTS_COLLECTION];
