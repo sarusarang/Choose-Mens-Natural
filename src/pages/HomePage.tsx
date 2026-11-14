@@ -1,8 +1,9 @@
-﻿import React from 'react';
+import React from 'react';
 import { HeroSection } from '../components/hero/HeroSection';
 import { MarqueeBanner } from '../components/sections/MarqueeBanner';
 import { SoapCollectionSection } from '../components/sections/SoapCollectionSection';
 import { NaturalIngredientsSection } from '../components/sections/NaturalIngredientsSection';
+import { MedicalDirectorsSection } from '../components/sections/MedicalDirectorsSection';
 import { ExploreByCategorySection } from '../components/sections/ExploreByCategorySection';
 import { CustomerReviewsSection } from '../components/sections/CustomerReviewsSection';
 import { YourRitualSection } from '../components/sections/YourRitualSection';
@@ -22,6 +23,9 @@ export const HomePage: React.FC = () => {
 
       {/* Our Natural Ingredients Orbital Section */}
       <NaturalIngredientsSection />
+
+      {/* Medical Directors Leadership Section */}
+      <MedicalDirectorsSection />
 
       {/* Explore By Category Section */}
       <ExploreByCategorySection />

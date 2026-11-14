@@ -3,13 +3,14 @@ import { motion } from 'framer-motion';
 
 export const MarqueeBanner: React.FC = () => {
   const items = [
-    'Classical Ayurvedic Healing Therapies',
-    'Authentic Kerala Ashtavaidya Tradition',
-    'Pure Medicated Thailams & Kashayams',
-    'Synchronized Abhyanga & Shirodhara',
-    'Holistic Tridosha Rebalancing',
-    'Panchakarma Detox & Rasayana Rejuvenation',
-    '100% Wild-Harvested Vedic Botanicals',
+    'Extended Shared Nurture Postnatal (28 Days)',
+    'Value Shared Wellness Postnatal (21 Days)',
+    'Affordable Shared Recovery Postnatal (14 Days)',
+    'Value 28 Days of Sustained Care & Privacy',
+    'Practical 21 Days of Steady Nurture & Balance',
+    'Budget-Friendly 14 Days of Focused Healing & Rest',
+    'Mattanur Center, Kannur (Opp. Airport Road)',
+    'Authentic Ayurvedic Postnatal Mother & Baby Care',
   ];
 
   return (

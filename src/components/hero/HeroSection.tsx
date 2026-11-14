@@ -6,7 +6,7 @@ import { useCart } from '../../context/CartContext';
 import { Navbar } from '../layout/Navbar';
 
 export const HeroSection: React.FC = () => {
-  const { addToCart, openQuickView } = useCart();
+  const { openQuickView } = useCart();
 
   const treatment1 = HERO_TREATMENTS[0]; // Abhyanga Herbal Massage
   const treatment2 = HERO_TREATMENTS[1]; // Shirodhara Oil Therapy
@@ -103,13 +103,15 @@ export const HeroSection: React.FC = () => {
 
               {/* Book Treatment Pill with Liquid Glass Feel & Gold Accent */}
               <motion.a
-                href="#services"
+                href="https://wa.me/919876543210?text=Hello%20Aaramam%20Ayurveda%2C%20I%20would%20like%20to%20enquire%20about%20your%20Ayurvedic%20postnatal%20care%20packages."
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05, boxShadow: '0 14px 30px rgba(212,160,52,0.3)' }}
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 20 }}
                 className="mt-1 flex items-center space-x-2.5 pl-4 pr-1.5 py-1.5 rounded-full bg-gradient-to-r from-white via-[#fffef7] to-[#fae788] text-[#112314] font-bold text-xs sm:text-[13px] shadow-[0_8px_24px_rgba(0,0,0,0.3)] border border-[#d4a034]/40 group cursor-pointer transition-all"
               >
-                <span className="tracking-tight font-heading font-bold">Book Treatment</span>
+                <span className="tracking-tight font-heading font-bold">Enquire Now</span>
                 <div className="w-7 h-7 rounded-full bg-[#112314] flex items-center justify-center text-[#fae788] group-hover:bg-[#203c23] transition-colors">
                   <Calendar className="w-3.5 h-3.5 text-[#fae788]" />
                 </div>
@@ -125,7 +127,7 @@ export const HeroSection: React.FC = () => {
             {/* Left Pair: Card 1 and Card 2 side-by-side */}
             <div className="flex items-end gap-3 sm:gap-4 shrink-0">
               
-              {/* Card 1 (Bottom Left 1: Abhyanga Herbal Massage) */}
+              {/* Card 1 (Bottom Left 1: Extended Shared Nurture Postnatal 28 Days) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -135,7 +137,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-1 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[200px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-1 snap-start shrink-0 w-[170px] sm:w-[195px] md:w-[215px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 
@@ -147,40 +149,41 @@ export const HeroSection: React.FC = () => {
                     alt={treatment1.name}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/85 backdrop-blur-md text-[#fae788] text-[9px] font-bold">
-                    60 Min
+                  <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/90 backdrop-blur-md text-[#fae788] text-[9px] font-bold border border-[#d4a034]/40">
+                    28 Days
                   </div>
                 </div>
 
-                {/* Price & Name & Action */}
-                <div className="mt-1.5 space-y-0.5">
-                  <div className="text-base sm:text-lg font-black text-[#112314] tracking-tight">
-                    ${treatment1.price.toFixed(2)}
-                  </div>
+                {/* Name & Action (No Price) */}
+                <div className="mt-2 space-y-1">
                   <h3 
                     onClick={() => openQuickView(treatment1)}
-                    className="text-[11px] sm:text-xs font-bold text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                    className="text-[11.5px] sm:text-xs font-bold font-heading text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                    title={treatment1.name}
                   >
                     {treatment1.name}
                   </h3>
+                  <p className="text-[9.5px] text-[#556956] line-clamp-1 leading-snug">
+                    {treatment1.subtitle}
+                  </p>
                   
-                  <div className="pt-1.5 flex items-center justify-between">
-                    <span className="text-[9px] text-gray-500 font-medium">
-                      {treatment1.size}
+                  <div className="pt-2 flex items-center justify-between">
+                    <span className="text-[9px] text-[#718272] font-semibold">
+                      Mattanur
                     </span>
-                    <motion.button
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
-                      onClick={() => addToCart(treatment1, 1)}
-                      className="px-3 py-1 rounded-full bg-[#112314] hover:bg-[#203c23] hover:text-[#fae788] text-white text-[10px] font-semibold tracking-wide transition-all cursor-pointer shadow-sm"
+                    <a
+                      href={treatment1.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
-                      Book
-                    </motion.button>
+                      <span>Enquire Now</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Card 2 (Bottom Left 2: Shirodhara Oil Therapy) */}
+              {/* Card 2 (Bottom Left 2: Value Shared Wellness Postnatal 21 Days) */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -190,7 +193,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-2 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[200px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-2 snap-start shrink-0 w-[170px] sm:w-[195px] md:w-[215px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 
@@ -202,42 +205,43 @@ export const HeroSection: React.FC = () => {
                     alt={treatment2.name}
                     className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                   />
-                  <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/85 backdrop-blur-md text-[#fae788] text-[9px] font-bold">
-                    45 Min
+                  <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/90 backdrop-blur-md text-[#fae788] text-[9px] font-bold border border-[#d4a034]/40">
+                    21 Days
                   </div>
                 </div>
 
-                {/* Price & Name & Action */}
-                <div className="mt-1.5 space-y-0.5">
-                  <div className="text-base sm:text-lg font-black text-[#112314] tracking-tight">
-                    ${treatment2.price.toFixed(2)}
-                  </div>
+                {/* Name & Action (No Price) */}
+                <div className="mt-2 space-y-1">
                   <h3 
                     onClick={() => openQuickView(treatment2)}
-                    className="text-[11px] sm:text-xs font-bold text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                    className="text-[11.5px] sm:text-xs font-bold font-heading text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                    title={treatment2.name}
                   >
                     {treatment2.name}
                   </h3>
+                  <p className="text-[9.5px] text-[#556956] line-clamp-1 leading-snug">
+                    {treatment2.subtitle}
+                  </p>
                   
-                  <div className="pt-1.5 flex items-center justify-between">
-                    <span className="text-[9px] text-gray-500 font-medium">
-                      {treatment2.size}
+                  <div className="pt-2 flex items-center justify-between">
+                    <span className="text-[9px] text-[#718272] font-semibold">
+                      Mattanur
                     </span>
-                    <motion.button
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
-                      onClick={() => addToCart(treatment2, 1)}
-                      className="px-3 py-1 rounded-full bg-[#112314] hover:bg-[#203c23] hover:text-[#fae788] text-white text-[10px] font-semibold tracking-wide transition-all cursor-pointer shadow-sm"
+                    <a
+                      href={treatment2.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
-                      Book
-                    </motion.button>
+                      <span>Enquire Now</span>
+                    </a>
                   </div>
                 </div>
               </motion.div>
 
             </div>
 
-            {/* Right Card: Card 3 (Bottom Right: Herbal Kizhi Poultice) */}
+            {/* Right Card: Card 3 (Bottom Right: Affordable Shared Recovery Postnatal 14 Days) */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -247,7 +251,7 @@ export const HeroSection: React.FC = () => {
                 ease: [0.16, 1, 0.3, 1]
               }}
               whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-              className="card-float-3 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[200px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 ml-auto transform-gpu will-change-transform"
+              className="card-float-3 snap-start shrink-0 w-[170px] sm:w-[195px] md:w-[215px] bg-white/95 backdrop-blur-xl rounded-[22px] p-3 sm:p-3.5 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 ml-auto transform-gpu will-change-transform"
             >
               {/* Treatment Image */}
               <div 
@@ -259,35 +263,36 @@ export const HeroSection: React.FC = () => {
                   alt={treatment3.name}
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/85 backdrop-blur-md text-[#fae788] text-[9px] font-bold">
-                  60 Min
+                <div className="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full bg-[#112314]/90 backdrop-blur-md text-[#fae788] text-[9px] font-bold border border-[#d4a034]/40">
+                  14 Days
                 </div>
               </div>
 
-              {/* Price & Name & Action */}
-              <div className="mt-1.5 space-y-0.5">
-                <div className="text-base sm:text-lg font-black text-[#112314] tracking-tight">
-                  ${treatment3.price.toFixed(2)}
-                </div>
+              {/* Name & Action (No Price) */}
+              <div className="mt-2 space-y-1">
                 <h3 
                   onClick={() => openQuickView(treatment3)}
-                  className="text-[11px] sm:text-xs font-bold text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                  className="text-[11.5px] sm:text-xs font-bold font-heading text-[#1a251b] leading-tight line-clamp-1 hover:text-[#b18137] cursor-pointer"
+                  title={treatment3.name}
                 >
                   {treatment3.name}
                 </h3>
+                <p className="text-[9.5px] text-[#556956] line-clamp-1 leading-snug">
+                  {treatment3.subtitle}
+                </p>
                 
-                <div className="pt-1.5 flex items-center justify-between">
-                  <span className="text-[9px] text-gray-500 font-medium">
-                    {treatment3.size}
+                <div className="pt-2 flex items-center justify-between">
+                  <span className="text-[9px] text-[#718272] font-semibold">
+                    Mattanur
                   </span>
-                  <motion.button
-                    whileHover={{ scale: 1.06 }}
-                    whileTap={{ scale: 0.94 }}
-                    onClick={() => addToCart(treatment3, 1)}
-                    className="px-3 py-1 rounded-full bg-[#112314] hover:bg-[#203c23] hover:text-[#fae788] text-white text-[10px] font-semibold tracking-wide transition-all cursor-pointer shadow-sm"
+                  <a
+                    href={treatment3.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                   >
-                    Book
-                  </motion.button>
+                    <span>Enquire Now</span>
+                  </a>
                 </div>
               </div>
             </motion.div>

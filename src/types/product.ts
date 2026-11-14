@@ -1,6 +1,7 @@
 export interface Product {
   id: string;
   name: string;
+  subtitle?: string;
   category: 'soap' | 'serum' | 'cleanser' | 'treatment';
   price: number;
   originalPrice?: number;
@@ -15,6 +16,9 @@ export interface Product {
   skinType: string;
   isHeroFeatured?: boolean;
   isBestSeller?: boolean;
+  inclusions?: string[];
+  location?: string;
+  whatsappUrl?: string;
 }
 
 export interface CartItem {
