@@ -17,7 +17,7 @@ import {
   ChevronDown,
 } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
-import { JoinCommunitySection } from '../components/sections/JoinCommunitySection';
+import { Link } from 'react-router-dom';
 
 interface HistoryChapter {
   id: string;
@@ -189,7 +189,7 @@ export const HistoryPage: React.FC = () => {
           'Dvaya Ayurvedic Established 2024',
           'Aaramam Centre at Nallur, Feroke',
         ]}
-        bgImage="/images/treatment_panchakarma_1794639720577.jpg"
+        bgImage="/history-banner.jpeg"
       />
 
       {/* Main Section */}
@@ -210,7 +210,7 @@ export const HistoryPage: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[46px] font-heading font-black text-[#132415] tracking-tight leading-tight">
             The Living Tree of Aaramam <br />
             <span className="font-serif italic font-normal text-[#2b4c2f]">
-              From Beypore Roots (1993) to Nallur, Feroke
+              From Beypore Roots to Nallur, Feroke
             </span>
           </h2>
           <p className="text-sm sm:text-base md:text-lg text-[#3f5442] leading-relaxed max-w-2xl mx-auto font-medium">
@@ -219,66 +219,79 @@ export const HistoryPage: React.FC = () => {
         </motion.div>
 
         {/* Interactive Visual Node Tree Navigator (Graph) */}
-        <div className="mb-16 sm:mb-20 bg-[#0e1d11] text-white rounded-[36px] p-6 sm:p-8 md:p-10 border border-[#d4a034]/35 shadow-[0_20px_50px_rgba(14,29,17,0.35)] relative overflow-hidden">
+        <div className="mb-16 sm:mb-20 bg-[#0e1d11] text-white rounded-[36px] sm:rounded-[44px] py-14 sm:py-18 md:py-20 px-6 sm:px-8 md:px-12 border border-[#d4a034]/35 shadow-[0_25px_60px_rgba(14,29,17,0.45)] relative overflow-hidden">
           {/* Subtle Ambient Gold Glow */}
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#d4a034]/10 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#2b4c2f]/20 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#d4a034]/12 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#2b4c2f]/25 rounded-full blur-[100px] pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-center text-center space-y-3 mb-8 sm:mb-10">
-            <span className="text-[11px] font-heading font-bold text-[#fae788] uppercase tracking-[0.25em]">
+          <div className="relative z-10 flex flex-col items-center text-center space-y-4 mb-10 sm:mb-14">
+            <span className="px-4 py-1.5 rounded-full bg-white/10 border border-[#d4a034]/35 text-xs font-heading font-bold text-[#fae788] uppercase tracking-[0.25em] shadow-sm">
               Interactive Lineage Navigator
             </span>
-            <h3 className="text-2xl sm:text-3xl font-heading font-black text-white">
-              6 Milestones of the Aaramam Tree
+            <h3 className="text-3xl sm:text-4xl md:text-[42px] font-heading font-black text-white tracking-tight leading-tight">
+              Milestones of the Aaramam Tree
             </h3>
-            <p className="text-xs sm:text-sm text-[#9eb6a0] max-w-lg">
+            <p className="text-sm sm:text-base text-[#a3bfa5] max-w-xl leading-relaxed">
               Click any milestone node below to navigate directly to its detailed chapter in our history.
             </p>
           </div>
 
           {/* Node Diagram Cards Grid */}
-          <div className="relative z-10 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-            {chapters.map((ch, idx) => {
+          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+            {chapters.map((ch) => {
               const isActive = activeChapterId === ch.id;
 
               return (
                 <button
                   key={ch.id}
                   onClick={() => scrollToChapter(ch.id)}
-                  className={`p-4 rounded-2xl sm:rounded-3xl border transition-all text-left flex flex-col justify-between group cursor-pointer relative ${
+                  className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all text-left flex flex-col justify-between group cursor-pointer relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px] ${
                     isActive
-                      ? 'bg-gradient-to-b from-[#1d3a22] to-[#122616] border-[#fae788] shadow-[0_0_24px_rgba(250,231,136,0.3)] scale-[1.02]'
-                      : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-[#d4a034]/50'
+                      ? 'bg-gradient-to-b from-[#1d3a22] to-[#122616] border-[#fae788] shadow-[0_0_28px_rgba(250,231,136,0.35)] scale-[1.03] ring-1 ring-[#fae788]'
+                      : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-[#d4a034]/50 hover:shadow-[0_12px_28px_rgba(0,0,0,0.3)]'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="px-2.5 py-0.5 rounded-full bg-[#112314] text-[#fae788] border border-[#d4a034]/40 text-[10px] font-heading font-black uppercase tracking-wider">
+                  {/* Top Row: Year Badge & Icon */}
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="px-3 py-1 rounded-full bg-[#112314] text-[#fae788] border border-[#d4a034]/40 text-[11px] font-heading font-black uppercase tracking-wider shadow-sm">
                       {ch.year}
                     </span>
                     <div
-                      className={`w-7 h-7 rounded-full flex items-center justify-center border transition-all ${
+                      className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all ${
                         isActive
-                          ? 'bg-[#fae788] text-[#112314] border-[#fae788]'
-                          : 'bg-white/10 text-[#fae788] border-white/15 group-hover:scale-110'
+                          ? 'bg-[#fae788] text-[#112314] border-[#fae788] shadow-md'
+                          : 'bg-white/10 text-[#fae788] border-white/15 group-hover:scale-110 group-hover:border-[#fae788]/60'
                       }`}
                     >
-                      {ch.icon}
+                      {React.isValidElement(ch.icon)
+                        ? React.cloneElement(ch.icon as React.ReactElement<{ className?: string }>, {
+                            className: `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${
+                              isActive ? 'text-[#112314]' : 'text-[#fae788]'
+                            }`,
+                          })
+                        : ch.icon}
                     </div>
                   </div>
 
-                  <div>
-                    <span className="text-[10px] text-[#fae788] font-bold uppercase tracking-wider block mb-1">
-                      Step {idx + 1}
-                    </span>
-                    <h4 className="text-xs sm:text-sm font-heading font-bold text-white line-clamp-2 leading-tight group-hover:text-[#fae788] transition-colors">
+                  {/* Middle Content Area */}
+                  <div className="flex-1 flex flex-col justify-center my-3">
+                    {ch.phase && (
+                      <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-[#d4a034] mb-2 block">
+                        {ch.phase}
+                      </span>
+                    )}
+                    <h4 className="text-sm sm:text-[15px] font-heading font-bold text-white line-clamp-3 leading-snug group-hover:text-[#fae788] transition-colors">
                       {ch.title}
                     </h4>
-                    <p className="text-[11px] text-[#8fa892] mt-1 line-clamp-1">{ch.location}</p>
+                    <p className="text-xs text-[#8fa892] mt-2 line-clamp-2 leading-relaxed">
+                      {ch.location}
+                    </p>
                   </div>
 
-                  <div className="mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-[10px] text-[#fae788]">
-                    <span>Explore</span>
-                    <ChevronDown className="w-3 h-3 group-hover:translate-y-0.5 transition-transform" />
+                  {/* Bottom Explore Footer */}
+                  <div className="mt-4 pt-3.5 border-t border-white/15 flex items-center justify-between text-xs font-semibold text-[#fae788]">
+                    <span className="tracking-wide">Explore</span>
+                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-[#fae788]" />
                   </div>
                 </button>
               );
@@ -426,11 +439,11 @@ export const HistoryPage: React.FC = () => {
                           <div className="absolute inset-0 bg-gradient-to-r from-[#0e1d11]/40 via-transparent to-[#0e1d11]/40" />
                         </div>
 
-                        {/* Top Step Pill */}
+                        {/* Top Phase Pill */}
                         <div className="absolute top-5 left-5">
                           <span className="px-3.5 py-1.5 rounded-full bg-[#112314]/90 text-[#fae788] border border-[#d4a034]/40 text-xs font-heading font-black tracking-wider uppercase backdrop-blur-md shadow-md flex items-center space-x-1.5">
                             <Sparkles className="w-3.5 h-3.5 text-[#fae788]" />
-                            <span>Step {index + 1} of 6</span>
+                            <span>{ch.phase}</span>
                           </span>
                         </div>
 
@@ -537,21 +550,18 @@ export const HistoryPage: React.FC = () => {
             </div>
 
             <div className="pt-2">
-              <a
-                href="/services"
+              <Link
+                to="/services"
                 className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-[#112314] hover:bg-[#1b3720] text-[#fae788] border border-[#d4a034]/40 font-heading font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:shadow-lg"
               >
                 <span>Explore Postnatal Services</span>
                 <ArrowRight className="w-4 h-4 text-[#fae788]" />
-              </a>
+              </Link>
             </div>
           </motion.div>
 
         </div>
       </section>
-
-      {/* Community Section */}
-      <JoinCommunitySection />
     </div>
   );
 };

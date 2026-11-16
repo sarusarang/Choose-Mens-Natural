@@ -24,17 +24,15 @@ export const Navbar: React.FC = () => {
 
   const centerNavItems = [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'History', href: '/history' },
-    { label: 'Service', href: '/services' },
+    { label: 'Our History', href: '/history' },
+    { label: 'Service & Packages', href: '/services' },
     { label: 'Feedback', href: '/feedback' },
   ];
 
   const mobileNavItems = [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'History', href: '/history' },
-    { label: 'Service', href: '/services' },
+    { label: 'Our History', href: '/history' },
+    { label: 'Service & Packages', href: '/services' },
     { label: 'Feedback', href: '/feedback' },
     { label: 'Contact Us', href: '/contact' },
   ];

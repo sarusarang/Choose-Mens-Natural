@@ -1,8 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, CheckCircle, Sparkles, Quote } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Star, CheckCircle, Sparkles, Quote, ArrowRight } from 'lucide-react';
 
-export const CustomerReviewsSection: React.FC = () => {
+interface CustomerReviewsSectionProps {
+  showFeedbackButton?: boolean;
+}
+
+export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
+  showFeedbackButton = true,
+}) => {
   const reviews = [
     {
       name: 'Dr. Clara Vance',
@@ -31,7 +38,7 @@ export const CustomerReviewsSection: React.FC = () => {
   ];
 
   return (
-    <section id="feedback" className="pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-6 md:pb-6 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
+    <section id="feedback" className="pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-14 md:pb-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
       <div id="reviews" className="absolute -top-24 left-0 pointer-events-none" />
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
@@ -126,6 +133,25 @@ export const CustomerReviewsSection: React.FC = () => {
           </motion.div>
         ))}
       </div>
+
+      {/* Action Button: Link to Feedback Page */}
+      {showFeedbackButton && (
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.9, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10 sm:mt-12 flex justify-center"
+        >
+          <Link
+            to="/feedback"
+            className="inline-flex items-center space-x-2.5 px-7 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#112314] hover:bg-[#18341c] text-[#fae788] border border-[#d4a034]/40 hover:border-[#fae788] font-heading font-bold text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 shadow-[0_10px_25px_rgba(17,35,20,0.18)] hover:shadow-[0_16px_35px_rgba(17,35,20,0.28)] hover:scale-105 active:scale-95 group cursor-pointer"
+          >
+            <span>View All Guest Feedback</span>
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-[#d4a034] group-hover:text-[#fae788]" />
+          </Link>
+        </motion.div>
+      )}
     </section>
   );
 };

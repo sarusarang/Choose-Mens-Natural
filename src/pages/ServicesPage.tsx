@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Check, MessageCircle, MapPin, Clock, Heart } from 'lucide-react';
+import { Sparkles, Check, MessageCircle, MapPin, Clock, Heart, Eye } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
 import { POSTNATAL_CARE_PACKAGES, HERO_TREATMENTS } from '../data/products';
 import { useCart } from '../context/CartContext';
@@ -24,11 +24,11 @@ export const ServicesPage: React.FC = () => {
         description="Immerse in physician-guided Ayurvedic therapies and our signature postnatal care packages at our peaceful Feroke Sanctuary in Kozhikode."
         breadcrumbs={[{ label: 'Our Services' }]}
         highlights={['Traditional Postnatal Packages', 'Daily Abhyanga & Herbal Baths', 'Private Mother-Baby Rooms', 'Enquire via WhatsApp']}
-        bgImage="/images/treatment_mother_care_1794639745090.jpg"
+        bgImage="/service-banner.jpeg"
       />
 
       {/* Signature Postnatal Care Packages Section */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full">
+      <section id="packages" className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full scroll-mt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,7 +63,10 @@ export const ServicesPage: React.FC = () => {
               className="bg-white rounded-[32px] overflow-hidden border border-[#1b3420]/10 shadow-[0_12px_36px_rgba(20,40,24,0.08)] hover:shadow-[0_20px_48px_rgba(20,40,24,0.14)] transition-all flex flex-col group"
             >
               {/* Card Image Banner */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#112314]">
+              <div 
+                onClick={() => openQuickView(pkg)}
+                className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#112314] cursor-pointer"
+              >
                 <img
                   src={pkg.image}
                   alt={pkg.name}
@@ -108,16 +111,26 @@ export const ServicesPage: React.FC = () => {
                   </div>
                 )}
 
-                {/* Card CTA: Explore Now! via WhatsApp */}
-                <a
-                  href={pkg.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full py-3.5 px-4 rounded-full bg-gradient-to-r from-[#112314] via-[#1a3820] to-[#112314] hover:from-[#19361e] hover:to-[#224828] text-[#fae788] border border-[#d4a034]/40 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all cursor-pointer group-hover:border-[#fae788]"
-                >
-                  <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                  <span>Explore Now!</span>
-                </a>
+                {/* Card CTAs: View Package Details & Explore Now via WhatsApp */}
+                <div className="space-y-2 pt-2">
+                  <button
+                    onClick={() => openQuickView(pkg)}
+                    className="w-full py-3 px-4 rounded-full bg-white hover:bg-[#112314] text-[#112314] hover:text-[#fae788] border-2 border-[#1b3420]/15 hover:border-[#d4a034]/60 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-xs transition-all cursor-pointer group/btn"
+                  >
+                    <Eye className="w-4 h-4 text-[#d4a034] group-hover/btn:text-[#fae788] transition-colors" />
+                    <span>View Package Details</span>
+                  </button>
+
+                  <a
+                    href={pkg.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#112314] via-[#1a3820] to-[#112314] hover:from-[#19361e] hover:to-[#224828] text-[#fae788] border border-[#d4a034]/40 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all cursor-pointer group-hover:border-[#fae788]"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                    <span>Explore Now!</span>
+                  </a>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -181,9 +194,10 @@ export const ServicesPage: React.FC = () => {
 
                   <button
                     onClick={() => openQuickView(treatment)}
-                    className="w-full py-2.5 px-3 rounded-full bg-[#112314] hover:bg-[#1c3a21] text-[#fae788] text-xs font-heading font-bold uppercase tracking-wider transition-colors cursor-pointer"
+                    className="w-full py-2.5 px-3 rounded-full bg-[#112314] hover:bg-[#1c3a21] text-[#fae788] text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
                   >
-                    View Details
+                    <Eye className="w-3.5 h-3.5 text-[#d4a034]" />
+                    <span>View Package Details</span>
                   </button>
                 </div>
               </motion.div>

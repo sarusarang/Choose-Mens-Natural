@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
+import { CountUp } from '../common/CountUp';
 import { HERO_TREATMENTS } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 
@@ -23,8 +24,8 @@ export const HeroSection: React.FC = () => {
           className="relative w-full h-full"
         >
           <img
-            src="/images/hero-ayurveda-sanctuary.jpg"
-            alt="Authentic Ayurvedic healing sanctuary model holding traditional herbal oil elixir"
+            src="/home-hero.jpeg"
+            alt="Authentic Ayurvedic postnatal healing sanctuary"
             className="w-full h-full object-cover object-center brightness-[0.85] contrast-[1.05]"
           />
 
@@ -90,10 +91,10 @@ export const HeroSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Stat 50K + */}
+              {/* Stat 200+ with Animated Count Up */}
               <div className="text-left">
-                <span className="text-2xl sm:text-[28px] font-black text-transparent bg-clip-text bg-gradient-to-r from-[#fae788] to-[#d4a034] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
-                  50K +
+                <span className="text-2xl sm:text-[28px] font-black text-transparent bg-clip-text bg-gradient-to-r from-[#fae788] to-[#d4a034] tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] inline-block">
+                  <CountUp end={200} duration={2.0} suffix="+" />
                 </span>
                 <p className="text-xs sm:text-[13px] font-medium text-white/95 leading-snug drop-shadow-[0_1px_6px_rgba(0,0,0,0.4)]">
                   Rejuvenated Guests<br />Classical Ayurvedic Care

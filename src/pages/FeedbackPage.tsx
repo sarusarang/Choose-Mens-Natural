@@ -2,15 +2,40 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
+import { CountUp } from '../components/common/CountUp';
 import { CustomerReviewsSection } from '../components/sections/CustomerReviewsSection';
 import { SanctuaryReelsCollageSection } from '../components/sections/SanctuaryReelsCollageSection';
 
 export const FeedbackPage: React.FC = () => {
   const ratingMetrics = [
-    { label: 'Overall Guest Satisfaction', val: '5.0 / 5.0', sub: 'Based on 750+ sanctuary stays' },
-    { label: 'Doctor Attentiveness', val: '99.4%', sub: 'Round-the-clock medical care' },
-    { label: 'Therapeutic Results', val: '98.8%', sub: 'Postpartum recovery & pain relief' },
-    { label: 'Sanctuary Cleanliness & Ambiance', val: '100%', sub: 'Hygiene & warm living quarters' },
+    {
+      label: 'Overall Guest Satisfaction',
+      value: 5.0,
+      decimals: 1,
+      suffix: ' / 5.0',
+      sub: 'Based on 750+ sanctuary stays',
+    },
+    {
+      label: 'Doctor Attentiveness',
+      value: 99.4,
+      decimals: 1,
+      suffix: '%',
+      sub: 'Round-the-clock medical care',
+    },
+    {
+      label: 'Therapeutic Results',
+      value: 98.8,
+      decimals: 1,
+      suffix: '%',
+      sub: 'Postpartum recovery & pain relief',
+    },
+    {
+      label: 'Sanctuary Cleanliness & Ambiance',
+      value: 100,
+      decimals: 0,
+      suffix: '%',
+      sub: 'Hygiene & warm living quarters',
+    },
   ];
 
   return (
@@ -22,7 +47,7 @@ export const FeedbackPage: React.FC = () => {
         description="Explore authentic reflections from mothers, holistic wellness travelers, and families whose vitality, strength, and inner peace were restored through classical Ayurveda at Aaramam."
         breadcrumbs={[{ label: 'Guest Feedback' }]}
         highlights={['750+ Verified Mothers & Guests', 'Postnatal Recovery Stories', 'Doctor Attentiveness', 'Feroke & Worldwide']}
-        bgImage="/images/treatment_shirodhara_1794639618350.jpg"
+        bgImage="/feed-back-banner.jpeg"
       />
 
       {/* Sanctuary Rating Metrics Banner */}
@@ -43,7 +68,12 @@ export const FeedbackPage: React.FC = () => {
                 ))}
               </div>
               <h3 className="text-2xl sm:text-3xl font-heading font-black text-[#112314]">
-                {item.val}
+                <CountUp
+                  end={item.value}
+                  decimals={item.decimals}
+                  suffix={item.suffix}
+                  duration={2.0}
+                />
               </h3>
               <h4 className="text-xs font-heading font-bold text-[#1b3420] uppercase tracking-wider">
                 {item.label}
@@ -57,7 +87,7 @@ export const FeedbackPage: React.FC = () => {
       </section>
 
       {/* Customer Reviews Section */}
-      <CustomerReviewsSection />
+      <CustomerReviewsSection showFeedbackButton={false} />
 
       {/* Instagram Image & Video Reel Collage Section */}
       <SanctuaryReelsCollageSection />

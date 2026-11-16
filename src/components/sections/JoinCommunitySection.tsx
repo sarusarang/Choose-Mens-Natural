@@ -16,32 +16,32 @@ export const JoinCommunitySection: React.FC = () => {
 
   const capsules: CommunityCapsule[] = [
     {
-      id: 'ayurveda-ritual',
-      title: 'Ayurvedic Snehana',
-      subtitle: 'Sacred warm herbal thailam ritual',
-      image: '/images/ayurveda-ritual-portrait.jpg',
-      badge: '01 • Sacred Ritual',
+      id: 'capsule-1',
+      title: 'Ayurvedic Postnatal Care',
+      subtitle: 'Sacred warm herbal thailam & postpartum recovery',
+      image: '/cta-1.jpeg',
+      badge: '01 • Postnatal Care',
     },
     {
-      id: 'shirodhara',
-      title: 'Shirodhara Stream',
-      subtitle: 'Continuous warm herbal oil for mental tranquility',
-      image: '/images/treatment_shirodhara_1794639618350.jpg',
-      badge: '02 • Mind Serenity',
+      id: 'capsule-2',
+      title: 'Mother & Baby Nurture',
+      subtitle: 'Continuous warm herbal care for mother and newborn',
+      image: '/cta-2.jpeg',
+      badge: '02 • Mother & Baby',
     },
     {
-      id: 'kizhi',
-      title: 'Herbal Kizhi Poultice',
-      subtitle: 'Steamed medicinal leaf bolus fomentation',
-      image: '/images/treatment_kizhi_1794639697200.jpg',
-      badge: '03 • Body Relief',
+      id: 'capsule-3',
+      title: 'Restorative Therapies',
+      subtitle: 'Traditional Ayurvedic postpartum wellness',
+      image: '/cta-3.jpeg',
+      badge: '03 • Restorative Care',
     },
     {
-      id: 'panchakarma',
-      title: 'Panchakarma Detox',
-      subtitle: 'Classical 5-stage cellular cleansing & Rasayana',
-      image: '/images/treatment_panchakarma_1794639720577.jpg',
-      badge: '04 • Deep Cleansing',
+      id: 'capsule-4',
+      title: 'Sanctuary Healing',
+      subtitle: 'Classical healing & maternal rejuvenation',
+      image: '/cta-4.jpeg',
+      badge: '04 • Healing Sanctuary',
     },
   ];
 
@@ -131,7 +131,7 @@ export const JoinCommunitySection: React.FC = () => {
                     className="inline-flex items-center space-x-2 px-5 py-2.5 rounded-full bg-[#112314] text-[#fae788] border border-[#d4a034]/50 text-xs sm:text-sm font-medium shadow-md"
                   >
                     <CheckCircle2 className="w-4 h-4 text-[#d4a034] shrink-0" />
-                    <span>You're in! Welcome to the Aaramam Ayurveda Sanctuary.</span>
+                    <span>Thank you! Our care team will connect with you shortly.</span>
                   </motion.div>
                 ) : (
                   <form
@@ -151,7 +151,7 @@ export const JoinCommunitySection: React.FC = () => {
                       type="submit"
                       className="bg-gradient-to-r from-[#d4a034] via-[#fae788] to-[#b18137] hover:brightness-105 active:scale-95 text-[#112314] font-bold font-heading text-xs sm:text-sm px-4 sm:px-5 py-1.5 sm:py-2 rounded-full transition-all duration-200 cursor-pointer shrink-0 shadow-sm"
                     >
-                      Subscribe
+                      Enquire
                     </button>
                   </form>
                 )}

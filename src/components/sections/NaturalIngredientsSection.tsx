@@ -302,7 +302,7 @@ export const NaturalIngredientsSection: React.FC = () => {
             {/* Central Circular Sanctuary Vessel Photo */}
             <div className="relative w-[260px] h-[260px] rounded-full overflow-hidden border-[6px] border-white shadow-[0_22px_60px_rgba(20,40,22,0.22)] bg-[#eae5dc] z-20 group">
               <img
-                src="/images/ayurveda-herbs-center.jpg"
+                src="/images/premium-amenities-center.jpeg"
                 alt="Classical Ayurvedic postnatal sanctuary amenities and medicinal botanicals"
                 className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
               />
@@ -576,7 +576,7 @@ export const NaturalIngredientsSection: React.FC = () => {
               className="relative w-[180px] sm:w-[220px] h-[180px] sm:h-[220px] rounded-full overflow-hidden border-[5px] border-white shadow-[0_16px_40px_rgba(20,38,22,0.18)] bg-[#eae5dc] z-10"
             >
               <img
-                src="/images/ayurveda-herbs-center.jpg"
+                src="/images/premium-amenities-center.jpeg"
                 alt="Classical Ayurvedic amenities"
                 className="w-full h-full object-cover"
               />

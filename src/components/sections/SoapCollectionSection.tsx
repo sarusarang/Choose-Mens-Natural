@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Star, Eye, Sparkles, Clock, MessageCircle, MapPin, CheckCircle2 } from 'lucide-react';
+import { Star, Sparkles, Clock, MapPin, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { POSTNATAL_CARE_PACKAGES } from '../../data/products';
-import { useCart } from '../../context/CartContext';
 import type { Product } from '../../types/product';
 
 export const SoapCollectionSection: React.FC = () => {
-  const { openQuickView } = useCart();
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const filteredTreatments = POSTNATAL_CARE_PACKAGES.filter((treatment) => {
@@ -108,17 +107,6 @@ export const SoapCollectionSection: React.FC = () => {
                     <Clock className="w-3 h-3 text-[#d4a034]" />
                     <span>{treatment.size}</span>
                   </div>
-
-                  {/* Quick View Button Hover Overlay */}
-                  <div className="absolute inset-x-3 bottom-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex justify-center">
-                    <button
-                      onClick={() => openQuickView(treatment)}
-                      className="w-full py-2.5 bg-[#112314]/92 hover:bg-[#112314] backdrop-blur-md text-[#fae788] border border-[#d4a034]/50 rounded-full text-[11px] font-bold shadow-lg flex items-center justify-center space-x-1.5 transition-all cursor-pointer"
-                    >
-                      <Eye className="w-3.5 h-3.5 text-[#fae788]" />
-                      <span>View Package Details</span>
-                    </button>
-                  </div>
                 </div>
 
                 {/* Card Content */}
@@ -136,10 +124,7 @@ export const SoapCollectionSection: React.FC = () => {
                   </div>
 
                   {/* Package Title */}
-                  <h3
-                    onClick={() => openQuickView(treatment)}
-                    className="mt-2.5 text-[18px] sm:text-[19px] font-heading font-extrabold text-[#112314] leading-snug hover:text-[#b18137] cursor-pointer transition-colors"
-                  >
+                  <h3 className="mt-2.5 text-[18px] sm:text-[19px] font-heading font-extrabold text-[#112314] leading-snug">
                     {treatment.name}
                   </h3>
 
@@ -153,23 +138,6 @@ export const SoapCollectionSection: React.FC = () => {
                     {treatment.shortDesc}
                   </p>
 
-                  {/* Inclusions Highlights */}
-                  {treatment.inclusions && treatment.inclusions.length > 0 && (
-                    <div className="mt-4 pt-3.5 border-t border-gray-100 space-y-2">
-                      <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#1a2e1d] block">
-                        Service Highlights:
-                      </span>
-                      <ul className="text-xs text-[#445646] space-y-1.5">
-                        {treatment.inclusions.slice(0, 3).map((item, i) => (
-                          <li key={i} className="flex items-start space-x-1.5">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a034] shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
                   {/* Location Info */}
                   <div className="mt-4 flex items-center space-x-1.5 text-[11px] text-[#637664] bg-[#f7f9f6] px-3 py-1.5 rounded-xl border border-[#e4ede3]">
                     <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
@@ -178,17 +146,15 @@ export const SoapCollectionSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Bottom Action (Explore Now! WhatsApp Button) */}
+              {/* Bottom Action (Explore Now! Arrow Button connecting to Service Page) */}
               <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
-                <a
-                  href={treatment.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/services#packages"
                   className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#112314] via-[#1a381d] to-[#112314] hover:from-[#1a381d] hover:to-[#244f28] text-[#fae788] hover:text-[#fffbcf] border border-[#d4a034]/50 hover:border-[#fae788]/80 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2 transition-all shadow-md hover:shadow-xl cursor-pointer group"
                 >
-                  <MessageCircle className="w-4 h-4 text-[#d4a034] group-hover:text-[#fae788] transition-colors" />
                   <span>Explore Now!</span>
-                </a>
+                  <ArrowRight className="w-4 h-4 text-[#fae788] group-hover:translate-x-1 transition-transform" />
+                </Link>
               </div>
             </motion.div>
           );
