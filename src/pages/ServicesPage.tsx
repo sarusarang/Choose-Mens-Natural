@@ -4,7 +4,6 @@ import { Sparkles, Check, MessageCircle, MapPin, Clock, Heart } from 'lucide-rea
 import { PageHero } from '../components/common/PageHero';
 import { POSTNATAL_CARE_PACKAGES, HERO_TREATMENTS } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { JoinCommunitySection } from '../components/sections/JoinCommunitySection';
 
 export const ServicesPage: React.FC = () => {
   const { openQuickView } = useCart();
@@ -29,7 +28,7 @@ export const ServicesPage: React.FC = () => {
       />
 
       {/* Signature Postnatal Care Packages Section */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1720px] mx-auto w-full">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -53,7 +52,7 @@ export const ServicesPage: React.FC = () => {
         </motion.div>
 
         {/* 4 Authentic Postnatal & Wellness Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
           {POSTNATAL_CARE_PACKAGES.map((pkg, idx) => (
             <motion.div
               key={pkg.id}
@@ -87,7 +86,7 @@ export const ServicesPage: React.FC = () => {
               </div>
 
               {/* Card Body */}
-              <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-5">
                 <p className="text-xs sm:text-sm text-[#48604a] leading-relaxed">
                   {pkg.description}
                 </p>
@@ -126,8 +125,8 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* Classical In-Sanctuary Therapies Grid */}
-      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 xl:px-12 bg-[#dae3d8]">
-        <div className="max-w-[1720px] mx-auto">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8 bg-[#dae3d8]">
+        <div className="max-w-[1440px] mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,7 +146,7 @@ export const ServicesPage: React.FC = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
             {HERO_TREATMENTS.map((treatment, idx) => (
               <motion.div
                 key={treatment.id}
@@ -194,7 +193,7 @@ export const ServicesPage: React.FC = () => {
       </section>
 
       {/* Aaramam Center Amenities & Location Summary */}
-      <section className="py-14 sm:py-18 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto w-full">
+      <section className="pt-14 sm:pt-18 pb-16 sm:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto w-full">
         <div className="bg-[#112314] text-white p-8 sm:p-12 rounded-[36px] shadow-2xl border border-[#d4a034]/30 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#d4a034]/10 rounded-full blur-[100px] pointer-events-none" />
           
@@ -233,9 +232,6 @@ export const ServicesPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Community Section */}
-      <JoinCommunitySection />
     </div>
   );
 };
