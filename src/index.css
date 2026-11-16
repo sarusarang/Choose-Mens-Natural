@@ -5,6 +5,7 @@
     --font-heading: 'Outfit', 'Plus Jakarta Sans', sans-serif;
     --font-serif: 'Playfair Display', Georgia, serif;
     --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-brand-serif: 'Cinzel', 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
     
     /* Aaramam Royal Gold Palette (Harmonized from Logo) */
     --color-gold-light: #fbef91;
@@ -188,4 +189,11 @@ html.lenis, html.lenis body {
 
 .card-float-3 {
   animation: floatSlow3 6.8s ease-in-out infinite 2.4s;
+}
+
+/* Classical Royal Serif Brand Title (Matching Aaramam Logo Typography) */
+.font-brand-title {
+  font-family: var(--font-brand-serif);
+  font-feature-settings: 'lnum', 'pnum';
+  text-rendering: optimizeLegibility;
 }

@@ -10,7 +10,7 @@ export const QuickViewModal: React.FC = () => {
 
   const product = quickViewProduct;
   const isWished = isInWishlist(product.id);
-  const whatsappUrl = product.whatsappUrl || 'https://wa.me/919876543210';
+  const whatsappUrl = product.whatsappUrl || 'https://wa.me/917034641282';
 
   return (
     <AnimatePresence>
@@ -30,71 +30,71 @@ export const QuickViewModal: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-3xl bg-white rounded-[32px] shadow-2xl overflow-hidden z-10 border-2 border-[#d4a034]/30 max-h-[92vh] flex flex-col md:flex-row"
+          className="relative w-full max-w-5xl lg:max-w-[1120px] bg-white rounded-[36px] shadow-2xl overflow-hidden z-10 border-2 border-[#d4a034]/35 max-h-[92vh] flex flex-col md:flex-row"
         >
           {/* Close button */}
           <button
             onClick={closeQuickView}
-            className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-gray-700 shadow-md transition-all cursor-pointer border border-gray-200"
+            className="absolute top-5 right-5 z-20 w-10 h-10 rounded-full bg-white/90 hover:bg-white flex items-center justify-center text-gray-700 shadow-md transition-all cursor-pointer border border-gray-200"
             aria-label="Close modal"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
 
           {/* Left Column: Image with soft background */}
-          <div className="md:w-1/2 bg-[#f3f6f2] p-6 sm:p-8 flex items-center justify-center relative min-h-[260px] md:min-h-[420px]">
+          <div className="md:w-1/2 bg-[#f3f6f2] p-6 sm:p-8 md:p-10 flex items-center justify-center relative min-h-[300px] md:min-h-[480px] lg:min-h-[520px]">
             <motion.img
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.1 }}
               src={product.image}
               alt={product.name}
-              className="w-full h-full object-cover rounded-2xl shadow-lg border border-white"
+              className="w-full h-full object-cover rounded-2xl sm:rounded-3xl shadow-lg border border-white"
             />
-            <span className="absolute top-4 left-4 px-3 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[10px] font-extrabold rounded-full tracking-wider uppercase shadow-md flex items-center space-x-1">
-              <Sparkles className="w-2.5 h-2.5 text-[#d4a034]" />
+            <span className="absolute top-5 left-5 px-3.5 py-1.5 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-xs font-extrabold rounded-full tracking-wider uppercase shadow-md flex items-center space-x-1.5">
+              <Sparkles className="w-3 h-3 text-[#d4a034]" />
               <span>Ayurvedic Postnatal</span>
             </span>
 
-            <div className="absolute bottom-4 right-4 px-3 py-1 bg-white/95 backdrop-blur-md text-[#112314] text-xs font-bold rounded-full shadow-md flex items-center space-x-1 border border-white/70">
+            <div className="absolute bottom-5 right-5 px-3.5 py-1.5 bg-white/95 backdrop-blur-md text-[#112314] text-xs font-bold rounded-full shadow-md flex items-center space-x-1.5 border border-white/70">
               <Clock className="w-3.5 h-3.5 text-[#d4a034]" />
               <span>{product.size}</span>
             </div>
           </div>
 
           {/* Right Column: Details */}
-          <div className="md:w-1/2 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto max-h-[60vh] md:max-h-[85vh]">
+          <div className="md:w-1/2 p-6 sm:p-8 md:p-10 flex flex-col justify-between overflow-y-auto max-h-[60vh] md:max-h-[85vh]">
             <div className="space-y-4">
               {/* Rating & Category */}
-              <div className="flex items-center justify-between text-xs">
-                <div className="flex items-center space-x-1 text-[#d4a034] font-bold">
-                  <Star className="w-3.5 h-3.5 fill-[#d4a034] text-[#d4a034]" />
+              <div className="flex items-center justify-between text-xs sm:text-[13px]">
+                <div className="flex items-center space-x-1.5 text-[#d4a034] font-bold">
+                  <Star className="w-4 h-4 fill-[#d4a034] text-[#d4a034]" />
                   <span>{product.rating}</span>
                   <span className="text-gray-400">({product.reviewsCount} reviews)</span>
                 </div>
-                <span className="bg-[#edf4ed] text-[#2e5433] px-2.5 py-0.5 rounded-full font-bold uppercase text-[10px] tracking-wider">
+                <span className="bg-[#edf4ed] text-[#2e5433] px-3 py-1 rounded-full font-bold uppercase text-[10px] sm:text-[11px] tracking-wider">
                   Prasava Raksha
                 </span>
               </div>
 
-              {/* Title & Subtitle (No Price) */}
+              {/* Title & Subtitle */}
               <div>
-                <h3 className="text-xl sm:text-2xl font-bold font-heading text-[#141e15] tracking-tight leading-snug">
+                <h3 className="text-2xl sm:text-3xl lg:text-[32px] font-bold font-heading text-[#141e15] tracking-tight leading-snug">
                   {product.name}
                 </h3>
                 {product.subtitle && (
-                  <p className="mt-1 text-xs font-bold text-[#8b6521]">
+                  <p className="mt-1 text-xs sm:text-sm font-bold text-[#8b6521]">
                     {product.subtitle}
                   </p>
                 )}
-                <div className="mt-2 flex items-center space-x-1.5 text-xs text-[#556957]">
-                  <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
-                  <span>Mattanur Center (Opp. Airport Road, Kannur)</span>
+                <div className="mt-2.5 flex items-center space-x-2 text-xs sm:text-[13px] text-[#556957]">
+                  <MapPin className="w-4 h-4 text-[#d4a034] shrink-0" />
+                  <span>Aaramam Centre (Near Govt Taluk Hospital, Feroke, Kozhikode)</span>
                 </div>
               </div>
 
               {/* Full Description */}
-              <p className="text-xs sm:text-sm text-[#48564a] leading-relaxed">
+              <p className="text-xs sm:text-sm md:text-[14.5px] text-[#48564a] leading-relaxed">
                 {product.description}
               </p>
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Leaf, Droplets, Sparkles, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Sparkles, Stethoscope, Bed, Baby, Utensils, Bath, Coffee } from 'lucide-react';
 
 interface FeatureCard {
   id: string;
@@ -12,34 +12,47 @@ interface FeatureCard {
 export const NaturalIngredientsSection: React.FC = () => {
   const features: FeatureCard[] = [
     {
-      id: 'tridosha',
-      title: 'Tridosha Equilibrium',
-      description: 'Formulations designed to balance your unique Vata, Pitta, and Kapha bio-energies.',
-      icon: Leaf,
+      id: 'doctor',
+      title: 'All time Doctor',
+      description: '24/7 Doctor Available for observation and execution of all treatment and Care.',
+      icon: Stethoscope,
     },
     {
-      id: 'medicated-oils',
-      title: 'Medicated Thailams',
-      description: 'Classical Kashayam herbal decoctions slow-simmered in cold-pressed sesame oil.',
-      icon: Droplets,
+      id: 'rooms',
+      title: 'Comfortable Private Rooms',
+      description: 'Spacious, hygienic and peaceful rooms for mothers to relax and recover.',
+      icon: Bed,
     },
     {
-      id: 'wild-purity',
-      title: 'Wild-Harvested Purity',
-      description: '100% natural medicinal roots, barks, and leaves gathered from sacred forests.',
-      icon: Sparkles,
+      id: 'baby-care',
+      title: 'Dedicated Baby Care Facilities',
+      description: 'A safe and comfortable environment for newborn care and mother-baby bonding.',
+      icon: Baby,
     },
     {
-      id: 'vedic-lineage',
-      title: 'Vedic Healing Lineage',
-      description: 'Authentic formulations passed down through generations of Ashtavaidya masters.',
-      icon: ShieldCheck,
+      id: 'food',
+      title: 'Nutritious Traditional Food',
+      description: 'Freshly prepared, wholesome meals inspired by traditional Kerala postnatal dietary practices.',
+      icon: Utensils,
+    },
+    {
+      id: 'bathing',
+      title: 'Hygienic Bathing Facilities',
+      description: 'Clean and comfortable bathing spaces with facilities for traditional herbal bathing.',
+      icon: Bath,
+    },
+    {
+      id: 'relaxation',
+      title: 'Relaxation & Recreation Space',
+      description: 'A calm environment with comfortable seating and relaxing spaces for mothers and families.',
+      icon: Coffee,
     },
   ];
 
   return (
     <section id="about" className="py-20 sm:py-24 md:py-28 relative overflow-hidden bg-gradient-to-b from-[#f5f8f4] via-[#ecf3eb] to-[#f4f7f3]">
       <div id="ingredients" className="absolute -top-24 left-0 pointer-events-none" />
+      <div id="amenities" className="absolute -top-24 left-0 pointer-events-none" />
       <div id="beauty-space" className="absolute -top-24 left-0 pointer-events-none" />
       
       {/* Decorative Atmospheric Blurred Botanical Elements in Periphery */}
@@ -63,7 +76,7 @@ export const NaturalIngredientsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="mb-12 sm:mb-16 md:mb-20">
-          {/* Pill Badge: SACRED VEDIC BOTANICALS */}
+          {/* Pill Badge: Why people chose us. */}
           <div className="flex justify-center md:justify-start mb-3 sm:mb-4">
             <motion.div
               initial={{ opacity: 0, y: 25 }}
@@ -73,7 +86,7 @@ export const NaturalIngredientsSection: React.FC = () => {
               className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-[#d4a034]/40 text-[#122314] text-xs font-extrabold uppercase tracking-widest shadow-sm"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#d4a034]" />
-              <span>Sacred Vedic Botanicals</span>
+              <span>Why People Choose Us</span>
             </motion.div>
           </div>
 
@@ -84,12 +97,12 @@ export const NaturalIngredientsSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 1.1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-[54px] font-black text-[#131d14] tracking-tight leading-[1.08] text-center md:text-left"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[52px] font-black text-[#131d14] tracking-tight leading-[1.1] text-center md:text-left"
             >
-              Our <span className="font-serif italic text-[#25462c] font-normal tracking-normal">Ayurvedic</span> Herbs
+              Premium Amenities at <span className="font-serif italic text-[#25462c] font-normal tracking-normal">AaramCare</span>
             </motion.h2>
 
-            {/* Explore Treatments Button - Aligned with the Title */}
+            {/* Explore Amenities Button - Aligned with Title */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +114,7 @@ export const NaturalIngredientsSection: React.FC = () => {
                 href="#services"
                 className="inline-flex items-center space-x-2.5 px-6 py-2.5 rounded-full border border-[#d4a034]/50 hover:border-[#112314] bg-white hover:bg-[#112314] text-[#112314] hover:text-[#fae788] text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm hover:shadow-md group cursor-pointer backdrop-blur-md"
               >
-                <span>Explore Treatments</span>
+                <span>Explore Amenities</span>
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-[#d4a034] group-hover:text-[#fae788]" />
               </a>
             </motion.div>
@@ -113,123 +126,165 @@ export const NaturalIngredientsSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-3.5 sm:mt-4 text-sm sm:text-base text-[#465747] leading-relaxed max-w-xl text-center md:text-left"
+            className="mt-3.5 sm:mt-4 text-sm sm:text-base text-[#465747] leading-relaxed max-w-2xl text-center md:text-left"
           >
-            Ethically wild-harvested from ancient Western Ghats forests. Pure medicinal herbs harmonized according to classical Charaka Samhita scriptures to balance your Doshas and restore vital Ojas.
+            Experience exceptional comfort with private rooms, dedicated baby care, nutritious meals, hygienic facilities and personalised assistance throughout your postnatal stay at AaramCare.
           </motion.p>
         </div>
 
         {/* =========================================================================
-            DESKTOP WIDE VIEWPORT (1024px+): Connected SVG Nodes to Central Vessel
+            DESKTOP WIDE VIEWPORT (1024px+): 6 Connected SVG Nodes to Central Vessel
            ========================================================================= */}
-        <div className="hidden lg:block relative w-full max-w-[1200px] mx-auto h-[520px]">
+        <div className="hidden lg:block relative w-full max-w-[1200px] mx-auto h-[660px]">
           
-          {/* Unified SVG Layer with Exact Shared Vector Coordinates */}
+          {/* Unified SVG Layer with 6 Curved Vector Connectors */}
           <motion.svg
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.4, delay: 0.2 }}
             className="absolute inset-0 w-full h-full pointer-events-none z-20"
-            viewBox="0 0 1200 520"
+            viewBox="0 0 1200 660"
           >
             <defs>
-              <linearGradient id="connectorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <linearGradient id="amenityConnectorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#d4a034" />
                 <stop offset="50%" stopColor="#3a613e" />
                 <stop offset="100%" stopColor="#d4a034" />
               </linearGradient>
             </defs>
 
-            {/* CURVE 1: Top-Left Card (330, 115) -> Center Ring Left-Top (440, 180) */}
+            {/* CURVE 1: Top-Left Card (340, 75) -> Center Ring Left-Top (465, 210) */}
             <path
-              d="M 330 115 C 375 115, 395 180, 440 180"
+              d="M 340 75 C 390 75, 420 210, 465 210"
               fill="none"
               stroke="#3a613e"
               strokeWidth="2.2"
             />
             <circle r="4" fill="#d4a034">
               <animateMotion
-                path="M 330 115 C 375 115, 395 180, 440 180"
+                path="M 340 75 C 390 75, 420 210, 465 210"
                 dur="4s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* CURVE 2: Bottom-Left Card (330, 405) -> Center Ring Left-Bottom (440, 340) */}
+            {/* CURVE 2: Mid-Left Card (340, 330) -> Center Ring Left-Mid (420, 330) */}
             <path
-              d="M 330 405 C 375 405, 395 340, 440 340"
+              d="M 340 330 L 420 330"
               fill="none"
               stroke="#3a613e"
               strokeWidth="2.2"
             />
             <circle r="4" fill="#d4a034">
               <animateMotion
-                path="M 330 405 C 375 405, 395 340, 440 340"
-                dur="4.5s"
+                path="M 340 330 L 420 330"
+                dur="3.6s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* CURVE 3: Top-Right Card (870, 115) -> Center Ring Right-Top (760, 180) */}
+            {/* CURVE 3: Bottom-Left Card (340, 590) -> Center Ring Left-Bottom (465, 450) */}
             <path
-              d="M 870 115 C 825 115, 805 180, 760 180"
+              d="M 340 590 C 390 590, 420 450, 465 450"
               fill="none"
               stroke="#3a613e"
               strokeWidth="2.2"
             />
             <circle r="4" fill="#d4a034">
               <animateMotion
-                path="M 870 115 C 825 115, 805 180, 760 180"
+                path="M 340 590 C 390 590, 420 450, 465 450"
+                dur="4.4s"
+                repeatCount="indefinite"
+              />
+            </circle>
+
+            {/* CURVE 4: Top-Right Card (860, 75) -> Center Ring Right-Top (735, 210) */}
+            <path
+              d="M 860 75 C 810 75, 780 210, 735 210"
+              fill="none"
+              stroke="#3a613e"
+              strokeWidth="2.2"
+            />
+            <circle r="4" fill="#d4a034">
+              <animateMotion
+                path="M 860 75 C 810 75, 780 210, 735 210"
                 dur="4.2s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* CURVE 4: Bottom-Right Card (870, 405) -> Center Ring Right-Bottom (760, 340) */}
+            {/* CURVE 5: Mid-Right Card (860, 330) -> Center Ring Right-Mid (780, 330) */}
             <path
-              d="M 870 405 C 825 405, 805 340, 760 340"
+              d="M 860 330 L 780 330"
               fill="none"
               stroke="#3a613e"
               strokeWidth="2.2"
             />
             <circle r="4" fill="#d4a034">
               <animateMotion
-                path="M 870 405 C 825 405, 805 340, 760 340"
-                dur="4.8s"
+                path="M 860 330 L 780 330"
+                dur="3.8s"
                 repeatCount="indefinite"
               />
             </circle>
 
-            {/* 4 Card Outer Nodes */}
-            <circle cx="330" cy="115" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
-            <circle cx="330" cy="115" r="4" fill="#d4a034" />
+            {/* CURVE 6: Bottom-Right Card (860, 590) -> Center Ring Right-Bottom (735, 450) */}
+            <path
+              d="M 860 590 C 810 590, 780 450, 735 450"
+              fill="none"
+              stroke="#3a613e"
+              strokeWidth="2.2"
+            />
+            <circle r="4" fill="#d4a034">
+              <animateMotion
+                path="M 860 590 C 810 590, 780 450, 735 450"
+                dur="4.6s"
+                repeatCount="indefinite"
+              />
+            </circle>
 
-            <circle cx="330" cy="405" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
-            <circle cx="330" cy="405" r="4" fill="#d4a034" />
+            {/* 6 Outer Card Connecting Nodes */}
+            <circle cx="340" cy="75" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="340" cy="75" r="4" fill="#d4a034" />
 
-            <circle cx="870" cy="115" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
-            <circle cx="870" cy="115" r="4" fill="#d4a034" />
+            <circle cx="340" cy="330" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="340" cy="330" r="4" fill="#d4a034" />
 
-            <circle cx="870" cy="405" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
-            <circle cx="870" cy="405" r="4" fill="#d4a034" />
+            <circle cx="340" cy="590" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="340" cy="590" r="4" fill="#d4a034" />
 
-            {/* 4 Central Ring Inner Nodes */}
-            <circle cx="440" cy="180" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
-            <circle cx="440" cy="180" r="4" fill="#d4a034" />
+            <circle cx="860" cy="75" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="860" cy="75" r="4" fill="#d4a034" />
 
-            <circle cx="440" cy="340" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
-            <circle cx="440" cy="340" r="4" fill="#d4a034" />
+            <circle cx="860" cy="330" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="860" cy="330" r="4" fill="#d4a034" />
 
-            <circle cx="760" cy="180" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
-            <circle cx="760" cy="180" r="4" fill="#d4a034" />
+            <circle cx="860" cy="590" r="9" fill="#112314" stroke="white" strokeWidth="2.5" />
+            <circle cx="860" cy="590" r="4" fill="#d4a034" />
 
-            <circle cx="760" cy="340" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
-            <circle cx="760" cy="340" r="4" fill="#d4a034" />
+            {/* 6 Central Ring Inner Nodes */}
+            <circle cx="465" cy="210" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="465" cy="210" r="4" fill="#d4a034" />
+
+            <circle cx="420" cy="330" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="420" cy="330" r="4" fill="#d4a034" />
+
+            <circle cx="465" cy="450" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="465" cy="450" r="4" fill="#d4a034" />
+
+            <circle cx="735" cy="210" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="735" cy="210" r="4" fill="#d4a034" />
+
+            <circle cx="780" cy="330" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="780" cy="330" r="4" fill="#d4a034" />
+
+            <circle cx="735" cy="450" r="9" fill="white" stroke="#3a613e" strokeWidth="2.5" />
+            <circle cx="735" cy="450" r="4" fill="#d4a034" />
           </motion.svg>
 
           {/* =========================================
-              CENTERPIECE: Orbit Rings & Ayurvedic Vessel
+              CENTERPIECE: Orbit Rings & Central Sanctuary Image
              ========================================= */}
           <motion.div
             initial={{ opacity: 0, scale: 0.88 }}
@@ -238,27 +293,23 @@ export const NaturalIngredientsSection: React.FC = () => {
             transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1] }}
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] h-[360px] flex items-center justify-center z-10"
           >
-            
             {/* Outer Concentric Frosted Orbit Ring with Gold Accent */}
             <div className="absolute inset-0 rounded-full border border-[#d4a034]/30 bg-gradient-to-tr from-[#98ba9b]/15 via-transparent to-[#d4a034]/15 backdrop-blur-[2px] shadow-[0_10px_40px_rgba(40,70,45,0.08)]" />
 
             {/* Inner Concentric Fine Ring */}
             <div className="absolute inset-5 rounded-full border border-white/60 pointer-events-none" />
 
-            {/* Central Circular Ayurvedic Still Life Photo */}
-            <div
-              className="relative w-[260px] h-[260px] rounded-full overflow-hidden border-[6px] border-white shadow-[0_22px_60px_rgba(20,40,22,0.22)] bg-[#eae5dc] z-20 group"
-            >
+            {/* Central Circular Sanctuary Vessel Photo */}
+            <div className="relative w-[260px] h-[260px] rounded-full overflow-hidden border-[6px] border-white shadow-[0_22px_60px_rgba(20,40,22,0.22)] bg-[#eae5dc] z-20 group">
               <img
                 src="/images/ayurveda-herbs-center.jpg"
-                alt="Classical Ayurvedic herbal oil katora and medicinal botanicals"
+                alt="Classical Ayurvedic postnatal sanctuary amenities and medicinal botanicals"
                 className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-black/15 via-transparent to-white/20 pointer-events-none" />
             </div>
 
-            {/* Floating Botanical Jasmine Petals and Green Leaves around Orbit */}
-            {/* Green Leaf 1 (Top-Right) */}
+            {/* Floating Botanical Elements around Orbit */}
             <motion.div
               animate={{ y: [0, -6, 0], rotate: [0, 4, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
@@ -269,7 +320,6 @@ export const NaturalIngredientsSection: React.FC = () => {
               </svg>
             </motion.div>
 
-            {/* Green Leaf 2 (Bottom-Right) */}
             <motion.div
               animate={{ y: [0, 7, 0], rotate: [0, -6, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
@@ -280,7 +330,6 @@ export const NaturalIngredientsSection: React.FC = () => {
               </svg>
             </motion.div>
 
-            {/* Green Leaf 3 (Left) */}
             <motion.div
               animate={{ y: [0, -5, 0], rotate: [0, -5, 0] }}
               transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
@@ -291,7 +340,7 @@ export const NaturalIngredientsSection: React.FC = () => {
               </svg>
             </motion.div>
 
-            {/* Golden Medicated Oil Droplet 1 (Bottom Left) */}
+            {/* Golden Herbal Droplets */}
             <motion.div
               animate={{ y: [0, -5, 0], scale: [1, 1.05, 1] }}
               transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
@@ -300,7 +349,6 @@ export const NaturalIngredientsSection: React.FC = () => {
               <div className="w-2.5 h-2.5 rounded-full bg-white/90 absolute top-1.5 left-1.5 blur-[0.5px]" />
             </motion.div>
 
-            {/* Golden Medicated Oil Droplet 2 (Top Right) */}
             <motion.div
               animate={{ y: [0, 6, 0], scale: [1, 1.04, 1] }}
               transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 }}
@@ -309,7 +357,7 @@ export const NaturalIngredientsSection: React.FC = () => {
               <div className="w-2 h-2 rounded-full bg-white/90 absolute top-1 left-1 blur-[0.5px]" />
             </motion.div>
 
-            {/* White Jasmine Flower 1 (Left Orbit) */}
+            {/* Jasmine Flowers */}
             <motion.div
               animate={{ rotate: [0, 8, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
@@ -324,7 +372,6 @@ export const NaturalIngredientsSection: React.FC = () => {
               </svg>
             </motion.div>
 
-            {/* White Jasmine Flower 2 (Bottom Right Orbit) */}
             <motion.div
               animate={{ rotate: [0, -8, 0] }}
               transition={{ duration: 6.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
@@ -339,7 +386,7 @@ export const NaturalIngredientsSection: React.FC = () => {
               </svg>
             </motion.div>
 
-            {/* Sparkle Twinkles */}
+            {/* Sparkles */}
             <div className="absolute top-8 left-2 text-[#d4a034] animate-pulse">
               <Sparkles className="w-4 h-4 fill-current opacity-85" />
             </div>
@@ -349,99 +396,142 @@ export const NaturalIngredientsSection: React.FC = () => {
           </motion.div>
 
           {/* ====================================================================
-              4 CARDS: AUTHENTIC AYURVEDIC PILLARS
+              6 CARDS: 3 LEFT & 3 RIGHT BALANCED NODES
              ==================================================================== */}
-          {/* 1. TOP-LEFT CARD: Tridosha Equilibrium (left: 0, top: 65px, width: 330px) */}
+
+          {/* 1. TOP-LEFT: All time Doctor (left: 0, top: 25px, width: 340px) */}
           <motion.div
             initial={{ opacity: 0, x: -50, y: -10 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.02, y: -4 }}
-            className="absolute left-0 top-[65px] z-10 w-[330px] p-3.5 pr-5 rounded-[28px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+            className="absolute left-0 top-[25px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
-              <Leaf className="w-6 h-6 text-[#fae788]" />
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Stethoscope className="w-5.5 h-5.5 text-[#fae788]" />
             </div>
-
             <div>
-              <h3 className="text-[17px] font-heading font-extrabold text-[#112314] tracking-tight">
-                Tridosha Equilibrium
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[0].title}
               </h3>
               <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
-                Formulations designed to balance your unique Vata, Pitta, and Kapha bio-energies.
+                {features[0].description}
               </p>
               <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
             </div>
           </motion.div>
 
-          {/* 2. BOTTOM-LEFT CARD: Wild-Harvested Purity (left: 0, top: 355px, width: 330px) */}
+          {/* 2. MID-LEFT: Comfortable Private Rooms (left: 0, top: 285px, width: 340px) */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.02, y: -4 }}
+            className="absolute left-0 top-[285px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+          >
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Bed className="w-5.5 h-5.5 text-[#fae788]" />
+            </div>
+            <div>
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[1].title}
+              </h3>
+              <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
+                {features[1].description}
+              </p>
+              <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
+            </div>
+          </motion.div>
+
+          {/* 3. BOTTOM-LEFT: Dedicated Baby Care Facilities (left: 0, top: 545px, width: 340px) */}
           <motion.div
             initial={{ opacity: 0, x: -50, y: 10 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.02, y: -4 }}
-            className="absolute left-0 top-[355px] z-10 w-[330px] p-3.5 pr-5 rounded-[28px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+            className="absolute left-0 top-[545px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
-              <Sparkles className="w-6 h-6 text-[#fae788]" />
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Baby className="w-5.5 h-5.5 text-[#fae788]" />
             </div>
-
             <div>
-              <h3 className="text-[17px] font-heading font-extrabold text-[#112314] tracking-tight">
-                Wild-Harvested Purity
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[2].title}
               </h3>
               <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
-                100% natural medicinal roots, barks, and leaves gathered from sacred forests.
+                {features[2].description}
               </p>
               <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
             </div>
           </motion.div>
 
-          {/* 3. TOP-RIGHT CARD: Medicated Thailams (right: 0, top: 65px, width: 330px) */}
+          {/* 4. TOP-RIGHT: Nutritious Traditional Food (right: 0, top: 25px, width: 340px) */}
           <motion.div
             initial={{ opacity: 0, x: 50, y: -10 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 1.1, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.02, y: -4 }}
-            className="absolute right-0 top-[65px] z-10 w-[330px] p-3.5 pr-5 rounded-[28px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+            className="absolute right-0 top-[25px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
-              <Droplets className="w-6 h-6 text-[#fae788]" />
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Utensils className="w-5.5 h-5.5 text-[#fae788]" />
             </div>
-
             <div>
-              <h3 className="text-[17px] font-heading font-extrabold text-[#112314] tracking-tight">
-                Medicated Thailams
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[3].title}
               </h3>
               <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
-                Classical Kashayam herbal decoctions slow-simmered in cold-pressed sesame oil.
+                {features[3].description}
               </p>
               <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
             </div>
           </motion.div>
 
-          {/* 4. BOTTOM-RIGHT CARD: Vedic Healing Lineage (right: 0, top: 355px, width: 330px) */}
+          {/* 5. MID-RIGHT: Hygienic Bathing Facilities (right: 0, top: 285px, width: 340px) */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.02, y: -4 }}
+            className="absolute right-0 top-[285px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+          >
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Bath className="w-5.5 h-5.5 text-[#fae788]" />
+            </div>
+            <div>
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[4].title}
+              </h3>
+              <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
+                {features[4].description}
+              </p>
+              <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
+            </div>
+          </motion.div>
+
+          {/* 6. BOTTOM-RIGHT: Relaxation & Recreation Space (right: 0, top: 545px, width: 340px) */}
           <motion.div
             initial={{ opacity: 0, x: 50, y: 10 }}
             whileInView={{ opacity: 1, x: 0, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 1.1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.1, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ scale: 1.02, y: -4 }}
-            className="absolute right-0 top-[355px] z-10 w-[330px] p-3.5 pr-5 rounded-[28px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
+            className="absolute right-0 top-[545px] z-10 w-[340px] p-3.5 pr-5 rounded-[26px] bg-white border-2 border-[#d4a034]/35 hover:border-[#d4a034]/70 shadow-[0_12px_32px_rgba(20,38,22,0.08)] hover:shadow-[0_18px_40px_rgba(20,38,22,0.14)] flex items-center space-x-3.5 transition-all duration-300"
           >
-            <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
-              <ShieldCheck className="w-6 h-6 text-[#fae788]" />
+            <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
+              <Coffee className="w-5.5 h-5.5 text-[#fae788]" />
             </div>
-
             <div>
-              <h3 className="text-[17px] font-heading font-extrabold text-[#112314] tracking-tight">
-                Vedic Healing Lineage
+              <h3 className="text-[16px] font-heading font-extrabold text-[#112314] tracking-tight">
+                {features[5].title}
               </h3>
               <p className="mt-1 text-xs text-[#4d5f4e] leading-snug">
-                Authentic formulations passed down through generations of Ashtavaidya masters.
+                {features[5].description}
               </p>
               <div className="w-8 h-[2.5px] bg-gradient-to-r from-[#d4a034] to-[#fae788] mt-2 rounded-full" />
             </div>
@@ -449,28 +539,35 @@ export const NaturalIngredientsSection: React.FC = () => {
         </div>
 
         {/* =========================================================================
-            MOBILE & TABLET VIEWPORT (<1024px): Responsive App-Level View
+            MOBILE & TABLET VIEWPORT (<1024px): Responsive 6-Item Grid
            ========================================================================= */}
         <div className="lg:hidden flex flex-col items-center space-y-6">
           
-          {/* Centered Circular Vessel with Concentric Frosted Rings */}
+          {/* Centered Circular Vessel with 6 Concentric Frosted Orbit Nodes */}
           <div className="relative w-[280px] sm:w-[340px] h-[280px] sm:h-[340px] flex items-center justify-center my-2">
             
             {/* Concentric Frosted Glass Rings */}
             <div className="absolute inset-0 rounded-full border border-[#d4a034]/35 bg-[#dce8db]/20 backdrop-blur-xs shadow-lg" />
             <div className="absolute inset-4 rounded-full border border-white/60" />
 
-            {/* 4 Connected Nodes on the Ring in Mobile View */}
-            <div className="absolute left-2 top-[32%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+            {/* 6 Connected Nodes on the Ring in Mobile View */}
+            <div className="absolute left-2 top-[20%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
             </div>
-            <div className="absolute left-2 top-[68%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+            <div className="absolute left-0 top-[50%] -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
             </div>
-            <div className="absolute right-2 top-[32%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+            <div className="absolute left-2 top-[80%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
             </div>
-            <div className="absolute right-2 top-[68%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+
+            <div className="absolute right-2 top-[20%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
+            </div>
+            <div className="absolute right-0 top-[50%] -translate-y-1/2 w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
+            </div>
+            <div className="absolute right-2 top-[80%] w-4 h-4 rounded-full bg-white border-2 border-[#3a613e] flex items-center justify-center shadow-xs">
               <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
             </div>
 
@@ -480,12 +577,12 @@ export const NaturalIngredientsSection: React.FC = () => {
             >
               <img
                 src="/images/ayurveda-herbs-center.jpg"
-                alt="Classical Ayurvedic herbal oil katora and medicinal botanicals"
+                alt="Classical Ayurvedic amenities"
                 className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Floating Golden Oil Droplet */}
+            {/* Floating Golden Droplet */}
             <div className="absolute bottom-2 left-6 w-8 h-8 rounded-full bg-gradient-to-tr from-[#d4a034] via-[#fae788] to-white shadow-md border border-white/70 flex items-center justify-center z-20">
               <div className="w-2 h-2 rounded-full bg-white absolute top-1 left-1" />
             </div>
@@ -502,8 +599,8 @@ export const NaturalIngredientsSection: React.FC = () => {
             </div>
           </div>
 
-          {/* 4 Frosted Pill Cards Responsive Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full">
+          {/* 6 Amenities Responsive Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 w-full">
             {features.map((item, idx) => {
               const Icon = item.icon;
               return (
@@ -515,9 +612,9 @@ export const NaturalIngredientsSection: React.FC = () => {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className="p-4 rounded-[26px] bg-white border-2 border-[#d4a034]/35 shadow-[0_8px_24px_rgba(20,35,22,0.06)] flex items-center space-x-3.5"
                 >
-                  {/* 3D Glass Icon Bulb */}
+                  {/* Icon Bulb */}
                   <div className="w-13 h-13 rounded-full bg-gradient-to-br from-[#122314] to-[#25462c] text-[#fae788] border border-[#d4a034]/40 p-0.5 shadow-md flex items-center justify-center shrink-0">
-                    <Icon className="w-6 h-6 text-[#fae788]" />
+                    <Icon className="w-5.5 h-5.5 text-[#fae788]" />
                   </div>
 
                   <div className="flex-1">

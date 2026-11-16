@@ -3,14 +3,14 @@ import { motion } from 'framer-motion';
 
 export const MarqueeBanner: React.FC = () => {
   const items = [
-    'Extended Shared Nurture Postnatal (28 Days)',
-    'Value Shared Wellness Postnatal (21 Days)',
-    'Affordable Shared Recovery Postnatal (14 Days)',
-    'Value 28 Days of Sustained Care & Privacy',
-    'Practical 21 Days of Steady Nurture & Balance',
-    'Budget-Friendly 14 Days of Focused Healing & Rest',
-    'Mattanur Center, Kannur (Opp. Airport Road)',
-    'Authentic Ayurvedic Postnatal Mother & Baby Care',
+    'Ayurvedic Postnatal Care',
+    'Ayurvedic Postnatal Therapies',
+    'Ayurvedic Wellness Therapies',
+    'Beauty & Skin Care',
+    'Dedicated Postnatal Care for Mother & Baby',
+    'Traditional Ayurvedic Treatments & Personalised Wellness',
+    'Feroke, Kozhikode, Keralam 673631',
+    'Nurturing Support For A Comfortable Motherhood Journey',
   ];
 
   return (

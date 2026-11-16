@@ -20,32 +20,32 @@ interface MedicalDirector {
 export const MedicalDirectorsSection: React.FC = () => {
   const directors: MedicalDirector[] = [
     {
-      id: 'dr-varsha',
-      name: 'Dr. Varsha K.P',
-      role: 'Medical Director',
-      organization: 'BabyMaa • Aaramam Ayurveda',
-      qualifications: 'BAMS, MSc Life Science',
-      specialtyTitle: 'Holistic Postnatal Recovery & Panchakarma',
-      description: 'Expert in classical Prasava Raksha protocols, natural postpartum rejuvenation, and compassionate maternal lactation support with over 7 years of clinical medical excellence.',
-      experienceYears: '7+ Years Exp',
+      id: 'dr-jishna',
+      name: 'Dr. Mrs. Jishna Jayaraj',
+      role: 'Founder & Medical Director',
+      organization: 'Aaramam Ayurveda',
+      qualifications: 'BAMS',
+      specialtyTitle: 'Traditional Ayurvedic Postnatal Care & Maternal Wellness',
+      description: 'Dedicated Ayurvedic practitioner specialising in traditional Ayurvedic postnatal care and maternal wellness. With a passion for preserving and promoting Kerala’s time-honoured Ayurvedic healing traditions, she focuses on supporting mothers through the crucial postpartum recovery period. As the founder of Aaramam, an Ayurvedic postnatal treatment centre, she envisions providing personalised, holistic care that nurtures mothers physically and mentally after childbirth. Her approach combines traditional Ayurvedic therapies, therapeutic massages, herbal treatments and personalised wellness practices to promote recovery, relaxation and overall well-being. Through AaramCare, she strives to make authentic traditional postnatal care accessible to every mother.',
+      experienceYears: 'Founder • BAMS',
       image: '/images/doctor_varsha.jpg',
       instagramUrl: 'https://instagram.com/',
-      whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Varsha K.P regarding Ayurvedic postnatal care.',
-      tags: ['Postnatal Care', 'Lactation Specialist', 'Panchakarma'],
+      whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Mrs. Jishna Jayaraj regarding Ayurvedic postnatal care.',
+      tags: ['Postnatal Care', 'Maternal Wellness', 'Herbal Therapies'],
     },
     {
-      id: 'dr-akshayram',
-      name: 'Dr. Akshayram K.P',
-      role: 'Medical Director',
-      organization: 'BabyMaa • Aaramam Ayurveda',
-      qualifications: 'BAMS, CMOT, CAHC',
-      specialtyTitle: 'Ayurvedic Spine & Joint Specialist (Chiropractic)',
-      description: 'Integrates classical Ayurvedic marma therapy with modern spinal alignment and musculoskeletal rehabilitation, offering holistic joint and spinal healing with 7+ years of experience.',
-      experienceYears: '7+ Years Exp',
-      image: '/images/doctor_akshayram.jpg',
+      id: 'dr-reshna',
+      name: 'Dr. Reshna Jayaraj',
+      role: 'Founder & Medical Director',
+      organization: 'Aaramam Ayurveda',
+      qualifications: 'BAMS',
+      specialtyTitle: 'Postnatal Care & Ayurvedic Cosmetology',
+      description: 'Passionate Ayurvedic practitioner specialising in traditional Ayurvedic postnatal care and cosmetology. Dedicated to promoting holistic maternal wellness and natural beauty care, she combines the wisdom of classical Ayurveda with personalised treatment approaches. As the founder of Aaramam, an Ayurvedic postnatal treatment centre, she is committed to supporting mothers during their postpartum recovery through traditional Ayurvedic therapies, therapeutic massages and natural wellness practices. With an additional specialisation in cosmetology, she focuses on skin health, natural beauty and rejuvenation. Through AaramCare, she strives to preserve traditional Ayurvedic practices while delivering compassionate, personalised care for mothers and women.',
+      experienceYears: 'Cosmetology & BAMS',
+      image: '/images/doctor_varsha.jpg',
       instagramUrl: 'https://instagram.com/',
-      whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Akshayram K.P regarding spine and joint wellness.',
-      tags: ['Spine & Joint', 'Marma Therapy', 'Chiropractic'],
+      whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Reshna Jayaraj regarding Ayurvedic postnatal care and cosmetology.',
+      tags: ['Postnatal Care', 'Cosmetology', 'Natural Rejuvenation'],
     },
   ];
 
@@ -91,10 +91,10 @@ export const MedicalDirectorsSection: React.FC = () => {
           </motion.p>
         </div>
 
-        {/* 2-Column Split Cards (Fit on Screen • Distinct & Unique UI) */}
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-5 sm:gap-6 lg:gap-7 items-stretch">
+        {/* 2-Column Split Cards with Expanded Width & Justified Typography */}
+        <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-8 items-stretch">
           {directors.map((director, index) => {
-            const whatsappLink = `https://wa.me/919876543210?text=${encodeURIComponent(director.whatsappMessage)}`;
+            const whatsappLink = `https://wa.me/917034641282?text=${encodeURIComponent(director.whatsappMessage)}`;
 
             return (
               <motion.div
@@ -104,10 +104,10 @@ export const MedicalDirectorsSection: React.FC = () => {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 1.1, delay: index * 0.16, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ y: -6, transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] } }}
-                className="group relative bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] p-3.5 sm:p-4 md:p-5 border-2 border-[#d4a034]/25 hover:border-[#d4a034]/60 shadow-[0_10px_30px_rgba(20,38,22,0.06)] hover:shadow-[0_20px_45px_rgba(20,35,22,0.12)] transition-all duration-400 flex flex-col sm:flex-row gap-4 sm:gap-5 justify-between"
+                className="group relative bg-white/95 backdrop-blur-xl rounded-[28px] sm:rounded-[32px] p-4 sm:p-5 md:p-6 lg:p-7 border-2 border-[#d4a034]/25 hover:border-[#d4a034]/60 shadow-[0_12px_35px_rgba(20,38,22,0.06)] hover:shadow-[0_24px_50px_rgba(20,35,22,0.12)] transition-all duration-400 flex flex-col sm:flex-row gap-5 sm:gap-6 justify-between"
               >
                 {/* Left Side: Modern Vertical Portrait Container */}
-                <div className="relative w-full sm:w-[170px] md:w-[185px] lg:w-[195px] shrink-0 h-[220px] sm:h-auto min-h-[220px] rounded-[22px] sm:rounded-[26px] overflow-hidden bg-[#eef3ed] shadow-inner border border-[#d4a034]/30">
+                <div className="relative w-full sm:w-[190px] md:w-[210px] lg:w-[220px] shrink-0 h-[240px] sm:h-auto min-h-[240px] rounded-[22px] sm:rounded-[26px] overflow-hidden bg-[#eef3ed] shadow-inner border border-[#d4a034]/30">
                   <img
                     src={director.image}
                     alt={director.name}
@@ -161,8 +161,8 @@ export const MedicalDirectorsSection: React.FC = () => {
                       {director.specialtyTitle}
                     </p>
 
-                    {/* Clinical Bio */}
-                    <p className="mt-1.5 text-xs text-[#526353] leading-relaxed line-clamp-3">
+                    {/* Clinical Bio (Justified Text) */}
+                    <p className="mt-2.5 text-xs sm:text-[12.5px] md:text-[13px] text-[#425444] leading-relaxed text-justify">
                       {director.description}
                     </p>
 
@@ -205,7 +205,7 @@ export const MedicalDirectorsSection: React.FC = () => {
                       className="flex-1 py-2 px-3.5 sm:px-4 rounded-full bg-gradient-to-r from-[#112314] via-[#1a381d] to-[#112314] hover:from-[#1a381d] hover:to-[#244f28] text-[#fae788] hover:text-[#fffbcf] border border-[#d4a034]/50 hover:border-[#fae788]/80 text-[11.5px] font-bold font-heading flex items-center justify-center space-x-1.5 transition-all shadow-sm hover:shadow-md cursor-pointer"
                     >
                       <MessageCircle className="w-3.5 h-3.5 text-[#d4a034]" />
-                      <span>Consult Doctor</span>
+                      <span>Consult Now!</span>
                     </a>
                   </div>
                 </div>

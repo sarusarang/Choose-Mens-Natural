@@ -7,7 +7,7 @@ import type { Product } from '../../types/product';
 
 export const SoapCollectionSection: React.FC = () => {
   const { openQuickView } = useCart();
-  const [activeFilter, setActiveFilter] = useState<'all' | 'postnatal-28days' | 'postnatal-21days' | 'postnatal-14days'>('all');
+  const [activeFilter, setActiveFilter] = useState<string>('all');
 
   const filteredTreatments = POSTNATAL_CARE_PACKAGES.filter((treatment) => {
     if (activeFilter === 'all') return true;
@@ -15,7 +15,7 @@ export const SoapCollectionSection: React.FC = () => {
   });
 
   return (
-    <section id="services" className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
+    <section id="services" className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto relative">
       <div id="products" className="absolute -top-24 left-0 pointer-events-none" />
       
       {/* Section Header */}
@@ -25,17 +25,20 @@ export const SoapCollectionSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-xl"
+          className="max-w-2xl sm:max-w-3xl"
         >
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#162b19]/10 border border-[#d4a034]/40 text-[#122314] text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#d4a034]" />
             <span>Authentic Postnatal Mother &amp; Baby Care</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#162317] tracking-tight leading-[1.14]">
-            Traditional Ayurvedic Postnatal Care (Prasava Raksha)
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black text-[#162317] tracking-tight leading-[1.18]">
+            Dedicated postnatal care for mother &amp; Baby <br className="hidden sm:block" />
+            <span className="font-serif italic font-normal text-[#2b4c2f]">
+              offering traditional Ayurvedic treatments &amp; personalised wellness.
+            </span>
           </h2>
-          <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-[17px] text-[#4a584b] leading-relaxed">
-            24/7 holistic nursing, daily warm medicated oil Abhyanga, herbal baths, lactation support &amp; customized Vata nutrition for mother, baby &amp; bystander at Mattanur Center, Kannur.
+          <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#3d503f] font-medium leading-relaxed">
+            Nurturing Support For A Comfortable Motherhood Journey.
           </p>
         </motion.div>
 
@@ -48,14 +51,15 @@ export const SoapCollectionSection: React.FC = () => {
           className="flex flex-wrap gap-2"
         >
           {[
-            { id: 'all', label: 'All Packages' },
-            { id: 'postnatal-28days', label: '28 Days Nurture' },
-            { id: 'postnatal-21days', label: '21 Days Wellness' },
-            { id: 'postnatal-14days', label: '14 Days Recovery' },
+            { id: 'all', label: 'All Services' },
+            { id: 'ayurvedic-postnatal-care', label: 'Postnatal Care' },
+            { id: 'ayurvedic-postnatal-therapies', label: 'Postnatal Therapies' },
+            { id: 'ayurvedic-wellness-therapies', label: 'Wellness Therapies' },
+            { id: 'beauty-and-skin-care', label: 'Beauty & Skin Care' },
           ].map((tab) => (
             <button
               key={tab.id}
-              onClick={() => setActiveFilter(tab.id as 'all' | 'postnatal-28days' | 'postnatal-21days' | 'postnatal-14days')}
+              onClick={() => setActiveFilter(tab.id)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
                 activeFilter === tab.id
                   ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
@@ -68,8 +72,8 @@ export const SoapCollectionSection: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Modern Stunning Postnatal Packages Cards Grid (3 Columns) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+      {/* 4 Authentic Ayurvedic Services Cards Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
         {filteredTreatments.map((treatment: Product, index: number) => {
           return (
             <motion.div
@@ -150,24 +154,18 @@ export const SoapCollectionSection: React.FC = () => {
                   </p>
 
                   {/* Inclusions Highlights */}
-                  {treatment.inclusions && (
+                  {treatment.inclusions && treatment.inclusions.length > 0 && (
                     <div className="mt-4 pt-3.5 border-t border-gray-100 space-y-2">
                       <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#1a2e1d] block">
-                        Package Inclusions:
+                        Service Highlights:
                       </span>
                       <ul className="text-xs text-[#445646] space-y-1.5">
-                        <li className="flex items-start space-x-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a034] shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">Private cot for mother/baby + bystander space</span>
-                        </li>
-                        <li className="flex items-start space-x-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a034] shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">Daily Abhyanga warm oil massage &amp; herbal baths</span>
-                        </li>
-                        <li className="flex items-start space-x-1.5">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a034] shrink-0 mt-0.5" />
-                          <span className="line-clamp-1">Meals, laundry, 24/7 nursing &amp; Vata diet</span>
-                        </li>
+                        {treatment.inclusions.slice(0, 3).map((item, i) => (
+                          <li key={i} className="flex items-start space-x-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-[#d4a034] shrink-0 mt-0.5" />
+                            <span className="line-clamp-1">{item}</span>
+                          </li>
+                        ))}
                       </ul>
                     </div>
                   )}
@@ -175,12 +173,12 @@ export const SoapCollectionSection: React.FC = () => {
                   {/* Location Info */}
                   <div className="mt-4 flex items-center space-x-1.5 text-[11px] text-[#637664] bg-[#f7f9f6] px-3 py-1.5 rounded-xl border border-[#e4ede3]">
                     <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
-                    <span className="truncate">Opp. Airport Road, Mattannur, Kannur</span>
+                    <span className="truncate">Near Govt Taluk Hospital, Feroke, Kozhikode</span>
                   </div>
                 </div>
               </div>
 
-              {/* Bottom Action (No Price Shown • Enquire Now WhatsApp Button) */}
+              {/* Bottom Action (Explore Now! WhatsApp Button) */}
               <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
                 <a
                   href={treatment.whatsappUrl}
@@ -189,7 +187,7 @@ export const SoapCollectionSection: React.FC = () => {
                   className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#112314] via-[#1a381d] to-[#112314] hover:from-[#1a381d] hover:to-[#244f28] text-[#fae788] hover:text-[#fffbcf] border border-[#d4a034]/50 hover:border-[#fae788]/80 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2 transition-all shadow-md hover:shadow-xl cursor-pointer group"
                 >
                   <MessageCircle className="w-4 h-4 text-[#d4a034] group-hover:text-[#fae788] transition-colors" />
-                  <span>Enquire Now</span>
+                  <span>Explore Now!</span>
                 </a>
               </div>
             </motion.div>

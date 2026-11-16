@@ -31,7 +31,8 @@ export const CustomerReviewsSection: React.FC = () => {
   ];
 
   return (
-    <section id="reviews" className="py-8 sm:py-10 md:py-12 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto">
+    <section id="feedback" className="pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-6 md:pb-6 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
+      <div id="reviews" className="absolute -top-24 left-0 pointer-events-none" />
       {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
         <motion.div

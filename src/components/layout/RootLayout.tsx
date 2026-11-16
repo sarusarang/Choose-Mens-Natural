@@ -1,6 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { useLenis } from '../../hooks/useLenis';
+import { Navbar } from './Navbar';
 import { CartDrawer } from './CartDrawer';
 import { QuickViewModal } from './QuickViewModal';
 import { Toast } from '../ui/Toast';
@@ -12,6 +13,9 @@ export const RootLayout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-[#e4eae2] text-[#19241a] selection:bg-[#324b35] selection:text-white">
+      {/* Global Fixed Navbar overlaying all pages */}
+      <Navbar />
+
       {/* Main Outlet renders child routes */}
       <main className="flex-1 w-full">
         <Outlet />
