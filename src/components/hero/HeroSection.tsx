@@ -14,7 +14,7 @@ export const HeroSection: React.FC = () => {
   const treatment4 = HERO_TREATMENTS[3]; // Beauty & Skin Care
 
   return (
-    <section id="home" className="relative w-full min-h-screen lg:h-screen overflow-hidden bg-[#0e1d11] flex flex-col justify-between">
+    <section id="home" className="relative w-full max-w-full min-w-full min-h-screen lg:h-screen overflow-hidden bg-[#0e1d11] flex flex-col justify-between">
       {/* Background Model Photography fitted seamlessly inside Hero Banner with Navbar Greenish Atmosphere */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden flex items-center justify-center">
         <motion.div
@@ -37,21 +37,22 @@ export const HeroSection: React.FC = () => {
       </div>
 
       {/* Hero Body Content Container (Reduced left/right gaps & comfortable top clearance) */}
-      <div className="relative z-10 flex-1 flex flex-col justify-between px-4 sm:px-6 md:px-8 lg:px-10 pt-20 sm:pt-24 md:pt-28 pb-6 md:pb-8">
+      <div className="relative z-10 w-full max-w-full min-w-0 flex-1 flex flex-col justify-between px-4 sm:px-6 md:px-8 lg:px-10 pt-20 sm:pt-24 md:pt-28 pb-6 md:pb-8">
         
-        {/* Top/Mid Row: Headline and Right Social Proof Badge */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-start">
+        {/* Top/Mid Row: Headline and Right Social Proof Badge (Vertically Centered on Mobile via my-auto) */}
+        <div className="w-full max-w-full grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-start my-auto lg:my-0">
           
-          {/* Left Headline & Description (Smooth, Slow, Stunning Entrance) */}
-          <div className="lg:col-span-7 xl:col-span-6 space-y-3 md:space-y-4">
+          {/* Headline & Description (Left-aligned, Vertically Centered on Mobile) */}
+          <div className="lg:col-span-7 xl:col-span-6 space-y-3 md:space-y-4 text-left flex flex-col items-start">
             <motion.div
               initial={{ opacity: 0, y: 35 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full text-left"
             >
-              <h1 className="text-[32px] sm:text-[44px] md:text-[52px] lg:text-[56px] xl:text-[62px] font-black tracking-[-0.035em] leading-[1.08] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)]">
-                <span className="block whitespace-nowrap">Motherhood Begins</span>
-                <span className="block whitespace-nowrap font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-[#fae788] to-[#d4a034]">
+              <h1 className="text-[28px] xs:text-[34px] sm:text-[44px] md:text-[52px] lg:text-[56px] xl:text-[62px] font-black tracking-[-0.035em] leading-[1.1] text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.6)] text-left">
+                <span className="block whitespace-normal sm:whitespace-nowrap">Motherhood Begins</span>
+                <span className="block whitespace-normal sm:whitespace-nowrap font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-[#fae788] to-[#d4a034]">
                   with Love and Care.
                 </span>
               </h1>
@@ -61,7 +62,7 @@ export const HeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-[460px] text-xs sm:text-sm md:text-[15px] text-white/90 font-medium leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)]"
+              className="max-w-[460px] text-xs sm:text-sm md:text-[15px] text-white/90 font-medium leading-relaxed drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] text-left"
             >
               Providing Gentle Ayurvedic Care, Comfort And Nurturing Support For Every New Mother And Baby.
             </motion.p>
@@ -70,13 +71,13 @@ export const HeroSection: React.FC = () => {
           {/* Spacer */}
           <div className="hidden lg:block lg:col-span-1 xl:col-span-2" />
 
-          {/* Right Social Proof Floating Pill & Book Treatment CTA */}
-          <div className="lg:col-span-4 xl:col-span-4 flex flex-col items-start lg:items-end justify-start">
+          {/* Right Social Proof Floating Pill & Book Treatment CTA (Desktop only, hidden on mobile) */}
+          <div className="hidden lg:flex lg:col-span-4 xl:col-span-4 flex-col items-end justify-start">
             <motion.div
               initial={{ opacity: 0, x: 35 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-start space-y-2 bg-[#122314]/70 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none p-3.5 lg:p-0 rounded-3xl border border-[#d4a034]/25 lg:border-none shadow-md lg:shadow-none"
+              className="flex flex-col items-start space-y-2 bg-transparent p-0 rounded-none border-none shadow-none"
             >
               {/* 3 Overlapped Avatars */}
               <div className="flex -space-x-2.5 items-center">
@@ -121,11 +122,19 @@ export const HeroSection: React.FC = () => {
         </div>
 
         {/* Bottom Floating Compact Treatment Cards Row with Touch-Snap Carousel on Mobile & Balanced Layout on Desktop */}
-        <div className="relative z-10 pt-4 sm:pt-6">
-          <div className="flex items-end justify-between overflow-x-auto lg:overflow-visible pb-2 sm:pb-0 gap-3 sm:gap-4 snap-x snap-mandatory scrollbar-none">
+        <div className="relative z-10 w-full max-w-full min-w-0 pt-3 sm:pt-6">
+          {/* Mobile Swipe Hint */}
+          <div className="lg:hidden flex items-center justify-between mb-2 px-0.5 text-[11px] font-heading text-white/80 select-none">
+            <span className="text-[#fae788] font-bold">
+              Signature Care Programs
+            </span>
+            <span className="text-[10px] text-white/60 tracking-wider">Swipe →</span>
+          </div>
+
+          <div className="w-full max-w-full flex items-end justify-start lg:justify-between overflow-x-auto lg:overflow-visible pb-3 sm:pb-0 gap-4 snap-x snap-mandatory no-scrollbar touch-momentum">
             
             {/* Left Pair: Card 1 (Ayurvedic Postnatal Care) and Card 2 (Ayurvedic Postnatal Therapies) */}
-            <div className="flex items-end gap-3 sm:gap-4 shrink-0">
+            <div className="flex items-end gap-2.5 sm:gap-4 shrink-0 w-full sm:w-auto lg:w-auto snap-start">
               
               {/* Card 1: Ayurvedic Postnatal Care */}
               <motion.div
@@ -137,7 +146,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-1 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-1 shrink-0 flex-1 min-w-0 sm:flex-initial sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 
@@ -193,7 +202,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-2 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-2 shrink-0 flex-1 min-w-0 sm:flex-initial sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 
@@ -242,7 +251,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Right Pair: Card 3 (Ayurvedic Wellness Therapies) and Card 4 (Beauty & Skin Care) */}
-            <div className="flex items-end gap-3 sm:gap-4 shrink-0 lg:ml-auto">
+            <div className="flex items-end gap-2.5 sm:gap-4 shrink-0 w-full sm:w-auto lg:w-auto lg:ml-auto snap-start">
               
               {/* Card 3: Ayurvedic Wellness Therapies */}
               <motion.div
@@ -254,7 +263,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-3 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-3 shrink-0 flex-1 min-w-0 sm:flex-initial sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 
@@ -310,7 +319,7 @@ export const HeroSection: React.FC = () => {
                   ease: [0.16, 1, 0.3, 1]
                 }}
                 whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
-                className="card-float-1 snap-start shrink-0 w-[165px] sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
+                className="card-float-1 shrink-0 flex-1 min-w-0 sm:flex-initial sm:w-[185px] md:w-[205px] bg-white/95 backdrop-blur-xl rounded-[22px] p-2.5 sm:p-3 shadow-[0_16px_36px_rgba(0,0,0,0.3)] border border-white flex flex-col justify-between transition-shadow duration-300 transform-gpu will-change-transform"
               >
                 {/* Treatment Image */}
                 <div 

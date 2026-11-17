@@ -34,7 +34,7 @@ export const FloatingWhatsApp: React.FC = () => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.7, y: 30 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed bottom-5 sm:bottom-6 md:bottom-7 right-4 sm:right-6 md:right-8 z-50 flex items-center select-none"
+          className="fixed bottom-5 sm:bottom-6 md:bottom-7 right-3.5 sm:right-6 md:right-8 z-50 flex items-center select-none"
           title="Chat with us on WhatsApp"
         >
           <a

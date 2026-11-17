@@ -19,7 +19,7 @@ export const HomePage: React.FC = () => {
   });
 
   return (
-    <div className="w-full flex flex-col">
+    <div className="w-full max-w-full min-w-0">
       {/* Exact Hero Section as shown in the design image */}
       <HeroSection />
 

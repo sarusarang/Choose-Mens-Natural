@@ -13,16 +13,16 @@ export const RootLayout: React.FC = () => {
   useLenis();
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#e4eae2] text-[#19241a] selection:bg-[#324b35] selection:text-white">
+    <div className="min-h-screen w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] text-[#19241a] selection:bg-[#324b35] selection:text-white overflow-x-hidden">
       {/* Global Fixed Navbar overlaying all pages */}
       <Navbar />
 
       {/* Main Outlet renders child routes */}
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full max-w-full min-w-0">
         <Outlet />
       </main>
 
-      {/* Floating WhatsApp Quick Connect (Right side middle) */}
+      {/* Floating WhatsApp Quick Connect */}
       <FloatingWhatsApp />
 
       {/* Global Interactive Overlays */}

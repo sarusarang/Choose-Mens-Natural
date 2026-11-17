@@ -8,6 +8,35 @@ export const YourRitualSection: React.FC = () => {
       <div id="ritual" className="absolute -top-24 left-0 pointer-events-none" />
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 relative z-10">
         
+        {/* Mobile Header Block (Appears first on mobile for natural reading order) */}
+        <div className="lg:hidden mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#111c13] tracking-tight leading-[1.1]">
+              Your Dosha, <br />
+              <span className="text-[#25462c]">Your Sacred Ritual</span>
+            </h2>
+
+            <p className="text-xs sm:text-sm text-[#556356] leading-relaxed mt-3 max-w-md">
+              Prescribed by traditional Ayurvedic lineage to cleanse accumulated toxins (Ama), awaken vitality, and harmonize Vata, Pitta, and Kapha — for radiant balance that begins from within.
+            </p>
+
+            <div className="mt-4">
+              <a
+                href="#services"
+                className="inline-flex items-center space-x-2 bg-gradient-to-r from-[#112314] to-[#1e3b22] active:scale-95 text-[#fae788] border border-[#d4a034]/50 font-heading font-bold text-xs px-6 py-2.5 rounded-full shadow-md"
+              >
+                <span>Explore Sacred Rituals</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#d4a034]" />
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
         {/* Main 3-Column Asymmetric Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 lg:gap-7 items-stretch">
           
@@ -128,17 +157,17 @@ export const YourRitualSection: React.FC = () => {
           </motion.a>
 
           {/* ========================================================
-              RIGHT COLUMN: Heading & Explore (Top) + Card 03 Shirodhara (Bottom)
+              RIGHT COLUMN: Heading & Explore (Top, Desktop only) + Card 03 Shirodhara (Bottom)
              ======================================================== */}
-          <div className="lg:col-span-4 flex flex-col justify-between gap-6 order-1 lg:order-3">
+          <div className="lg:col-span-4 flex flex-col justify-between gap-6 order-2 lg:order-3">
             
-            {/* Top Block: Title, Subtitle, Explore Button */}
+            {/* Top Block: Title, Subtitle, Explore Button (Desktop only, rendered above on mobile) */}
             <motion.div
               initial={{ opacity: 0, x: 35, y: 15 }}
               whileInView={{ opacity: 1, x: 0, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 1.15, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="pt-1 sm:pt-2"
+              className="hidden lg:block pt-1 sm:pt-2"
             >
               <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[46px] text-[#111c13] tracking-tight leading-[1.08]">
                 Your Dosha, <br />

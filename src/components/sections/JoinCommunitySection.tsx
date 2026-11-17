@@ -62,7 +62,7 @@ export const JoinCommunitySection: React.FC = () => {
         <div className="max-w-[1140px] mx-auto relative">
           
           {/* 4 Separate Animated Capsule Columns: Temple Sanctuary Windows */}
-          <div className="flex md:grid md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 items-end justify-center overflow-x-auto md:overflow-visible pb-4 md:pb-0 scrollbar-none snap-x px-2">
+          <div className="flex md:grid md:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 items-end justify-start md:justify-center overflow-x-auto md:overflow-visible pb-4 md:pb-0 no-scrollbar touch-momentum snap-x px-2">
             {capsules.map((capsule, index) => (
               <motion.div
                 key={capsule.id}

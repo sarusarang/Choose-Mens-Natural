@@ -184,7 +184,7 @@ export const HistoryPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col bg-[#e4eae2] overflow-x-hidden">
+    <div className="w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] overflow-x-hidden">
       {/* Reusable Page Hero with Dark Sanctuary Theme */}
       <PageHero
         title="Generations of Healing &"
@@ -244,8 +244,14 @@ export const HistoryPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Node Diagram Cards Grid */}
-          <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-5">
+          {/* Mobile Swipe Indicator */}
+          <div className="sm:hidden flex items-center justify-between mb-3 px-1 text-xs text-[#a3bfa5] select-none">
+            <span className="text-[#fae788] font-bold">Chronology Nodes</span>
+            <span>Swipe milestones →</span>
+          </div>
+
+          {/* Node Diagram Cards: Swipeable Deck on Mobile & Responsive Grid on Desktop */}
+          <div className="relative z-10 flex overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-5 pb-3 sm:pb-0 snap-x snap-mandatory no-scrollbar touch-momentum -mx-2 px-2 sm:mx-0 sm:px-0">
             {chapters.map((ch) => {
               const isActive = activeChapterId === ch.id;
 
@@ -253,9 +259,9 @@ export const HistoryPage: React.FC = () => {
                 <button
                   key={ch.id}
                   onClick={() => scrollToChapter(ch.id)}
-                  className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all text-left flex flex-col justify-between group cursor-pointer relative min-h-[300px] sm:min-h-[320px] md:min-h-[340px] ${
+                  className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all text-left flex flex-col justify-between group cursor-pointer relative min-h-[280px] sm:min-h-[320px] md:min-h-[340px] w-[250px] xs:w-[270px] shrink-0 sm:w-auto snap-start ${
                     isActive
-                      ? 'bg-gradient-to-b from-[#1d3a22] to-[#122616] border-[#fae788] shadow-[0_0_28px_rgba(250,231,136,0.35)] scale-[1.03] ring-1 ring-[#fae788]'
+                      ? 'bg-gradient-to-b from-[#1d3a22] to-[#122616] border-[#fae788] shadow-[0_0_28px_rgba(250,231,136,0.35)] scale-[1.02] sm:scale-[1.03] ring-1 ring-[#fae788]'
                       : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-[#d4a034]/50 hover:shadow-[0_12px_28px_rgba(0,0,0,0.3)]'
                   }`}
                 >

@@ -38,7 +38,7 @@ export const PageHero: React.FC<PageHeroProps> = ({
   minHeightClass = 'min-h-[500px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[610px]',
 }) => {
   return (
-    <section className={`relative w-full ${minHeightClass} overflow-hidden bg-[#0a160d] text-white flex flex-col justify-center items-center`}>
+    <section className={`relative w-full ${minHeightClass} bg-[#0a160d] text-white flex flex-col justify-center items-center overflow-x-clip`}>
       {/* Background Photography Clearly Visible with Cinematic Sanctuary Lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <motion.div
@@ -140,20 +140,20 @@ export const PageHero: React.FC<PageHeroProps> = ({
         )}
       </div>
 
-      {/* Undulating Wavy Scallop Divider at the Bottom (Seamless transition to the section below) */}
+      {/* Undulating Wavy Scallop Divider at the Bottom (Seamless transition to the section below, overlapping bottom by 4px to eliminate subpixel seam) */}
       <div 
-        className="absolute bottom-0 inset-x-0 w-full overflow-hidden leading-none pointer-events-none z-20"
+        className="absolute -bottom-1 sm:-bottom-1.5 inset-x-0 w-full leading-none pointer-events-none z-20"
         style={{ color: bottomWaveColor }}
       >
         <svg
-          viewBox="0 0 1440 80"
+          viewBox="0 0 1440 85"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
           preserveAspectRatio="none"
           className="w-full h-10 sm:h-14 md:h-16 lg:h-20 fill-current block"
         >
           <path
-            d="M 0,65 C 52.4,65 91.6,15 144.0,15 C 196.4,15 235.6,65 288.0,65 C 340.4,65 379.6,15 432.0,15 C 484.4,15 523.6,65 576.0,65 C 628.4,65 667.6,15 720.0,15 C 772.4,15 811.6,65 864.0,65 C 916.4,65 955.6,15 1008.0,15 C 1060.4,15 1099.6,65 1152.0,65 C 1204.4,65 1243.6,15 1296.0,15 C 1348.4,15 1387.6,65 1440.0,65 L 1440,80 L 0,80 Z"
+            d="M 0,65 C 52.4,65 91.6,15 144.0,15 C 196.4,15 235.6,65 288.0,65 C 340.4,65 379.6,15 432.0,15 C 484.4,15 523.6,65 576.0,65 C 628.4,65 667.6,15 720.0,15 C 772.4,15 811.6,65 864.0,65 C 916.4,65 955.6,15 1008.0,15 C 1060.4,15 1099.6,65 1152.0,65 C 1204.4,65 1243.6,15 1296.0,15 C 1348.4,15 1387.6,65 1440.0,65 L 1440,85 L 0,85 Z"
           />
         </svg>
       </div>

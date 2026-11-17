@@ -24,7 +24,7 @@ export const ServicesPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full flex flex-col bg-[#e4eae2]">
+    <div className="w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2]">
       {/* Reusable Page Hero with Dark Sanctuary Theme, Matching Background & Scalloped Wave */}
       <PageHero
         title="Restorative Therapies &"

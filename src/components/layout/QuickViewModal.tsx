@@ -60,14 +60,17 @@ export const QuickViewModal: React.FC = () => {
           className="fixed inset-0 bg-black/65 backdrop-blur-md"
         />
 
-        {/* Modal Window with Increased Width and Height */}
+        {/* Modal Window with Native Mobile Bottom-Sheet Feel */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.94, y: 15 }}
+          initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.94, y: 15 }}
+          exit={{ opacity: 0, scale: 0.94, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-6xl lg:max-w-[1180px] xl:max-w-[1220px] bg-white rounded-[30px] sm:rounded-[36px] shadow-2xl overflow-hidden z-10 border-2 border-[#d4a034]/35 max-h-[94vh] md:h-[630px] lg:h-[660px] flex flex-col md:flex-row"
+          className="relative w-full max-w-6xl lg:max-w-[1180px] xl:max-w-[1220px] bg-white rounded-t-[32px] sm:rounded-[36px] shadow-2xl overflow-hidden z-10 border-2 border-[#d4a034]/35 max-h-[92vh] md:h-[630px] lg:h-[660px] flex flex-col md:flex-row mt-auto sm:mt-0"
         >
+          {/* Mobile Sheet Drag Indicator */}
+          <div className="w-12 h-1 bg-[#112314]/20 rounded-full mx-auto mt-2.5 mb-0.5 md:hidden shrink-0" />
+
           {/* Close button */}
           <button
             onClick={closeQuickView}

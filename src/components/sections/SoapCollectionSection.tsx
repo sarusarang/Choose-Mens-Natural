@@ -14,17 +14,17 @@ export const SoapCollectionSection: React.FC = () => {
   });
 
   return (
-    <section id="services" className="pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8 max-w-[1440px] mx-auto relative">
+    <section id="services" className="w-full max-w-[1440px] mx-auto relative pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
       <div id="products" className="absolute -top-24 left-0 pointer-events-none" />
       
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+      <div className="w-full flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-2xl sm:max-w-3xl"
+          className="w-full max-w-2xl sm:max-w-3xl"
         >
           <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#162b19]/10 border border-[#d4a034]/40 text-[#122314] text-xs font-bold uppercase tracking-wider mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#d4a034]" />
@@ -41,13 +41,13 @@ export const SoapCollectionSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Filter Pills */}
+        {/* Filter Pills with Mobile Touch Momentum */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-wrap gap-2"
+          className="w-full sm:w-auto flex overflow-x-auto sm:flex-wrap gap-2 pb-1.5 sm:pb-0 no-scrollbar touch-momentum -mx-4 px-4 sm:mx-0 sm:px-0 shrink-0"
         >
           {[
             { id: 'all', label: 'All Services' },
@@ -59,7 +59,7 @@ export const SoapCollectionSection: React.FC = () => {
             <button
               key={tab.id}
               onClick={() => setActiveFilter(tab.id)}
-              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer ${
+              className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 activeFilter === tab.id
                   ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
                   : 'bg-white/80 hover:bg-white text-[#2a3a2c] border border-gray-200/80 hover:border-[#d4a034]/40'

@@ -165,7 +165,7 @@ export const MedicalDirectorsSection: React.FC = () => {
                     </p>
 
                     {/* Shortened, Neat Bio Description */}
-                    <p className="mt-2.5 text-xs sm:text-[13px] text-[#485c4b] leading-relaxed text-justify">
+                    <p className="mt-2.5 text-xs sm:text-[13px] text-[#485c4b] leading-relaxed text-left">
                       {director.description}
                     </p>
 

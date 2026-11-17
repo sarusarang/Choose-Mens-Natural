@@ -148,65 +148,111 @@ export const Navbar: React.FC = () => {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu & Frosted Backdrop */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-24 z-50 p-6 rounded-[32px] bg-[#112314]/96 backdrop-blur-2xl border border-[#d4a034]/35 shadow-[0_24px_60px_rgba(0,0,0,0.5)] md:hidden"
-          >
-            {/* Header info inside drawer */}
-            <div className="flex items-center space-x-3 pb-4 mb-4 border-b border-[#d4a034]/20">
-              <img
-                src="/aaramam-logo.png"
-                alt="Aaramam Logo"
-                className="h-10 w-auto object-contain filter drop-shadow-[0_2px_6px_rgba(212,160,52,0.4)]"
-              />
-              <div className="flex flex-col">
-                <span className="font-brand-title font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#fae788] via-[#e2b03d] to-[#fae788] text-lg tracking-[0.20em] uppercase">
-                  Aaramam
-                </span>
-                <span className="text-[9px] uppercase tracking-[0.22em] font-bold text-[#fae788]">
-                  Ayurveda Sanctuary
-                </span>
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setMobileMenuOpen(false)}
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 md:hidden pointer-events-auto"
+            />
+
+            {/* Mobile Sheet Window */}
+            <motion.div
+              initial={{ opacity: 0, y: -25, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.96 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-3.5 top-20 max-h-[calc(100vh-6.5rem)] overflow-y-auto z-50 p-5 sm:p-6 rounded-[32px] bg-[#0e1d11]/98 backdrop-blur-2xl border border-[#d4a034]/40 shadow-[0_24px_60px_rgba(0,0,0,0.65)] md:hidden pointer-events-auto"
+            >
+              {/* Header info inside drawer */}
+              <div className="flex items-center justify-between pb-3.5 mb-3.5 border-b border-[#d4a034]/25">
+                <div className="flex items-center space-x-3">
+                  <img
+                    src="/aaramam-logo.png"
+                    alt="Aaramam Logo"
+                    className="h-9 w-auto object-contain filter drop-shadow-[0_2px_6px_rgba(212,160,52,0.4)]"
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-brand-title font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#fae788] via-[#e2b03d] to-[#fae788] text-lg tracking-[0.20em] uppercase leading-none">
+                      Aaramam
+                    </span>
+                    <span className="text-[9px] uppercase tracking-[0.22em] font-bold text-[#fae788] mt-1">
+                      Ayurveda Sanctuary
+                    </span>
+                  </div>
+                </div>
+
+                {/* Close Button */}
+                <button
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-[#fae788] flex items-center justify-center border border-[#d4a034]/30 transition-colors"
+                  aria-label="Close menu"
+                >
+                  <X className="w-4 h-4" />
+                </button>
               </div>
-            </div>
 
-            {/* Mobile Nav Links: Home, About, History, Service, Feedback, Contact Us */}
-            <div className="flex flex-col space-y-1 text-base font-heading font-medium text-[#f5f8f4]">
-              {mobileNavItems.map((item) => {
-                const active = isCurrentActive(item.href);
-                return (
-                  <Link
-                    key={item.label}
-                    to={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center justify-between py-3 px-3 rounded-2xl transition-colors group ${
-                      active ? 'bg-white/10 text-[#fae788]' : 'hover:bg-white/5'
-                    }`}
-                  >
-                    <span className="group-hover:text-[#fae788] transition-colors">{item.label}</span>
-                    <ArrowUpRight className="w-4 h-4 text-[#d4a034] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </Link>
-                );
-              })}
-            </div>
+              {/* Mobile Nav Links: Home, History, Service, Insights, Contact Us */}
+              <div className="flex flex-col space-y-1 text-sm font-heading font-medium text-[#f5f8f4]">
+                {mobileNavItems.map((item) => {
+                  const active = isCurrentActive(item.href);
+                  return (
+                    <Link
+                      key={item.label}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center justify-between py-2.5 px-3.5 rounded-2xl transition-all group ${
+                        active
+                          ? 'bg-[#fae788]/15 text-[#fae788] border border-[#d4a034]/40 font-bold shadow-xs'
+                          : 'hover:bg-white/5 text-[#e5ede4]'
+                      }`}
+                    >
+                      <span className="group-hover:text-[#fae788] transition-colors">{item.label}</span>
+                      <ArrowUpRight className="w-4 h-4 text-[#d4a034] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </Link>
+                  );
+                })}
+              </div>
 
-            {/* Bottom Consultation CTA */}
-            <div className="pt-5 mt-3 border-t border-[#d4a034]/20">
-              <Link
-                to="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#d4a034] via-[#fae788] to-[#b18137] text-[#122314] font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-[0_4px_20px_rgba(212,160,52,0.3)] hover:brightness-105 active:scale-98 transition-all"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-[#122314]" />
-                <span>Book Ayurveda Consultation</span>
-              </Link>
-            </div>
-          </motion.div>
+              {/* Quick Call & Location Quick Action Row */}
+              <div className="grid grid-cols-2 gap-2 mt-3.5 pt-3.5 border-t border-[#d4a034]/20">
+                <a
+                  href="tel:+917034641282"
+                  className="flex items-center justify-center space-x-1.5 py-2.5 px-2 rounded-xl bg-white/5 border border-white/10 text-white text-xs font-heading font-semibold hover:bg-white/10 transition-colors"
+                >
+                  <span className="text-[#fae788]">📞</span>
+                  <span>Call Doctor</span>
+                </a>
+                <a
+                  href="https://wa.me/917034641282?text=Hello%20Aaramam%20Ayurveda%20Sanctuary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center space-x-1.5 py-2.5 px-2 rounded-xl bg-[#25D366]/15 border border-[#25D366]/30 text-white text-xs font-heading font-semibold hover:bg-[#25D366]/25 transition-colors"
+                >
+                  <span className="text-[#25D366]">💬</span>
+                  <span>WhatsApp</span>
+                </a>
+              </div>
+
+              {/* Bottom Consultation CTA */}
+              <div className="pt-3 mt-3">
+                <Link
+                  to="/contact"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#d4a034] via-[#fae788] to-[#b18137] text-[#122314] font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-[0_4px_20px_rgba(212,160,52,0.3)] hover:brightness-105 active:scale-98 transition-all"
+                >
+                  <Sparkles className="w-3.5 h-3.5 text-[#122314]" />
+                  <span>Book Ayurveda Consultation</span>
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

@@ -19,7 +19,7 @@ export const MarqueeBanner: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-      className="py-3.5 sm:py-4 overflow-hidden bg-[#132314] text-[#e3ece2] border-y border-[#d4a034]/20 select-none"
+      className="w-full max-w-full py-3.5 sm:py-4 overflow-hidden bg-[#132314] text-[#e3ece2] border-y border-[#d4a034]/20 select-none block"
     >
       <div className="flex space-x-8 animate-marquee whitespace-nowrap">
         {[...items, ...items, ...items].map((item, idx) => (

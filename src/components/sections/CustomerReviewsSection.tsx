@@ -75,7 +75,7 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
       </div>
 
       {/* Modern Stunning Ayurvedic Testimonial Cards (Overlapping Avatar & Flanking Quotes) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 sm:gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
         {reviews.map((rev, idx) => (
           <motion.div
             key={rev.name}
@@ -84,23 +84,23 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: idx * 0.18, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-            className="group relative flex flex-col justify-between rounded-[36px] bg-gradient-to-b from-[#18341d] to-[#0f2113] p-7 sm:p-8 pt-16 sm:pt-20 border border-[#d4a034]/35 hover:border-[#fae788]/60 shadow-[0_18px_45px_rgba(14,29,17,0.22)] hover:shadow-[0_26px_60px_rgba(14,29,17,0.36)] transition-all duration-500 text-center"
+            className="group relative flex flex-col justify-between rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#18341d] to-[#0f2113] p-5 xs:p-7 sm:p-8 pt-14 xs:pt-16 sm:pt-20 border border-[#d4a034]/35 hover:border-[#fae788]/60 shadow-[0_18px_45px_rgba(14,29,17,0.22)] hover:shadow-[0_26px_60px_rgba(14,29,17,0.36)] transition-all duration-500 text-center max-w-md md:max-w-none mx-auto w-full"
           >
             {/* Ambient Background Gold Glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#d4a034]/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#d4a034]/20 transition-all duration-700" />
 
             {/* Top Overlapping Avatar & Flanking Quotation Marks */}
-            <div className="absolute -top-14 sm:-top-16 left-0 right-0 flex items-center justify-center pointer-events-none z-20">
+            <div className="absolute -top-12 xs:-top-14 sm:-top-16 left-0 right-0 flex items-center justify-center pointer-events-none z-20">
               
               {/* Left Quotation Mark */}
-              <div className="mr-3 sm:mr-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:-translate-x-1 drop-shadow-sm">
-                <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24">
+              <div className="mr-2 xs:mr-3 sm:mr-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:-translate-x-1 drop-shadow-sm">
+                <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>
 
               {/* Central Circular Avatar */}
-              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-[#18341d] ring-4 ring-[#d4a034]/40 group-hover:ring-[#fae788] shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105 pointer-events-auto bg-[#18341d] shrink-0">
+              <div className="relative w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-3 xs:border-4 border-[#18341d] ring-3 xs:ring-4 ring-[#d4a034]/40 group-hover:ring-[#fae788] shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105 pointer-events-auto bg-[#18341d] shrink-0">
                 <img
                   src={rev.avatar}
                   alt={rev.name}
@@ -109,8 +109,8 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
               </div>
 
               {/* Right Quotation Mark (mirrored horizontally) */}
-              <div className="ml-3 sm:ml-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:translate-x-1 drop-shadow-sm">
-                <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-current transform scale-x-[-1]" viewBox="0 0 24 24">
+              <div className="ml-2 xs:ml-3 sm:ml-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:translate-x-1 drop-shadow-sm">
+                <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current transform scale-x-[-1]" viewBox="0 0 24 24">
                   <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
                 </svg>
               </div>

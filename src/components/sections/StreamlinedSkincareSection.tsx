@@ -115,8 +115,8 @@ export const StreamlinedSkincareSection: React.FC = () => {
                   </g>
                 </svg>
 
-                {/* Right Side Annotations */}
-                <div className="absolute left-[88%] sm:left-[92%] top-0 bottom-0 flex flex-col justify-between py-4 sm:py-5 pl-4 sm:pl-6 text-left whitespace-nowrap">
+                {/* Desktop Right Side Annotations */}
+                <div className="hidden sm:flex absolute left-[88%] sm:left-[92%] top-0 bottom-0 flex-col justify-between py-4 sm:py-5 pl-4 sm:pl-6 text-left whitespace-nowrap">
                   <div className="flex items-center">
                     <span className="text-xs sm:text-sm font-sans font-medium text-[#112314] tracking-tight">
                       Doctor-guided process
@@ -129,6 +129,16 @@ export const StreamlinedSkincareSection: React.FC = () => {
                   </div>
                 </div>
 
+              </div>
+
+              {/* Mobile Annotations Pills (Centered, No Overflow) */}
+              <div className="sm:hidden flex flex-wrap items-center justify-center gap-2 mt-4">
+                <span className="px-3 py-1 rounded-full bg-white/80 text-[#112314] text-[11px] font-medium border border-[#1b3420]/10 shadow-xs">
+                  Doctor-guided process
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/80 text-[#112314] text-[11px] font-medium border border-[#1b3420]/10 shadow-xs">
+                  Pure natural therapies
+                </span>
               </div>
             </div>
 
