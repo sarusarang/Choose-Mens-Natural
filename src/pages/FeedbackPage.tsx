@@ -45,7 +45,7 @@ export const FeedbackPage: React.FC = () => {
         title="Cherished Words from"
         highlightTitle="Our Guests"
         description="Explore authentic reflections from mothers, holistic wellness travelers, and families whose vitality, strength, and inner peace were restored through classical Ayurveda at Aaramam."
-        breadcrumbs={[{ label: 'Guest Feedback' }]}
+        breadcrumbs={[{ label: 'Insights' }]}
         highlights={['750+ Verified Mothers & Guests', 'Postnatal Recovery Stories', 'Doctor Attentiveness', 'Feroke & Worldwide']}
         bgImage="/feed-back-banner.jpeg"
       />

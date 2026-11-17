@@ -22,6 +22,7 @@ export const AppRoutes: React.FC = () => {
           <Route path="services" element={<ServicesPage />} />
           <Route path="service" element={<ServicesPage />} />
           <Route path="feedback" element={<FeedbackPage />} />
+          <Route path="insights" element={<FeedbackPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="contact-us" element={<ContactPage />} />
           {/* Fallback to HomePage */}

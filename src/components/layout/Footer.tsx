@@ -144,7 +144,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Home</Link></li>
               <li><Link to="/history" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Our History</Link></li>
               <li><Link to="/services" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Service &amp; Packages</Link></li>
-              <li><Link to="/feedback" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Guest Feedback</Link></li>
+              <li><Link to="/feedback" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Insights</Link></li>
               <li><Link to="/contact" className="hover:text-[#fae788] transition-colors block py-0.5 font-medium">Contact Us</Link></li>
             </ul>
           </motion.div>

@@ -26,14 +26,14 @@ export const Navbar: React.FC = () => {
     { label: 'Home', href: '/' },
     { label: 'Our History', href: '/history' },
     { label: 'Service & Packages', href: '/services' },
-    { label: 'Feedback', href: '/feedback' },
+    { label: 'Insights', href: '/feedback' },
   ];
 
   const mobileNavItems = [
     { label: 'Home', href: '/' },
     { label: 'Our History', href: '/history' },
     { label: 'Service & Packages', href: '/services' },
-    { label: 'Feedback', href: '/feedback' },
+    { label: 'Insights', href: '/feedback' },
     { label: 'Contact Us', href: '/contact' },
   ];
 
