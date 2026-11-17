@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
 import { Link } from 'react-router-dom';
+import { useSEO } from '../hooks/useSEO';
 
 interface HistoryChapter {
   id: string;
@@ -36,6 +37,13 @@ interface HistoryChapter {
 }
 
 export const HistoryPage: React.FC = () => {
+  useSEO({
+    title: 'Our History & Living Lineage • Aaramam Ayurveda Sanctuary',
+    description: 'From Beypore roots in 1993 to Nallur, Feroke — discover the unbroken generational Vaidya lineage and maternal healing wisdom behind Aaramam.',
+    image: '/history-banner.jpeg',
+    url: 'https://aaramamcare.com/history',
+  });
+
   const [activeChapterId, setActiveChapterId] = useState<string>('chapter-1');
 
   const chapters: HistoryChapter[] = [

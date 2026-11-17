@@ -5,8 +5,16 @@ import { PageHero } from '../components/common/PageHero';
 import { CountUp } from '../components/common/CountUp';
 import { CustomerReviewsSection } from '../components/sections/CustomerReviewsSection';
 import { SanctuaryReelsCollageSection } from '../components/sections/SanctuaryReelsCollageSection';
+import { useSEO } from '../hooks/useSEO';
 
 export const FeedbackPage: React.FC = () => {
+  useSEO({
+    title: 'Guest Insights & Healing Reflections • Aaramam Sanctuary',
+    description: 'Read authentic reflections and 5.0-star reviews from mothers and families restored by traditional Kerala Ayurvedic care at Aaramam Feroke.',
+    image: '/feed-back-banner.jpeg',
+    url: 'https://aaramamcare.com/feedback',
+  });
+
   const ratingMetrics = [
     {
       label: 'Overall Guest Satisfaction',

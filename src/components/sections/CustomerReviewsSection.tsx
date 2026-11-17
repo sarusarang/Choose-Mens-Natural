@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Star, CheckCircle, Sparkles, Quote, ArrowRight } from 'lucide-react';
+import { Star, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
 
 interface CustomerReviewsSectionProps {
   showFeedbackButton?: boolean;
@@ -74,60 +74,80 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
         </motion.p>
       </div>
 
-      {/* Modern Stunning Ayurvedic Review Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7">
+      {/* Modern Stunning Ayurvedic Testimonial Cards (Overlapping Avatar & Flanking Quotes) */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
         {reviews.map((rev, idx) => (
           <motion.div
             key={rev.name}
             initial={{ opacity: 0, y: 45, scale: 0.96 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.15, delay: idx * 0.18, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.0, delay: idx * 0.18, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-            className="group relative p-7 sm:p-8 rounded-[32px] bg-white/95 backdrop-blur-xl border-2 border-[#d4a034]/25 hover:border-[#d4a034]/60 shadow-[0_12px_36px_rgba(20,38,22,0.06)] hover:shadow-[0_22px_50px_rgba(20,35,22,0.14)] transition-all duration-400 flex flex-col justify-between"
+            className="group relative flex flex-col justify-between rounded-[36px] bg-gradient-to-b from-[#18341d] to-[#0f2113] p-7 sm:p-8 pt-16 sm:pt-20 border border-[#d4a034]/35 hover:border-[#fae788]/60 shadow-[0_18px_45px_rgba(14,29,17,0.22)] hover:shadow-[0_26px_60px_rgba(14,29,17,0.36)] transition-all duration-500 text-center"
           >
-            {/* Top Row: Stars & Verified Guest Badge */}
-            <div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex space-x-1 text-[#d4a034]">
-                  {[...Array(rev.rating)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-[#d4a034] text-[#d4a034]" />
-                  ))}
-                </div>
+            {/* Ambient Background Gold Glow */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#d4a034]/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#d4a034]/20 transition-all duration-700" />
 
-                <div className="flex items-center space-x-1.5 px-3 py-1 rounded-full bg-[#112314] text-[#fae788] border border-[#d4a034]/40 text-[10px] font-bold uppercase tracking-wider shadow-sm">
-                  <CheckCircle className="w-3 h-3 text-[#d4a034]" />
-                  <span>Verified Guest</span>
-                </div>
+            {/* Top Overlapping Avatar & Flanking Quotation Marks */}
+            <div className="absolute -top-14 sm:-top-16 left-0 right-0 flex items-center justify-center pointer-events-none z-20">
+              
+              {/* Left Quotation Mark */}
+              <div className="mr-3 sm:mr-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:-translate-x-1 drop-shadow-sm">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
               </div>
 
-              {/* Decorative Subtle Quote Icon */}
-              <Quote className="w-8 h-8 text-[#d4a034]/25 -mb-2 group-hover:text-[#d4a034]/45 transition-colors" />
+              {/* Central Circular Avatar */}
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-[#18341d] ring-4 ring-[#d4a034]/40 group-hover:ring-[#fae788] shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105 pointer-events-auto bg-[#18341d] shrink-0">
+                <img
+                  src={rev.avatar}
+                  alt={rev.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                />
+              </div>
+
+              {/* Right Quotation Mark (mirrored horizontally) */}
+              <div className="ml-3 sm:ml-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:translate-x-1 drop-shadow-sm">
+                <svg className="w-8 h-8 sm:w-10 sm:h-10 fill-current transform scale-x-[-1]" viewBox="0 0 24 24">
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+              </div>
+
+            </div>
+
+            {/* Top Info: Stars & Treatment Badge */}
+            <div className="relative z-10 flex flex-col items-center space-y-2.5 mb-4">
+              {/* Star Rating */}
+              <div className="flex items-center space-x-1 text-[#fae788]">
+                {[...Array(rev.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-[#fae788] text-[#fae788] drop-shadow-xs" />
+                ))}
+              </div>
 
               {/* Treatment Pill */}
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#f4f7f3] border border-[#dbe6da] text-[#244227] text-xs font-semibold mb-3.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#d4a034]" />
+              <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 border border-[#d4a034]/35 text-[#fae788] text-[11px] font-semibold tracking-wide shadow-xs">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#fae788] animate-pulse" />
                 <span className="line-clamp-1">{rev.product}</span>
               </div>
+            </div>
 
-              {/* Review Text */}
-              <p className="text-sm sm:text-[14.5px] text-[#3d4d3f] leading-relaxed font-normal">
+            {/* Testimonial Quote Body */}
+            <div className="relative z-10 flex-1 flex items-center justify-center my-3 px-1 sm:px-2">
+              <p className="text-[13.5px] sm:text-[14.5px] text-[#e3ece2] leading-relaxed font-normal italic">
                 "{rev.text}"
               </p>
             </div>
 
-            {/* Author Profile Footer */}
-            <div className="mt-7 pt-5 border-t border-[#d4a034]/20 flex items-center space-x-3.5">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#d4a034]/60 shadow-md ring-2 ring-[#122314]/10 shrink-0">
-                <img src={rev.avatar} alt={rev.name} className="w-full h-full object-cover" />
-              </div>
-              <div>
-                <h4 className="text-[15px] font-heading font-extrabold text-[#112314] leading-snug">
-                  {rev.name}
-                </h4>
-                <p className="text-xs font-medium text-[#657766] mt-0.5">
-                  {rev.role}
-                </p>
+            {/* Reviewer Identity Footer */}
+            <div className="relative z-10 mt-6 pt-4 border-t border-white/10 flex flex-col items-center justify-center space-y-1">
+              <h4 className="text-base sm:text-[17px] font-heading font-extrabold text-white tracking-wide group-hover:text-[#fae788] transition-colors">
+                {rev.name}
+              </h4>
+              <div className="flex items-center space-x-1.5 text-xs text-[#9eb5a0] font-medium">
+                <CheckCircle className="w-3.5 h-3.5 text-[#fae788]" />
+                <span>{rev.role}</span>
               </div>
             </div>
           </motion.div>

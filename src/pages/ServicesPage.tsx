@@ -4,8 +4,16 @@ import { Sparkles, Check, MessageCircle, MapPin, Clock, Heart, Eye } from 'lucid
 import { PageHero } from '../components/common/PageHero';
 import { POSTNATAL_CARE_PACKAGES, HERO_TREATMENTS } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { useSEO } from '../hooks/useSEO';
 
 export const ServicesPage: React.FC = () => {
+  useSEO({
+    title: 'Services & Postnatal Packages • Aaramam Ayurveda Sanctuary',
+    description: 'Explore authentic Ayurvedic postnatal packages, Abhyanga, Herbal Kizhi, Shirodhara, and physician-guided mother-baby sanctuary care in Feroke, Kerala.',
+    image: '/service-banner.jpeg',
+    url: 'https://aaramamcare.com/services',
+  });
+
   const { openQuickView } = useCart();
 
   const handleEnquireWhatsApp = (title: string, duration: string) => {

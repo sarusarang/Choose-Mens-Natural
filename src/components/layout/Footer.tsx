@@ -236,7 +236,7 @@ export const Footer: React.FC = () => {
               repeat: Infinity,
               ease: 'easeInOut',
             }}
-            src="/images/footer-hand-left-v2.png"
+            src="/hand-01.png"
             alt="Sacred healing hand"
             className="w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.95)]"
           />
@@ -262,7 +262,7 @@ export const Footer: React.FC = () => {
               ease: 'easeInOut',
               delay: 0.5,
             }}
-            src="/images/footer-hand-right-v2.png"
+            src="/hand-02.png"
             alt="Nurturing hand"
             className="w-full h-auto object-contain filter drop-shadow-[0_10px_35px_rgba(0,0,0,0.95)]"
           />

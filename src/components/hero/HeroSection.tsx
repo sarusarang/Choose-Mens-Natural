@@ -24,7 +24,7 @@ export const HeroSection: React.FC = () => {
           className="relative w-full h-full"
         >
           <img
-            src="/home-hero.jpeg"
+            src="/new-hero-new.webp"
             alt="Authentic Ayurvedic postnatal healing sanctuary"
             className="w-full h-full object-cover object-center brightness-[0.85] contrast-[1.05]"
           />

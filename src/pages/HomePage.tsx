@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSEO } from '../hooks/useSEO';
 import { HeroSection } from '../components/hero/HeroSection';
 import { MarqueeBanner } from '../components/sections/MarqueeBanner';
 import { SoapCollectionSection } from '../components/sections/SoapCollectionSection';
@@ -10,6 +11,13 @@ import { YourRitualSection } from '../components/sections/YourRitualSection';
 import { JoinCommunitySection } from '../components/sections/JoinCommunitySection';
 
 export const HomePage: React.FC = () => {
+  useSEO({
+    title: 'Aaramam Ayurveda Sanctuary • Motherhood Begins with Love and Care',
+    description: 'Dedicated maternal & newborn sanctuary in Feroke, Kerala. Authentic Ayurvedic postnatal therapies (Prasava Raksha), doctor-guided care, Abhyanga, and traditional healing.',
+    image: '/home-hero.jpeg',
+    url: 'https://aaramamcare.com/',
+  });
+
   return (
     <div className="w-full flex flex-col">
       {/* Exact Hero Section as shown in the design image */}

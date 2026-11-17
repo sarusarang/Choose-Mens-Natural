@@ -6,6 +6,7 @@ import { CartDrawer } from './CartDrawer';
 import { QuickViewModal } from './QuickViewModal';
 import { Toast } from '../ui/Toast';
 import { Footer } from './Footer';
+import { FloatingWhatsApp } from '../common/FloatingWhatsApp';
 
 export const RootLayout: React.FC = () => {
   // Initialize Lenis smooth inertia scrolling across the app
@@ -20,6 +21,9 @@ export const RootLayout: React.FC = () => {
       <main className="flex-1 w-full">
         <Outlet />
       </main>
+
+      {/* Floating WhatsApp Quick Connect (Right side middle) */}
+      <FloatingWhatsApp />
 
       {/* Global Interactive Overlays */}
       <CartDrawer />

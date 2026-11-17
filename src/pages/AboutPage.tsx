@@ -6,8 +6,16 @@ import { StreamlinedSkincareSection } from '../components/sections/StreamlinedSk
 import { NaturalIngredientsSection } from '../components/sections/NaturalIngredientsSection';
 import { MedicalDirectorsSection } from '../components/sections/MedicalDirectorsSection';
 import { JoinCommunitySection } from '../components/sections/JoinCommunitySection';
+import { useSEO } from '../hooks/useSEO';
 
 export const AboutPage: React.FC = () => {
+  useSEO({
+    title: 'About Aaramam • Generational Ayurvedic Vaidya Heritage',
+    description: 'Learn about Aaramam Ayurveda Sanctuary — our founding roots in 1993, pure botanical preparations, Western Ghats herbs, and traditional Kerala postpartum healing.',
+    image: '/images/hero-ayurveda-sanctuary.jpg',
+    url: 'https://aaramamcare.com/about',
+  });
+
   const coreValues = [
     {
       icon: <Award className="w-6 h-6 text-[#fae788]" />,

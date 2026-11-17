@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Clock, MessageCircle, Sparkles, Navigation, Share2 } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
+import { useSEO } from '../hooks/useSEO';
 
 export const ContactPage: React.FC = () => {
+  useSEO({
+    title: 'Consultation & Sanctuary Desk • Aaramam Ayurveda Feroke',
+    description: 'Get in touch with senior Ayurvedic physicians at Aaramam Feroke, Kozhikode. Enquire about postnatal stay, mother-baby suites, and doctor appointments.',
+    image: '/images/hero-wide.jpg',
+    url: 'https://aaramamcare.com/contact',
+  });
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
