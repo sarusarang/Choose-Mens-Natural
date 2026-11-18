@@ -12,24 +12,24 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
 }) => {
   const reviews = [
     {
-      name: 'Dr. Clara Vance',
-      role: 'Integrative Medicine & Holistic Physician',
+      name: 'Dr. Ananya Nambiar',
+      role: 'Integrative Medicine & Holistic Physician • Kozhikode',
       avatar: '/images/avatar-1.jpg',
       rating: 5,
       product: 'Abhyanga Herbal Body Therapy',
       text: 'Experiencing the synchronized Abhyanga with warm Dhanwantharam thailam completely relieved my chronic lower back stiffness and nervous fatigue. The classical rhythmic strokes and authentic herbal decoctions are truly world-class.'
     },
     {
-      name: 'Marcus K.',
-      role: 'Verified Sanctuary Guest • London, UK',
+      name: 'Rahul K. Panicker',
+      role: 'Verified Sanctuary Guest • Kochi',
       avatar: '/images/avatar-2.jpg',
       rating: 5,
       product: 'Shirodhara Medicated Oil Stream',
       text: 'Shirodhara here is transcendent. After months of chronic insomnia and mental burnout, a single 45-minute continuous warm oil stream session brought immediate mental stillness and the deepest sleep I have had in years.'
     },
     {
-      name: 'Elena Rostova',
-      role: 'Holistic Spa & Wellness Director',
+      name: 'Sreedevi Warrier',
+      role: 'Postnatal Care Guest & Educator • Thrissur',
       avatar: '/images/avatar-3.jpg',
       rating: 5,
       product: 'Herbal Kizhi & Panchakarma Detox',

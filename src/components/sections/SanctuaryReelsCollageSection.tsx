@@ -90,7 +90,7 @@ export const SanctuaryReelsCollageSection: React.FC = () => {
       caption: 'Every dawn begins with the sacred lighting of the bronze Nilavilakku and fresh Western Ghats roots slowly simmering in traditional Uruli vessels. Pure therapeutic purity. 🪔🍃',
       timeAgo: '5d ago',
       comments: [
-        { user: 'marcus_london', text: 'The aroma of the herbs in the morning is unforgettable.', time: '4d' },
+        { user: 'rahul_panicker', text: 'The aroma of the herbs in the morning is unforgettable.', time: '4d' },
         { user: 'deepa_n', text: 'Missing the peaceful morning courtyard chants! 🌿', time: '2d' },
       ],
     },
@@ -112,7 +112,7 @@ export const SanctuaryReelsCollageSection: React.FC = () => {
       caption: 'A continuous, rhythmic stream of medicated Ksheerabala thailam over the Ajna chakra. Melting away chronic insomnia, anxiety, and mental fatigue in a single session. 💧🧘',
       timeAgo: '1w ago',
       comments: [
-        { user: 'elena_wellness', text: 'Transcendent experience! My sleep was completely restored.', time: '5d' },
+        { user: 'sreedevi_warrier', text: 'Transcendent experience! My sleep was completely restored.', time: '5d' },
         { user: 'vikram_b', text: 'Pure therapeutic perfection. Best Shirodhara in North Kerala.', time: '4d' },
       ],
     },

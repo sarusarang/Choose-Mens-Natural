@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { CountUp } from '../common/CountUp';
 import { HERO_TREATMENTS } from '../../data/products';
 import { useCart } from '../../context/CartContext';
@@ -180,14 +181,12 @@ export const HeroSection: React.FC = () => {
                     <span className="text-[9px] text-[#718272] font-semibold">
                       Feroke
                     </span>
-                    <a
-                      href={treatment1.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/services"
                       className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
                       <span>Explore Now!</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -236,14 +235,12 @@ export const HeroSection: React.FC = () => {
                     <span className="text-[9px] text-[#718272] font-semibold">
                       Feroke
                     </span>
-                    <a
-                      href={treatment2.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/services"
                       className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
                       <span>Explore Now!</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -297,14 +294,12 @@ export const HeroSection: React.FC = () => {
                     <span className="text-[9px] text-[#718272] font-semibold">
                       Feroke
                     </span>
-                    <a
-                      href={treatment3.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/services"
                       className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
                       <span>Explore Now!</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -353,14 +348,12 @@ export const HeroSection: React.FC = () => {
                     <span className="text-[9px] text-[#718272] font-semibold">
                       Feroke
                     </span>
-                    <a
-                      href={treatment4.whatsappUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to="/services"
                       className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#112314] to-[#1e3b22] hover:from-[#1e3b22] hover:to-[#2b5030] text-[#fae788] text-[10px] font-bold tracking-wide transition-all cursor-pointer shadow-sm flex items-center space-x-1"
                     >
                       <span>Explore Now!</span>
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </motion.div>

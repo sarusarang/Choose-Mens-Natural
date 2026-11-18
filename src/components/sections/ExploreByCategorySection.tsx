@@ -42,7 +42,7 @@ export const ExploreByCategorySection: React.FC = () => {
     id: 'panchakarma',
     name: 'Panchakarma Detox',
     subtitle: 'Comprehensive 5-stage cellular purification & metabolic restoration',
-    image: '/images/treatment_panchakarma_1794639720577.jpg',
+    image: '/explore-5.jpeg',
   };
 
   return (
