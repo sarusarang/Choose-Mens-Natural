@@ -68,7 +68,7 @@ export const YourRitualSection: React.FC = () => {
               {/* Inner Image with Bold 01 */}
               <div className="w-full aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden relative bg-[#eef3ed]">
                 <img
-                  src="/images/treatment_abhyanga_1794639675730.jpg"
+                  src="/explore-1.webp"
                   alt="Abhyanga Warm Herbal Oleation Ritual"
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                 />
@@ -102,7 +102,7 @@ export const YourRitualSection: React.FC = () => {
               {/* Inner Image with Bold 02 */}
               <div className="w-full aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden relative bg-[#eef3ed]">
                 <img
-                  src="/images/treatment_kizhi_1794639697200.jpg"
+                  src="/explore-2.webp"
                   alt="Herbal Kizhi Steamed Poultice Fomentation"
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                 />
@@ -129,7 +129,7 @@ export const YourRitualSection: React.FC = () => {
           >
             {/* Model Image */}
             <img
-              src="/images/ayurveda-ritual-portrait.jpg"
+              src="/explore-4.webp"
               alt="Serene Ayurvedic wellness ritual model with sacred thailam oil"
               className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-106 transition-transform duration-800 ease-out"
             />
@@ -212,7 +212,7 @@ export const YourRitualSection: React.FC = () => {
               {/* Inner Image with Bold 03 */}
               <div className="w-full aspect-[4/3] rounded-[18px] sm:rounded-[24px] overflow-hidden relative bg-[#eef3ed]">
                 <img
-                  src="/images/treatment_shirodhara_1794639618350.jpg"
+                  src="/explore-3.webp"
                   alt="Shirodhara Continuous Medicated Oil Stream"
                   className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                 />

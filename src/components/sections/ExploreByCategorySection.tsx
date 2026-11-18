@@ -16,25 +16,25 @@ export const ExploreByCategorySection: React.FC = () => {
       id: 'abhyanga',
       name: 'Abhyanga Body Massage',
       subtitle: 'Synchronized warm herbal oil therapies',
-      image: '/explore-1.webp',
+      image: '/new-explore-1.jpeg',
     },
     {
       id: 'shirodhara',
       name: 'Shirodhara Mind Tranquility',
       subtitle: 'Continuous medicated warm oil stream',
-      image: '/explore-2.webp',
+      image: '/new-explore-2.jpeg',
     },
     {
       id: 'kizhi',
       name: 'Herbal Kizhi Poultice',
       subtitle: 'Steamed medicinal leaf bolus therapy',
-      image: '/explore-3.webp',
+      image: '/new-explore-3.jpeg',
     },
     {
       id: 'mother-care',
       name: 'Prasava Raksha Mother Care',
       subtitle: 'Nurturing traditional postnatal wellness',
-      image: '/explore-4.webp',
+      image: '/new-explore-4.jpeg',
     },
   ];
 
