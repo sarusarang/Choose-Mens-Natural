@@ -184,7 +184,7 @@ export const HistoryPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] overflow-x-hidden">
+    <div className="w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] overflow-x-clip">
       {/* Reusable Page Hero with Dark Sanctuary Theme */}
       <PageHero
         title="Generations of Healing &"
@@ -244,42 +244,39 @@ export const HistoryPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Mobile Swipe Indicator */}
-          <div className="sm:hidden flex items-center justify-between mb-3 px-1 text-xs text-[#a3bfa5] select-none">
-            <span className="text-[#fae788] font-bold">Chronology Nodes</span>
-            <span>Swipe milestones →</span>
-          </div>
-
-          {/* Node Diagram Cards: Swipeable Deck on Mobile & Responsive Grid on Desktop */}
-          <div className="relative z-10 flex overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-5 pb-3 sm:pb-0 snap-x snap-mandatory no-scrollbar touch-momentum -mx-2 px-2 sm:mx-0 sm:px-0">
+          {/* Node Diagram Cards: Balanced Responsive Grid (1 col on mobile, 2 cols on tablet, 3 cols on desktop) */}
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
             {chapters.map((ch) => {
               const isActive = activeChapterId === ch.id;
 
               return (
-                <button
+                <motion.button
                   key={ch.id}
                   onClick={() => scrollToChapter(ch.id)}
-                  className={`p-5 sm:p-6 rounded-2xl sm:rounded-3xl border transition-all text-left flex flex-col justify-between group cursor-pointer relative min-h-[280px] sm:min-h-[320px] md:min-h-[340px] w-[250px] xs:w-[270px] shrink-0 sm:w-auto snap-start ${
+                  whileHover={{ y: -4, transition: { duration: 0.2, ease: 'easeOut' } }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`p-6 sm:p-7 rounded-[26px] border text-left flex flex-col justify-between group cursor-pointer relative transition-all duration-300 ${
                     isActive
-                      ? 'bg-gradient-to-b from-[#1d3a22] to-[#122616] border-[#fae788] shadow-[0_0_28px_rgba(250,231,136,0.35)] scale-[1.02] sm:scale-[1.03] ring-1 ring-[#fae788]'
-                      : 'bg-white/5 hover:bg-white/10 border-white/10 hover:border-[#d4a034]/50 hover:shadow-[0_12px_28px_rgba(0,0,0,0.3)]'
+                      ? 'bg-gradient-to-br from-[#1d3d24] via-[#142918] to-[#0c1a10] border-[#fae788] shadow-[0_14px_36px_rgba(250,231,136,0.22),inset_0_1px_0_rgba(255,255,255,0.15)] ring-1 ring-[#fae788]'
+                      : 'bg-[#122416]/75 hover:bg-[#162e1c]/90 border-[#d4a034]/25 hover:border-[#d4a034]/60 shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.35)]'
                   }`}
                 >
-                  {/* Top Row: Year Badge & Icon */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 rounded-full bg-[#112314] text-[#fae788] border border-[#d4a034]/40 text-[11px] font-heading font-black uppercase tracking-wider shadow-sm">
+                  {/* Top Row: Year Pill & Icon */}
+                  <div className="flex items-center justify-between mb-4 gap-2">
+                    <span className="px-3.5 py-1 rounded-full bg-[#0a160d] text-[#fae788] border border-[#d4a034]/40 text-xs font-heading font-black tracking-wider uppercase shadow-xs">
                       {ch.year}
                     </span>
+
                     <div
-                      className={`w-9 h-9 rounded-full flex items-center justify-center border transition-all ${
+                      className={`w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 ${
                         isActive
-                          ? 'bg-[#fae788] text-[#112314] border-[#fae788] shadow-md'
-                          : 'bg-white/10 text-[#fae788] border-white/15 group-hover:scale-110 group-hover:border-[#fae788]/60'
+                          ? 'bg-[#fae788] text-[#112314] border-[#fae788] shadow-md scale-105'
+                          : 'bg-white/10 text-[#fae788] border-white/15 group-hover:bg-[#fae788]/20 group-hover:border-[#fae788]/60 group-hover:scale-105'
                       }`}
                     >
                       {React.isValidElement(ch.icon)
                         ? React.cloneElement(ch.icon as React.ReactElement<{ className?: string }>, {
-                            className: `w-4 h-4 sm:w-5 sm:h-5 transition-colors ${
+                            className: `w-5 h-5 transition-colors ${
                               isActive ? 'text-[#112314]' : 'text-[#fae788]'
                             }`,
                           })
@@ -287,27 +284,41 @@ export const HistoryPage: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Middle Content Area */}
-                  <div className="flex-1 flex flex-col justify-center my-3">
+                  {/* Middle Content: Phase Tag, Standardized-Height Title, and Location */}
+                  <div className="space-y-2 mb-4">
                     {ch.phase && (
-                      <span className="text-[10px] font-heading font-bold uppercase tracking-widest text-[#d4a034] mb-2 block">
+                      <span className="text-[11px] font-heading font-extrabold uppercase tracking-[0.18em] text-[#d4a034] block">
                         {ch.phase}
                       </span>
                     )}
-                    <h4 className="text-sm sm:text-[15px] font-heading font-bold text-white line-clamp-3 leading-snug group-hover:text-[#fae788] transition-colors">
+                    <h4 className="text-base sm:text-lg font-heading font-bold text-white group-hover:text-[#fae788] transition-colors leading-snug line-clamp-2 min-h-[2.85rem] flex items-center">
                       {ch.title}
                     </h4>
-                    <p className="text-xs text-[#8fa892] mt-2 line-clamp-2 leading-relaxed">
-                      {ch.location}
-                    </p>
+                    <div className="flex items-center space-x-1.5 text-xs text-[#9eb6a0] pt-1">
+                      <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
+                      <span className="line-clamp-1">{ch.location}</span>
+                    </div>
                   </div>
 
-                  {/* Bottom Explore Footer */}
-                  <div className="mt-4 pt-3.5 border-t border-white/15 flex items-center justify-between text-xs font-semibold text-[#fae788]">
-                    <span className="tracking-wide">Explore</span>
-                    <ChevronDown className="w-4 h-4 group-hover:translate-y-1 transition-transform text-[#fae788]" />
+                  {/* Bottom Action Row: Smooth Explore Indicator */}
+                  <div className="pt-3.5 border-t border-white/10 flex items-center justify-between">
+                    <span className="text-xs font-heading font-semibold text-[#fae788] group-hover:text-white transition-colors flex items-center gap-1.5">
+                      <span>{isActive ? 'Current Chapter' : 'Jump to Chapter'}</span>
+                      {isActive && (
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#fae788] animate-pulse" />
+                      )}
+                    </span>
+                    <div
+                      className={`w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        isActive
+                          ? 'bg-[#fae788] text-[#112314]'
+                          : 'bg-white/10 text-[#fae788] group-hover:bg-[#fae788] group-hover:text-[#112314]'
+                      }`}
+                    >
+                      <ChevronDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+                    </div>
                   </div>
-                </button>
+                </motion.button>
               );
             })}
           </div>
@@ -497,7 +508,7 @@ export const HistoryPage: React.FC = () => {
               <img
                 src="/images/doctor_varsha.jpg"
                 alt="Dr. Jishna Jayaraj & Dr. Reshna Jayaraj - Founders of Aaramam & Dvaya Ayurvedic"
-                className="w-full h-[400px] sm:h-[480px] object-cover object-top"
+                className="w-full h-[500px] sm:h-[580px] md:h-[620px] lg:h-[640px] xl:h-[680px] object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0e1d11]/90 via-[#0e1d11]/30 to-transparent" />
               

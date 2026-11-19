@@ -13,7 +13,7 @@ export const RootLayout: React.FC = () => {
   useLenis();
 
   return (
-    <div className="min-h-screen w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] text-[#19241a] selection:bg-[#324b35] selection:text-white overflow-x-hidden">
+    <div className="min-h-screen w-full max-w-full min-w-0 flex flex-col bg-[#e4eae2] text-[#19241a] selection:bg-[#324b35] selection:text-white overflow-x-clip">
       {/* Global Fixed Navbar overlaying all pages */}
       <Navbar />
 

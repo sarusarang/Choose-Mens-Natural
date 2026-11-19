@@ -39,11 +39,23 @@ export const useSEO = ({ title, description, image, url }: SEOProps) => {
 
     // 4. Update Social Share Image
     if (image) {
+      const fullImageUrl = image.startsWith('http')
+        ? image
+        : `https://aaramamcare.com${image.startsWith('/') ? '' : '/'}${image}`;
+
       const ogImage = document.querySelector('meta[property="og:image"]');
-      if (ogImage) ogImage.setAttribute('content', image);
+      if (ogImage) ogImage.setAttribute('content', fullImageUrl);
+
+      const ogImageSecure = document.querySelector('meta[property="og:image:secure_url"]');
+      if (ogImageSecure) ogImageSecure.setAttribute('content', fullImageUrl);
+
+      const ogImageType = document.querySelector('meta[property="og:image:type"]');
+      if (ogImageType) {
+        ogImageType.setAttribute('content', fullImageUrl.endsWith('.png') ? 'image/png' : 'image/jpeg');
+      }
 
       const twitterImage = document.querySelector('meta[name="twitter:image"]');
-      if (twitterImage) twitterImage.setAttribute('content', image);
+      if (twitterImage) twitterImage.setAttribute('content', fullImageUrl);
     }
 
     // 5. Update Canonical / OG URL

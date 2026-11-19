@@ -14,7 +14,7 @@ export const HomePage: React.FC = () => {
   useSEO({
     title: 'Aaramam Ayurveda Sanctuary • Motherhood Begins with Love and Care',
     description: 'Dedicated maternal & newborn sanctuary in Feroke, Kerala. Authentic Ayurvedic postnatal therapies (Prasava Raksha), doctor-guided care, Abhyanga, and traditional healing.',
-    image: '/home-hero.jpeg',
+    image: '/aaramam-logo.png',
     url: 'https://aaramamcare.com/',
   });
 
