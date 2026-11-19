@@ -10,11 +10,11 @@ import {
   HeartHandshake,
   Users,
   Scroll,
-  Flower2,
   CheckCircle2,
   ArrowRight,
   ShieldCheck,
   ChevronDown,
+  Swords,
 } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
 import { Link } from 'react-router-dom';
@@ -49,90 +49,6 @@ export const HistoryPage: React.FC = () => {
   const chapters: HistoryChapter[] = [
     {
       id: 'chapter-1',
-      year: '1993',
-      phase: 'Foundational Roots',
-      location: 'Beypore, Kerala',
-      title: 'A Legacy of Traditional Ayurveda – Since 1993',
-      subtitle: 'Jayarajan Ayurveda Parambariya Vidyasala',
-      description:
-        "The roots of Aaramam trace back to 1993, when Mr. Jayarajan established Jayarajan Ayurveda Parambariya Vidyasala at Beypore, Kerala. Coming from a family with generations of traditional Ayurvedic knowledge, he dedicated his life to natural healing, traditional therapies and the preparation of herbal medicines. His expertise in treating body pain, eye-related conditions and various health concerns laid a strong foundation for the family's Ayurvedic heritage.",
-      quote:
-        '“Dedicated to natural healing, traditional therapies, and sacred herbal medicine preparation rooted in Beypore.”',
-      image: '/images/ayurveda-herbs-center.jpg',
-      imageCaption: '1993 • Classical Bronze Uruli & Traditional Herbal Medicine Crafting',
-      tags: ['Beypore, Kerala', 'Herbal Medicine Preparation', 'Parambariya Vidyasala', 'Natural Healing'],
-      icon: <Scroll className="w-5 h-5 text-[#fae788]" />,
-      highlights: [
-        'Founded by Mr. Jayarajan in 1993 at Beypore',
-        'Generations of traditional Ayurvedic botanical knowledge',
-        'Specialised in natural healing, body pain & eye health',
-      ],
-    },
-    {
-      id: 'chapter-2',
-      year: 'Heritage',
-      phase: 'Family Lineage',
-      location: 'Generational Transmission',
-      title: 'Generations of Knowledge & Healing',
-      subtitle: 'Passed Down from Father & Grandfather to the Twin Sisters',
-      description:
-        'Ayurveda was more than a profession for the family; it was a tradition passed down through generations. Inspired by their father and grandfather, the twin sisters grew up with an understanding of traditional healing practices and natural therapies. Mr. Jayarajan shared his extensive practical knowledge, treatment methods and therapeutic experience with his daughters, nurturing their passion for preserving authentic Ayurvedic traditions.',
-      quote:
-        '“Ayurveda was never merely a profession—it was a sacred familial flame nurtured across generations.”',
-      image: '/images/ayurveda-ritual-portrait.jpg',
-      imageCaption: 'Ancestral Vaidya Wisdom • Sacred Botanical Formulations Passed to Daughters',
-      tags: ['Family Lineage', 'Father to Daughters', 'Practical Therapeutics', 'Living Tradition'],
-      icon: <Users className="w-5 h-5 text-[#fae788]" />,
-      highlights: [
-        'Inspired by generations of Vaidya ancestors',
-        'Hands-on immersion in practical herbal preparations',
-        'A lifelong commitment to preserving authentic traditions',
-      ],
-    },
-    {
-      id: 'chapter-3',
-      year: 'Vision',
-      phase: 'Clinical Insight',
-      location: 'Identifying the Care Gap',
-      title: 'Recognising the Need for Dedicated Postnatal Care',
-      subtitle: 'Bridging the Critical Void in Traditional Postpartum Support',
-      description:
-        'Through their clinical experience and interactions with mothers and families, the sisters recognised a significant gap in accessible, authentic traditional Ayurvedic postnatal care. They envisioned a dedicated centre that would bring together traditional therapies, professional medical guidance and comprehensive care for both mothers and newborn babies during the important postpartum period.',
-      quote:
-        '“Envisioning a sanctuary that unites authentic traditional therapies with clinical medical guidance for mother and child.”',
-      image: '/images/treatment_mother_care_1794639745090.jpg',
-      imageCaption: 'Maternal & Newborn Wellbeing • The Need for Dedicated Postpartum Support',
-      tags: ['Maternal Wellness', 'Newborn Care', 'Postnatal Void', 'Doctor-Led Guidance'],
-      icon: <HeartHandshake className="w-5 h-5 text-[#fae788]" />,
-      highlights: [
-        'Direct clinical observations with postpartum mothers',
-        'Recognised lack of authentic traditional care centres',
-        'Conceived a 360-degree maternal & infant wellness sanctuary',
-      ],
-    },
-    {
-      id: 'chapter-4',
-      year: '2024',
-      phase: 'Academic Mastery',
-      location: 'Nallur, Feroke, Kerala',
-      title: 'The Beginning of Dvaya Ayurvedic – 2024',
-      subtitle: 'Twin BAMS Doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj',
-      description:
-        "After completing their BAMS graduation, twin sisters Dr. Jishna Jayaraj and Dr. Reshna Jayaraj established Dvaya Ayurvedic at Nallur, Feroke, Kerala, in 2024. Combining professional Ayurvedic education with their family's traditional healing knowledge, they began providing specialised treatments for pregnancy care, postnatal wellness, baby care, varicose veins and cosmetology.",
-      quote:
-        '“Uniting university medical science (BAMS) with centuries of family herbal mastery at Nallur, Feroke.”',
-      image: '/images/doctor_varsha.jpg',
-      imageCaption: '2024 • Twin Doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj (BAMS)',
-      tags: ['BAMS Graduates', 'Dvaya Ayurvedic', 'Pregnancy Care', 'Cosmetology', 'Varicose Veins'],
-      icon: <GraduationCap className="w-5 h-5 text-[#fae788]" />,
-      highlights: [
-        'Founded in 2024 following BAMS graduation',
-        'Twin doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj',
-        'Comprehensive clinical treatments for women & children',
-      ],
-    },
-    {
-      id: 'chapter-5',
       year: 'Sanctuary',
       phase: 'Dedicated Centre',
       location: 'Nallur, Feroke, Kerala',
@@ -153,24 +69,87 @@ export const HistoryPage: React.FC = () => {
       ],
     },
     {
-      id: 'chapter-6',
-      year: 'Legacy',
-      phase: 'Living Future',
-      location: 'Preserving Kerala Heritage',
-      title: 'Continuing the Legacy – A Future of Holistic Motherhood',
-      subtitle: 'Preserving Traditional Ayurvedic Knowledge for Generations to Come',
+      id: 'chapter-2',
+      year: 'Vision',
+      phase: 'Clinical Insight',
+      location: 'Identifying the Care Gap',
+      title: 'Recognising the Need for Dedicated Postnatal Care',
+      subtitle: 'Bridging the Critical Void in Traditional Postpartum Support',
       description:
-        "Today, Aaramam represents the continuation of a family tradition built on generations of Ayurvedic knowledge and healing experience. With a commitment to authentic traditional treatments, professional care and personalised attention, the centre strives to support mothers and babies through their wellness journey. Its vision is to preserve Kerala's traditional Ayurvedic heritage and make meaningful postnatal care accessible to future generations.",
+        'Through their clinical experience and interactions with mothers and families, the sisters recognised a significant gap in accessible, authentic traditional Ayurvedic postnatal care. They envisioned a dedicated centre that would bring together traditional therapies, professional medical guidance and comprehensive care for both mothers and newborn babies during the important postpartum period.',
       quote:
-        '“Preserving Kerala’s sacred Ayurvedic healing heritage while delivering compassionate, modern care to every new mother.”',
-      image: '/images/postnatal_21days.jpg',
-      imageCaption: 'The Living Legacy • Empowering Mothers & Babies Across Generations',
-      tags: ['Holistic Motherhood', 'Living Legacy', 'Heritage Preservation', 'Compassionate Care'],
-      icon: <Flower2 className="w-5 h-5 text-[#fae788]" />,
+        '“Envisioning a sanctuary that unites authentic traditional therapies with clinical medical guidance for mother and child.”',
+      image: '/images/treatment_mother_care_1794639745090.jpg',
+      imageCaption: 'Maternal & Newborn Wellbeing • The Need for Dedicated Postpartum Support',
+      tags: ['Maternal Wellness', 'Newborn Care', 'Postnatal Void', 'Doctor-Led Guidance'],
+      icon: <HeartHandshake className="w-5 h-5 text-[#fae788]" />,
       highlights: [
-        'Continuous family lineage rooted in deep healing wisdom',
-        'Personalised recovery journeys tailored to each mother and baby',
-        'Preserving Kerala’s sacred postnatal heritage for the future',
+        'Direct clinical observations with postpartum mothers',
+        'Recognised lack of authentic traditional care centres',
+        'Conceived a 360-degree maternal & infant wellness sanctuary',
+      ],
+    },
+    {
+      id: 'chapter-3',
+      year: '2024',
+      phase: 'Academic Mastery',
+      location: 'Nallur, Feroke, Kerala',
+      title: 'The Beginning of Dvaya Ayurvedic – 2024',
+      subtitle: 'Twin BAMS Doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj',
+      description:
+        "After completing their BAMS graduation, twin sisters Dr. Jishna Jayaraj and Dr. Reshna Jayaraj established Dvaya Ayurvedic at Nallur, Feroke, Kerala, in 2024. Combining professional Ayurvedic education with their family's traditional healing knowledge, they began providing specialised treatments for pregnancy care, postnatal wellness, baby care, varicose veins and cosmetology.",
+      quote:
+        '“Uniting university medical science (BAMS) with centuries of family herbal mastery at Nallur, Feroke.”',
+      image: '/images/doctor_varsha.jpg',
+      imageCaption: '2024 • Twin Doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj (BAMS)',
+      tags: ['BAMS Graduates', 'Dvaya Ayurvedic', 'Pregnancy Care', 'Cosmetology', 'Varicose Veins'],
+      icon: <GraduationCap className="w-5 h-5 text-[#fae788]" />,
+      highlights: [
+        'Founded in 2024 following BAMS graduation',
+        'Twin doctors Dr. Jishna Jayaraj & Dr. Reshna Jayaraj',
+        'Comprehensive clinical treatments for women & children',
+      ],
+    },
+    {
+      id: 'chapter-4',
+      year: '1993',
+      phase: 'Foundational Roots',
+      location: 'Beypore, Kerala',
+      title: 'A Legacy of Traditional Ayurveda – Since 1993',
+      subtitle: 'Jayarajan Ayurveda Parambariya Vidyasala',
+      description:
+        "The roots of Aaramam trace back to 1993, when Mr. Jayarajan established Jayarajan Ayurveda Parambariya Vidyasala at Beypore, Kerala. Coming from a family with generations of traditional Ayurvedic knowledge, he dedicated his life to natural healing, traditional therapies and the preparation of herbal medicines. His expertise in treating body pain, eye-related conditions and various health concerns laid a strong foundation for the family's Ayurvedic heritage.",
+      quote:
+        '“Dedicated to natural healing, traditional therapies, and sacred herbal medicine preparation rooted in Beypore.”',
+      image: '/images/ayurveda-herbs-center.jpg',
+      imageCaption: '1993 • Classical Bronze Uruli & Traditional Herbal Medicine Crafting',
+      tags: ['Beypore, Kerala', 'Herbal Medicine Preparation', 'Parambariya Vidyasala', 'Natural Healing'],
+      icon: <Scroll className="w-5 h-5 text-[#fae788]" />,
+      highlights: [
+        'Founded by Mr. Jayarajan in 1993 at Beypore',
+        'Generations of traditional Ayurvedic botanical knowledge',
+        'Specialised in natural healing, body pain & eye health',
+      ],
+    },
+    {
+      id: 'chapter-5',
+      year: 'Heritage',
+      phase: 'Family Lineage',
+      location: 'Generational Transmission',
+      title: 'Generations of Knowledge & Healing',
+      subtitle: 'Passed Down from Father & Grandfather to the Twin Sisters',
+      description:
+        'Ayurveda was more than a profession for the family; it was a tradition passed down through generations. Inspired by their father and grandfather, the twin sisters grew up with an understanding of traditional healing practices and natural therapies. Mr. Jayarajan shared his extensive practical knowledge, treatment methods and therapeutic experience with his daughters, nurturing their passion for preserving authentic Ayurvedic traditions.',
+      quote:
+        '“Ayurveda was never merely a profession—it was a sacred familial flame nurtured across generations.”',
+      image: '/images/ayurveda-ritual-portrait.jpg',
+      imageCaption: 'Ancestral Vaidya Wisdom • Sacred Botanical Formulations Passed to Daughters',
+      tags: ['Family Lineage', 'Father to Daughters', 'Practical Therapeutics', 'Living Tradition'],
+      icon: <Users className="w-5 h-5 text-[#fae788]" />,
+      highlights: [
+        'Inspired by generations of Vaidya ancestors',
+        'Hands-on immersion in practical herbal preparations',
+        'A lifelong commitment to preserving authentic traditions',
       ],
     },
   ];
@@ -226,8 +205,8 @@ export const HistoryPage: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Interactive Visual Node Tree Navigator (Graph) */}
-        <div className="mb-16 sm:mb-20 bg-[#0e1d11] text-white rounded-[36px] sm:rounded-[44px] py-14 sm:py-18 md:py-20 px-6 sm:px-8 md:px-12 border border-[#d4a034]/35 shadow-[0_25px_60px_rgba(14,29,17,0.45)] relative overflow-hidden">
+        {/* Interactive Visual Node Tree Navigator (Graph) - Native Mobile App Responsive */}
+        <div className="mb-14 sm:mb-20 bg-[#0e1d11] text-white rounded-[26px] sm:rounded-[44px] py-9 sm:py-16 md:py-20 px-4 sm:px-8 md:px-12 border border-[#d4a034]/35 shadow-[0_25px_60px_rgba(14,29,17,0.45)] relative overflow-hidden">
           {/* Subtle Ambient Gold Glow */}
           <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#d4a034]/12 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#2b4c2f]/25 rounded-full blur-[100px] pointer-events-none" />
@@ -489,6 +468,260 @@ export const HistoryPage: React.FC = () => {
                 </div>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* Aaramam's Legacy of Kalari and Traditional Ayurvedic Healing Section - Mobile App Responsive */}
+      <section
+        id="kalari-legacy"
+        className="py-12 sm:py-18 lg:py-24 px-3 sm:px-6 lg:px-8 xl:px-12 bg-[#0c1a0e] text-white relative overflow-hidden border-t border-[#d4a034]/25 scroll-mt-20"
+      >
+        {/* Ambient Subtle Glows */}
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#d4a034]/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-[#1d3d24]/30 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="max-w-[1500px] mx-auto relative z-10 space-y-10 sm:space-y-14 lg:space-y-16">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center max-w-4xl mx-auto space-y-3 sm:space-y-4 px-2"
+          >
+            <div className="inline-flex items-center space-x-2 px-3.5 py-1 sm:px-4 sm:py-1.5 rounded-full bg-white/10 border border-[#d4a034]/40 text-[#fae788] text-[11px] sm:text-xs font-heading font-bold uppercase tracking-wider shadow-xs">
+              <Swords className="w-3.5 h-3.5 text-[#fae788]" />
+              <span>Ancestral Martial Art &amp; Natural Healing Roots</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl md:text-5xl font-heading font-black text-white tracking-tight leading-tight">
+              Aaramam’s Legacy of Kalari and <br />
+              <span className="font-serif italic font-normal text-[#fae788]">
+                Traditional Ayurvedic Healing
+              </span>
+            </h2>
+            <p className="text-xs sm:text-base md:text-lg text-[#a3bfa5] leading-relaxed max-w-3xl mx-auto font-medium">
+              The harmonious synthesis of martial discipline, trauma recovery, and natural botanical medicine that shaped the healing lineage of the Aaramam family.
+            </p>
+          </motion.div>
+
+          {/* Narrative Content: Two Rich Story Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch"
+          >
+            {/* Left Card: Kalari Discipline & Cultural Heritage */}
+            <div className="bg-gradient-to-br from-[#142918] via-[#0f2113] to-[#0a170d] rounded-[28px] sm:rounded-[30px] p-6 sm:p-9 border border-[#d4a034]/30 shadow-xl flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-[#d4a034]/55 transition-all">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#fae788]/10 border border-[#fae788]/25 text-xs font-heading font-bold uppercase tracking-wider text-[#fae788]">
+                    <ShieldCheck className="w-3.5 h-3.5 text-[#fae788]" />
+                    <span>Discipline &amp; Martial Lineage</span>
+                  </div>
+                  <span className="text-xs text-[#a3bfa5] font-mono">01</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-heading font-bold text-white tracking-tight">
+                  Upholding the Sanctity of the Kalari Centre
+                </h3>
+                <p className="text-sm sm:text-[15px] text-[#cfded0] leading-relaxed text-justify sm:text-left">
+                  For generations, the Aaramam family has maintained a deep-rooted connection with Kerala’s traditional martial art, <strong className="text-white font-semibold">Kalari</strong>, preserving its discipline, knowledge, and cultural heritage with great dedication. Mr. Jayaraj and his predecessors actively practised Kalari and upheld the sanctity of the traditional Kalari centre.
+                </p>
+                <p className="text-sm sm:text-[15px] text-[#cfded0] leading-relaxed text-justify sm:text-left">
+                  The centre was also enriched by the guidance and training of renowned practitioners such as <strong className="text-[#fae788] font-semibold">Mr. Ashan Kurikkal</strong> and <strong className="text-[#fae788] font-semibold">Mr. Chandukutty Vaidhyar</strong>, who contributed to nurturing the art and its practitioners.
+                </p>
+              </div>
+              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2 text-xs">
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #KeralaKalari
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #MasterGuidance
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #GenerationalDiscipline
+                </span>
+              </div>
+            </div>
+
+            {/* Right Card: Ayurvedic Treatments & Natural Healing */}
+            <div className="bg-gradient-to-br from-[#142918] via-[#0f2113] to-[#0a170d] rounded-[28px] sm:rounded-[30px] p-6 sm:p-9 border border-[#d4a034]/30 shadow-xl flex flex-col justify-between space-y-5 sm:space-y-6 hover:border-[#d4a034]/55 transition-all">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-[#fae788]/10 border border-[#fae788]/25 text-xs font-heading font-bold uppercase tracking-wider text-[#fae788]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#fae788]" />
+                    <span>Ayurvedic Healing &amp; Recovery</span>
+                  </div>
+                  <span className="text-xs text-[#a3bfa5] font-mono">02</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-heading font-bold text-white tracking-tight">
+                  Trauma Care, Muscular Recovery &amp; Physical Well-being
+                </h3>
+                <p className="text-sm sm:text-[15px] text-[#cfded0] leading-relaxed text-justify sm:text-left">
+                  Alongside Kalari training, traditional Ayurvedic treatments were administered to address injuries, wounds, muscular pain, and physical discomfort experienced by trainees. These treatments, rooted in natural healing practices and traditional medicinal knowledge, were widely valued for their effectiveness in promoting recovery, strengthening the body, and maintaining overall physical well-being.
+                </p>
+                <p className="text-sm sm:text-[15px] text-[#cfded0] leading-relaxed text-justify sm:text-left">
+                  This harmonious relationship between Kalari, Ayurveda, discipline, and natural healing formed an important part of the Aaramam family’s heritage — <em className="text-[#fae788] font-serif not-italic font-semibold">a legacy of wellness, knowledge, and care passed down through generations.</em>
+                </p>
+              </div>
+              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-2 text-xs">
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #MarmaHealing
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #MuscularRecovery
+                </span>
+                <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[#a3bfa5]">
+                  #UnbrokenHeritage
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Historical Figures & Kalari Ground Cards */}
+          <div className="space-y-6 sm:space-y-8">
+            <div className="text-center space-y-2">
+              <span className="text-xs font-heading font-black uppercase tracking-[0.22em] text-[#d4a034] block">
+                Historical Guardians of the Art
+              </span>
+              <h3 className="text-2xl sm:text-3xl font-heading font-black text-white tracking-tight">
+                The Sanctum, Masters &amp; Traditional Vaidhyars
+              </h3>
+            </div>
+
+            {/* 3-Column Responsive Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {/* Card 1: Kalari */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full bg-[#122416]/90 rounded-[28px] overflow-hidden border border-[#d4a034]/30 hover:border-[#fae788]/70 shadow-xl hover:shadow-[0_20px_45px_rgba(212,160,52,0.2)] transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#08120a]">
+                    <img
+                      src="/kalari.jpg.jpeg"
+                      alt="Kalari - Traditional Martial Art"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/kalari.jpeg';
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#122416] via-transparent to-transparent opacity-80" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full bg-[#0a160d]/90 text-[#fae788] border border-[#d4a034]/40 text-[11px] font-heading font-bold uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        Sacred Art
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-7 space-y-2">
+                    <h4 className="text-xl sm:text-2xl font-heading font-black text-white group-hover:text-[#fae788] transition-colors">
+                      Kalari
+                    </h4>
+                    <p className="text-xs font-serif italic text-[#fae788]/90 font-medium">
+                      Traditional Martial Art &amp; Sacred Centre
+                    </p>
+                    <p className="text-xs sm:text-sm text-[#b4ccb6] leading-relaxed pt-1">
+                      Preserving the physical discipline, sacred traditions, and cultural heritage of Kerala’s ancient martial system, actively practised by Mr. Jayaraj and his predecessors.
+                    </p>
+                  </div>
+                </div>
+                <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-[#fae788] font-heading font-semibold">
+                  <span>Ancestral Practice</span>
+                  <ShieldCheck className="w-4 h-4 text-[#fae788]" />
+                </div>
+              </motion.div>
+
+              {/* Card 2: Ashan Kurikkal */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full bg-[#122416]/90 rounded-[28px] overflow-hidden border border-[#d4a034]/30 hover:border-[#fae788]/70 shadow-xl hover:shadow-[0_20px_45px_rgba(212,160,52,0.2)] transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#08120a]">
+                    <img
+                      src="/ashaaan%20kelugurukal.jpg.jpeg"
+                      alt="Ashan Kurikkal - Kalari Master"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/ashan_kurikkal.jpeg';
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#122416] via-transparent to-transparent opacity-80" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full bg-[#0a160d]/90 text-[#fae788] border border-[#d4a034]/40 text-[11px] font-heading font-bold uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        Kalari Master
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-7 space-y-2">
+                    <h4 className="text-xl sm:text-2xl font-heading font-black text-white group-hover:text-[#fae788] transition-colors">
+                      Ashan Kurikkal
+                    </h4>
+                    <p className="text-xs font-serif italic text-[#fae788]/90 font-medium">
+                      Renowned Practitioner &amp; Master Trainer
+                    </p>
+                    <p className="text-xs sm:text-sm text-[#b4ccb6] leading-relaxed pt-1">
+                      Enriched the centre through revered guidance, rigorous training, and mentorship, nurturing the martial discipline and cultivating the spirit of its practitioners.
+                    </p>
+                  </div>
+                </div>
+                <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-[#fae788] font-heading font-semibold">
+                  <span>Mentorship &amp; Guidance</span>
+                  <Swords className="w-4 h-4 text-[#fae788]" />
+                </div>
+              </motion.div>
+
+              {/* Card 3: Mr. Chandukutty Vaidhyar */}
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full bg-[#122416]/90 rounded-[28px] overflow-hidden border border-[#d4a034]/30 hover:border-[#fae788]/70 shadow-xl hover:shadow-[0_20px_45px_rgba(212,160,52,0.2)] transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#08120a]">
+                    <img
+                      src="/chandhu%20kutty%20vydhyar.jpg.jpeg"
+                      alt="Mr. Chandukutty Vaidhyar - Traditional Ayurvedic Healer"
+                      onError={(e) => {
+                        e.currentTarget.src = '/images/chandukutty_vaidhyar.jpeg';
+                      }}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#122416] via-transparent to-transparent opacity-80" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 rounded-full bg-[#0a160d]/90 text-[#fae788] border border-[#d4a034]/40 text-[11px] font-heading font-bold uppercase tracking-wider backdrop-blur-md shadow-xs">
+                        Traditional Vaidhyar
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-6 sm:p-7 space-y-2">
+                    <h4 className="text-xl sm:text-2xl font-heading font-black text-white group-hover:text-[#fae788] transition-colors">
+                      Mr. Chandukutty Vaidhyar
+                    </h4>
+                    <p className="text-xs font-serif italic text-[#fae788]/90 font-medium">
+                      Traditional Ayurvedic Healer &amp; Practitioner
+                    </p>
+                    <p className="text-xs sm:text-sm text-[#b4ccb6] leading-relaxed pt-1">
+                      Administered classical treatments for wounds, muscular trauma, and physical recovery, anchoring natural healing practices into the daily life of the centre.
+                    </p>
+                  </div>
+                </div>
+                <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-[#fae788] font-heading font-semibold">
+                  <span>Natural Healing &amp; Care</span>
+                  <Sparkles className="w-4 h-4 text-[#fae788]" />
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
       </section>

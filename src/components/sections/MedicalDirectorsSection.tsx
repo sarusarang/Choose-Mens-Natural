@@ -28,7 +28,7 @@ export const MedicalDirectorsSection: React.FC = () => {
       specialtyTitle: 'Postnatal Care & Maternal Wellness',
       description: 'Dedicated Ayurvedic practitioner specialising in authentic Kerala postnatal recovery, nurturing mothers with personalised therapies and holistic physical and mental wellness after childbirth.',
       experienceYears: 'Founder • BAMS',
-      image: '/images/doctor_varsha.jpg',
+      image: '/Dr%20Jishna.jpg.jpeg',
       instagramUrl: 'https://instagram.com/',
       whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Mrs. Jishna Jayaraj regarding Ayurvedic postnatal care.',
       highlights: [
@@ -46,7 +46,7 @@ export const MedicalDirectorsSection: React.FC = () => {
       specialtyTitle: 'Postnatal Care & Ayurvedic Cosmetology',
       description: 'Passionate Ayurvedic physician combining classical postnatal recovery with specialized Ayurvedic cosmetology, dedicated to restoring maternal vitality, strength, and natural radiance.',
       experienceYears: 'Cosmetology • BAMS',
-      image: '/images/doctor_varsha.jpg',
+      image: '/Dr%20Reshna.jpg.jpeg',
       instagramUrl: 'https://instagram.com/',
       whatsappMessage: 'Hello Aaramam Ayurveda, I would like to schedule a consultation with Dr. Reshna Jayaraj regarding Ayurvedic postnatal care and cosmetology.',
       highlights: [
@@ -119,6 +119,9 @@ export const MedicalDirectorsSection: React.FC = () => {
                   <img
                     src={director.image}
                     alt={director.name}
+                    onError={(e) => {
+                      e.currentTarget.src = director.id === 'dr-jishna' ? '/images/dr_jishna.jpeg' : '/images/dr_reshna.jpeg';
+                    }}
                     className="w-full h-full object-cover object-top group-hover:scale-106 transition-transform duration-700 ease-out"
                   />
                   
