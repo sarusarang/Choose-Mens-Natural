@@ -82,6 +82,7 @@ export interface ServiceListItem {
   duration_tag: string;
   image_overlay_badge: string;
   image: string | null;
+  image_url?: string | null;
   images: ServiceImage[];
   gallery: string[];
   rating: number;

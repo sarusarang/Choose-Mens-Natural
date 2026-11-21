@@ -55,36 +55,36 @@ export const SoapCollectionSection: React.FC = () => {
       <div id="products" className="absolute -top-24 left-0 pointer-events-none" />
       
       {/* Section Header */}
-      <div className="w-full flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6">
+      <div className="w-full mb-10 sm:mb-14 space-y-6 sm:space-y-7">
         <motion.div
           initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full max-w-2xl sm:max-w-3xl"
+          className="w-full max-w-4xl"
         >
-          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#162b19]/10 border border-[#d4a034]/40 text-[#122314] text-xs font-bold uppercase tracking-wider mb-4">
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#162b19]/10 border border-[#d4a034]/40 text-[#122314] text-xs font-bold uppercase tracking-wider mb-3.5 sm:mb-4">
             <Sparkles className="w-3.5 h-3.5 text-[#d4a034]" />
             <span>Authentic Postnatal Mother &amp; Baby Care</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black text-[#162317] tracking-tight leading-[1.18]">
-            Dedicated postnatal care for mother &amp; Baby <br className="hidden sm:block" />
-            <span className="font-serif italic font-normal text-[#2b4c2f]">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-black text-[#162317] tracking-tight leading-[1.2] sm:leading-[1.22] text-left">
+            Dedicated postnatal care for mother &amp; Baby{' '}
+            <span className="font-serif italic font-normal text-[#2b4c2f] block sm:inline">
               offering traditional Ayurvedic treatments &amp; personalised wellness.
             </span>
           </h2>
-          <p className="mt-4 sm:mt-5 text-sm sm:text-base md:text-lg text-[#3d503f] font-medium leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-[#3d503f] font-medium leading-relaxed max-w-2xl text-left">
             Nurturing Support For A Comfortable Motherhood Journey.
           </p>
         </motion.div>
 
         {/* Filter Pills with Mobile Touch Momentum */}
         <motion.div
-          initial={{ opacity: 0, y: 25 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full sm:w-auto flex overflow-x-auto sm:flex-wrap gap-2 pb-1.5 sm:pb-0 no-scrollbar touch-momentum -mx-4 px-4 sm:mx-0 sm:px-0 shrink-0"
+          transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full flex items-center overflow-x-auto sm:flex-wrap gap-2 pb-2 sm:pb-0 no-scrollbar touch-momentum"
         >
           {filterTabs.map((tab) => (
             <button
@@ -92,7 +92,7 @@ export const SoapCollectionSection: React.FC = () => {
               onClick={() => setActiveFilter(tab.id)}
               className={`px-4 py-2 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 activeFilter === tab.id
-                  ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
+                  ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md scale-102'
                   : 'bg-white/80 hover:bg-white text-[#2a3a2c] border border-gray-200/80 hover:border-[#d4a034]/40'
               }`}
             >

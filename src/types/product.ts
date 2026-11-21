@@ -7,6 +7,7 @@ export interface Product {
   originalPrice?: number;
   size: string;
   image: string;
+  gallery?: string[];
   rating: number;
   reviewsCount: number;
   shortDesc: string;

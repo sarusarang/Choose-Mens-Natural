@@ -17,7 +17,9 @@ import {
   Bed,
   Bath,
   Send,
-  Loader2
+  Loader2,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { useServicePackageDetail, useEnquireOnPackage } from '../../hooks/useAaramamApi';
@@ -29,6 +31,8 @@ export const QuickViewModal: React.FC = () => {
   const [enquirerName, setEnquirerName] = useState('');
   const [enquirerPhone, setEnquirerPhone] = useState('');
   const [enquirerMessage, setEnquirerMessage] = useState('');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isSliderPaused, setIsSliderPaused] = useState(false);
 
   // Fetch package details from backend if slug/id exists
   const packageSlug = quickViewProduct?.id || '';
@@ -36,37 +40,109 @@ export const QuickViewModal: React.FC = () => {
   const { mutate: submitEnquiry, isPending: isEnquirySubmitting } =
     useEnquireOnPackage(packageSlug);
 
-  if (!quickViewProduct) return null;
+  // Reset active slide index when viewing a different package
+  React.useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [quickViewProduct?.id]);
 
   const product = quickViewProduct;
-  const isWished = isInWishlist(product.id);
+  const isWished = product ? isInWishlist(product.id) : false;
 
-  const displayImage = detailData?.image
-    ? resolveMediaUrl(detailData.image, product.image)
-    : product.image;
+  // Compile all images from API response (gallery array, images array, or primary image)
+  const modalImages = React.useMemo<string[]>(() => {
+    if (!product) return [];
+    const list: string[] = [];
 
-  const displayTitle = detailData?.title || product.name;
-  const displaySubtitle = detailData?.subtitle || product.subtitle;
-  const displayDesc = detailData?.detailed_description || detailData?.short_description || product.description;
-  const displayLocation = detailData?.heritage_location || detailData?.location || product.location || 'Feroke, Kozhikode';
-  const displayDuration = detailData?.duration_tag || product.size;
+    // 1. From detailData.gallery
+    if (Array.isArray(detailData?.gallery) && detailData.gallery.length > 0) {
+      for (const item of detailData.gallery) {
+        if (typeof item === 'string' && item.trim()) {
+          list.push(resolveMediaUrl(item));
+        }
+      }
+    }
+
+    // 2. From detailData.images
+    if (Array.isArray(detailData?.images) && detailData.images.length > 0) {
+      for (const item of detailData.images) {
+        const src = item.image_url || item.image;
+        if (typeof src === 'string' && src.trim()) {
+          list.push(resolveMediaUrl(src));
+        }
+      }
+    }
+
+    // 3. From product.gallery
+    if (Array.isArray(product.gallery) && product.gallery.length > 0) {
+      for (const item of product.gallery) {
+        if (typeof item === 'string' && item.trim()) {
+          list.push(resolveMediaUrl(item));
+        }
+      }
+    }
+
+    // 4. Primary image from detailData or product
+    const primary = detailData?.image_url || detailData?.image || product.image;
+    if (primary && typeof primary === 'string' && primary.trim()) {
+      list.unshift(resolveMediaUrl(primary));
+    }
+
+    // Deduplicate while preserving order
+    const unique = Array.from(new Set(list.filter((u): u is string => Boolean(u && typeof u === 'string' && u.trim()))));
+    return unique.length > 0 ? unique : [product.image];
+  }, [detailData, product]);
+
+  const activeIndex = currentImageIndex < modalImages.length ? currentImageIndex : 0;
+
+  // Keyboard arrow keys navigation for slider
+  React.useEffect(() => {
+    if (!product || modalImages.length <= 1) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        setCurrentImageIndex((prev) => (prev - 1 + modalImages.length) % modalImages.length);
+      } else if (e.key === 'ArrowRight') {
+        setCurrentImageIndex((prev) => (prev + 1) % modalImages.length);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [product, modalImages.length]);
+
+  // Automatic slide rotation every 3.5s (pauses on hover or touch)
+  React.useEffect(() => {
+    if (!product || modalImages.length <= 1 || isSliderPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % modalImages.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, [product, modalImages.length, isSliderPaused]);
+
+  const displayImage = modalImages[activeIndex] || product?.image || '';
+
+  const displayTitle = detailData?.title || product?.name || '';
+  const displaySubtitle = detailData?.subtitle || product?.subtitle || '';
+  const displayDesc = detailData?.detailed_description || detailData?.short_description || product?.description || '';
+  const displayLocation = detailData?.heritage_location || detailData?.location || product?.location || 'Feroke, Kozhikode';
+  const displayDuration = detailData?.duration_tag || product?.size || '';
   const displayInclusions = detailData?.inclusions_list?.length
     ? detailData.inclusions_list
     : detailData?.inclusions?.length
     ? detailData.inclusions.map((i) => i.text)
-    : product.inclusions || [];
+    : product?.inclusions || [];
 
   const displayTherapies = detailData?.therapies_list?.length
     ? detailData.therapies_list
     : detailData?.therapies?.length
     ? detailData.therapies.map((t) => t.name)
-    : product.keyIngredients?.length
+    : product?.keyIngredients?.length
     ? product.keyIngredients
     : ['Daily Abhyanga Massage', 'Herbal Baths & Vata Diet', 'Lactation Guidance', 'Private Mother-Baby Space'];
 
   const whatsappUrl =
     detailData?.whatsapp_url ||
-    product.whatsappUrl ||
+    product?.whatsappUrl ||
     `https://wa.me/917034641282?text=${encodeURIComponent(
       `Hello Aaramam Ayurveda Sanctuary, I am interested in inquiring about the "${displayTitle}" (${displayDuration}) package at your Feroke Centre. Could you please share more details regarding availability and admission?`
     )}`;
@@ -105,8 +181,9 @@ export const QuickViewModal: React.FC = () => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4 md:p-5">
-        {/* Backdrop */}
+      {product && (
+        <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-3 sm:p-4 md:p-5">
+          {/* Backdrop */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -138,22 +215,104 @@ export const QuickViewModal: React.FC = () => {
           {/* Left Column: Visual Showcase, Herbal Therapies & Sanctuary Features */}
           <div className="md:w-5/12 bg-[#f4f7f3] p-5 sm:p-6 lg:p-7 flex flex-col justify-between border-b md:border-b-0 md:border-r border-[#1b3420]/10 shrink-0 overflow-y-auto">
             <div className="space-y-3.5">
-              {/* Product Image Frame */}
-              <div className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-h-[240px] md:max-h-[255px] rounded-2xl overflow-hidden shadow-sm bg-[#112314]">
-                <img
-                  src={displayImage}
-                  alt={displayTitle}
-                  className="w-full h-full object-cover object-center"
-                />
-                
+              {/* Product Image Frame / Multi-Image Slider */}
+              <div
+                onMouseEnter={() => setIsSliderPaused(true)}
+                onMouseLeave={() => setIsSliderPaused(false)}
+                onTouchStart={() => setIsSliderPaused(true)}
+                onTouchEnd={() => setIsSliderPaused(false)}
+                className="relative w-full aspect-[16/10] sm:aspect-[16/11] max-h-[240px] md:max-h-[255px] rounded-2xl overflow-hidden shadow-sm bg-[#112314] select-none group/slider"
+              >
+                {modalImages.length > 1 ? (
+                  <>
+                    {/* Animated Slide */}
+                    <AnimatePresence mode="wait">
+                      <motion.img
+                        key={modalImages[activeIndex]}
+                        src={modalImages[activeIndex]}
+                        alt={`${displayTitle} - photo ${activeIndex + 1}`}
+                        initial={{ opacity: 0, scale: 1.03 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
+                        className="w-full h-full object-cover object-center"
+                        onError={(e) => {
+                          e.currentTarget.src = product.image;
+                        }}
+                      />
+                    </AnimatePresence>
+
+                    {/* Navigation Arrows */}
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setCurrentImageIndex((prev) => (prev - 1 + modalImages.length) % modalImages.length);
+                      }}
+                      className="absolute left-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/55 hover:bg-black/85 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-all opacity-90 hover:opacity-100 shadow-lg cursor-pointer active:scale-95 z-20"
+                      aria-label="Previous photo"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setCurrentImageIndex((prev) => (prev + 1) % modalImages.length);
+                      }}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/55 hover:bg-black/85 backdrop-blur-md text-white border border-white/20 flex items-center justify-center transition-all opacity-90 hover:opacity-100 shadow-lg cursor-pointer active:scale-95 z-20"
+                      aria-label="Next photo"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+
+                    {/* Center Bottom Pagination Dots */}
+                    <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-black/55 backdrop-blur-md border border-white/15 z-20">
+                      {modalImages.map((_, dotIdx) => (
+                        <button
+                          key={dotIdx}
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setCurrentImageIndex(dotIdx);
+                          }}
+                          className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                            dotIdx === activeIndex
+                              ? 'w-4.5 bg-[#fae788] shadow-[0_0_8px_rgba(250,231,136,0.8)]'
+                              : 'w-1.5 bg-white/50 hover:bg-white/80'
+                          }`}
+                          aria-label={`Go to slide ${dotIdx + 1}`}
+                        />
+                      ))}
+                    </div>
+
+                    {/* Slide Counter Badge */}
+                    <div className="absolute top-3 right-3 px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[#fae788] text-[9.5px] font-bold tracking-wider z-20 shadow-xs">
+                      {activeIndex + 1} / {modalImages.length}
+                    </div>
+                  </>
+                ) : (
+                  <img
+                    src={modalImages[0] || displayImage}
+                    alt={displayTitle}
+                    className="w-full h-full object-cover object-center"
+                    onError={(e) => {
+                      e.currentTarget.src = product.image;
+                    }}
+                  />
+                )}
+
                 {/* Floating Category Pill */}
-                <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[9.5px] font-extrabold rounded-full tracking-wider uppercase shadow-md flex items-center space-x-1">
+                <span className="absolute top-3 left-3 px-2.5 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[9.5px] font-extrabold rounded-full tracking-wider uppercase shadow-md flex items-center space-x-1 z-20 pointer-events-none">
                   <Sparkles className="w-3 h-3 text-[#d4a034]" />
-                  <span>Ayurvedic Postnatal</span>
+                  <span>{detailData?.badge_tag || 'Ayurvedic Postnatal'}</span>
                 </span>
 
                 {/* Duration / Tag Pill */}
-                <div className="absolute bottom-3 right-3 px-2.5 py-1 bg-white/95 backdrop-blur-md text-[#112314] text-[10px] font-bold rounded-full shadow-md flex items-center space-x-1 border border-white/70">
+                <div className={`absolute ${modalImages.length > 1 ? 'bottom-2.5 right-2.5' : 'bottom-3 right-3'} px-2.5 py-1 bg-white/95 backdrop-blur-md text-[#112314] text-[10px] font-bold rounded-full shadow-md flex items-center space-x-1 border border-white/70 z-20 pointer-events-none`}>
                   <Clock className="w-3 h-3 text-[#d4a034]" />
                   <span>{displayDuration}</span>
                 </div>
@@ -390,7 +549,9 @@ export const QuickViewModal: React.FC = () => {
 
               {/* Wishlist toggle */}
               <button
-                onClick={() => toggleWishlist(product.id)}
+                onClick={() => {
+                  if (product) toggleWishlist(product.id);
+                }}
                 className={`p-3 rounded-full border transition-colors cursor-pointer shrink-0 ${
                   isWished
                     ? 'bg-rose-50 border-rose-200 text-rose-600'
@@ -406,6 +567,7 @@ export const QuickViewModal: React.FC = () => {
           </div>
         </motion.div>
       </div>
+      )}
     </AnimatePresence>
   );
 };

@@ -17,6 +17,24 @@ export function mapServiceListItemToProduct(item: ServiceListItem): Product {
 
   const cleanPrice = parseFloat(String(item.price || '0').replace(/[^0-9.]/g, '')) || 0;
 
+  // Build resolved gallery image URLs from gallery and images arrays
+  const rawGallery: string[] = [];
+  if (Array.isArray(item.gallery) && item.gallery.length > 0) {
+    for (const g of item.gallery) {
+      if (typeof g === 'string' && g.trim()) rawGallery.push(resolveMediaUrl(g));
+    }
+  }
+  if (Array.isArray(item.images) && item.images.length > 0) {
+    for (const img of item.images) {
+      const src = img.image_url || img.image;
+      if (typeof src === 'string' && src.trim()) rawGallery.push(resolveMediaUrl(src));
+    }
+  }
+  if (rawGallery.length === 0 && primaryImg) {
+    rawGallery.push(resolveMediaUrl(primaryImg));
+  }
+  const cleanGallery = Array.from(new Set(rawGallery));
+
   return {
     id: item.slug || String(item.id),
     name: item.title,
@@ -25,7 +43,8 @@ export function mapServiceListItemToProduct(item: ServiceListItem): Product {
     price: cleanPrice,
     size: item.duration_tag || '28 Days Care',
     image: resolveMediaUrl(primaryImg, '/images/treatment_mother_care_1794639745090.jpg'),
-    rating: item.rating || 5.0,
+    gallery: cleanGallery,
+    rating: typeof item.rating === 'string' ? parseFloat(item.rating) || 5.0 : item.rating || 5.0,
     reviewsCount: item.review_count || 50,
     shortDesc: item.short_description || '',
     description: item.short_description || '',
@@ -48,10 +67,15 @@ export function mapServiceListItemToProduct(item: ServiceListItem): Product {
  */
 export function mapServiceDetailToProduct(detail: ServiceDetail): Product {
   const base = mapServiceListItemToProduct(detail as unknown as ServiceListItem);
+  const detailGallery = Array.isArray(detail.gallery) && detail.gallery.length > 0
+    ? Array.from(new Set(detail.gallery.map(url => resolveMediaUrl(url))))
+    : base.gallery;
+
   return {
     ...base,
     description: detail.detailed_description || base.description,
     keyIngredients: detail.inclusions_list?.length ? detail.inclusions_list : base.keyIngredients,
     location: detail.heritage_location || base.location,
+    gallery: detailGallery,
   };
 }
