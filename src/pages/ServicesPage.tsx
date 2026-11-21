@@ -1,20 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, Check, MessageCircle, MapPin, Clock, Heart, Eye } from 'lucide-react';
 import { PageHero } from '../components/common/PageHero';
 import { POSTNATAL_CARE_PACKAGES, HERO_TREATMENTS } from '../data/products';
 import { useCart } from '../context/CartContext';
 import { useSEO } from '../hooks/useSEO';
+import { useServiceCategories, useServicePackages } from '../hooks/useAaramamApi';
+import { mapServiceListItemToProduct } from '../lib/adapters';
+import { resolveMediaUrl } from '../lib/apiClient';
+import {
+  PackageCardSkeleton,
+  ErrorFallback,
+  EmptyFallback,
+} from '../components/common/LoadingAndErrorStates';
 
 export const ServicesPage: React.FC = () => {
   useSEO({
     title: 'Services & Postnatal Packages • Aaramam Ayurveda Sanctuary',
-    description: 'Explore authentic Ayurvedic postnatal packages, Abhyanga, Herbal Kizhi, Shirodhara, and physician-guided mother-baby sanctuary care in Feroke, Kerala.',
+    description:
+      'Explore authentic Ayurvedic postnatal packages, Abhyanga, Herbal Kizhi, Shirodhara, and physician-guided mother-baby sanctuary care in Feroke, Kerala.',
     image: '/service-banner.jpeg',
     url: 'https://aaramamcare.com/services',
   });
 
   const { openQuickView } = useCart();
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  const { data: categories = [] } = useServiceCategories();
+  const {
+    data: packagesData,
+    isLoading: isPackagesLoading,
+    isError: isPackagesError,
+    refetch: refetchPackages,
+  } = useServicePackages(
+    selectedCategory !== 'all' ? { category: selectedCategory } : undefined
+  );
+
+  // Use backend packages if available; otherwise use fallback static packages
+  const displayPackages = React.useMemo(() => {
+    if (packagesData && packagesData.length > 0) {
+      return packagesData.map(mapServiceListItemToProduct);
+    }
+    // Fallback if backend returned empty or offline
+    if (selectedCategory === 'all') {
+      return POSTNATAL_CARE_PACKAGES;
+    }
+    return POSTNATAL_CARE_PACKAGES.filter((p) => p.category === selectedCategory);
+  }, [packagesData, selectedCategory]);
 
   const handleEnquireWhatsApp = (title: string, duration: string) => {
     const text = encodeURIComponent(
@@ -31,7 +63,12 @@ export const ServicesPage: React.FC = () => {
         highlightTitle="Postnatal Nurture"
         description="Immerse in physician-guided Ayurvedic therapies and our signature postnatal care packages at our peaceful Feroke Sanctuary in Kozhikode."
         breadcrumbs={[{ label: 'Our Services' }]}
-        highlights={['Traditional Postnatal Packages', 'Daily Abhyanga & Herbal Baths', 'Private Mother-Baby Rooms', 'Enquire via WhatsApp']}
+        highlights={[
+          'Traditional Postnatal Packages',
+          'Daily Abhyanga & Herbal Baths',
+          'Private Mother-Baby Rooms',
+          'Enquire via WhatsApp',
+        ]}
         bgImage="/service-banner.jpeg"
       />
 
@@ -42,7 +79,7 @@ export const ServicesPage: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center max-w-4xl mx-auto space-y-4 mb-14"
+          className="text-center max-w-4xl mx-auto space-y-4 mb-10 sm:mb-14"
         >
           <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-[#1b3420]/10 border border-[#1b3420]/20 text-[#1b3420] text-xs font-heading font-bold uppercase tracking-wider">
             <Heart className="w-3.5 h-3.5 text-[#b18137]" />
@@ -57,92 +94,156 @@ export const ServicesPage: React.FC = () => {
           <p className="text-sm sm:text-base md:text-lg text-[#3d503f] font-medium leading-relaxed max-w-2xl mx-auto">
             Nurturing Support For A Comfortable Motherhood Journey at Aaramam Prasavareksha Centre, Feroke, Kozhikode.
           </p>
+
+          {/* Dynamic Category Filter Tabs from Backend */}
+          <div className="pt-4 flex items-center justify-center flex-wrap gap-2">
+            <button
+              onClick={() => setSelectedCategory('all')}
+              className={`px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                selectedCategory === 'all'
+                  ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
+                  : 'bg-white/80 hover:bg-white text-[#253927] border border-[#1b3420]/15'
+              }`}
+            >
+              All Packages
+            </button>
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.slug)}
+                className={`px-4 py-2 rounded-full text-xs font-heading font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                  selectedCategory === cat.slug
+                    ? 'bg-[#112314] text-[#fae788] border border-[#d4a034]/60 shadow-md'
+                    : 'bg-white/80 hover:bg-white text-[#253927] border border-[#1b3420]/15'
+                }`}
+              >
+                {cat.name} ({cat.services_count})
+              </button>
+            ))}
+          </div>
         </motion.div>
 
+        {/* Error Fallback Notice if backend fails */}
+        {isPackagesError && (
+          <div className="mb-8">
+            <ErrorFallback
+              title="Sanctuary Packages Offline"
+              message="Displaying cached sanctuary packages. Click below to reconnect to the live admissions server."
+              onRetry={() => refetchPackages()}
+            />
+          </div>
+        )}
+
+        {/* Loading Skeletons */}
+        {isPackagesLoading && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
+            {[1, 2, 3, 4].map((n) => (
+              <PackageCardSkeleton key={n} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!isPackagesLoading && displayPackages.length === 0 && (
+          <EmptyFallback
+            title="No Packages in this Category"
+            message="We are currently updating our sanctuary offerings for this category. Please select another tab or connect directly with our doctor desk."
+            actionLabel="View All Packages"
+            onAction={() => setSelectedCategory('all')}
+          />
+        )}
+
         {/* 4 Authentic Postnatal & Wellness Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
-          {POSTNATAL_CARE_PACKAGES.map((pkg, idx) => (
-            <motion.div
-              key={pkg.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.9, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white rounded-[32px] overflow-hidden border border-[#1b3420]/10 shadow-[0_12px_36px_rgba(20,40,24,0.08)] hover:shadow-[0_20px_48px_rgba(20,40,24,0.14)] transition-all flex flex-col group"
-            >
-              {/* Card Image Banner */}
-              <div 
-                onClick={() => openQuickView(pkg)}
-                className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#112314] cursor-pointer"
+        {!isPackagesLoading && displayPackages.length > 0 && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
+            {displayPackages.map((pkg, idx) => (
+              <motion.div
+                key={pkg.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.9, delay: idx * 0.12, ease: [0.16, 1, 0.3, 1] }}
+                className="bg-white rounded-[32px] overflow-hidden border border-[#1b3420]/10 shadow-[0_12px_36px_rgba(20,40,24,0.08)] hover:shadow-[0_20px_48px_rgba(20,40,24,0.14)] transition-all flex flex-col group"
               >
-                <img
-                  src={pkg.image}
-                  alt={pkg.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3.5 py-1 rounded-full bg-[#112314]/85 text-[#fae788] border border-[#d4a034]/40 text-xs font-heading font-bold uppercase tracking-wider backdrop-blur-md">
-                    {pkg.size}
-                  </span>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="font-heading font-bold text-lg sm:text-xl leading-tight text-white drop-shadow-md">
-                    {pkg.name}
-                  </h3>
-                  <p className="text-xs text-[#fae788] font-medium mt-1">
-                    {pkg.subtitle}
-                  </p>
-                </div>
-              </div>
-
-              {/* Card Body */}
-              <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-5">
-                <p className="text-xs sm:text-sm text-[#48604a] leading-relaxed">
-                  {pkg.description}
-                </p>
-
-                {/* Highlights list */}
-                {pkg.inclusions && pkg.inclusions.length > 0 && (
-                  <div className="space-y-2.5 pt-3 border-t border-[#1b3420]/10">
-                    <span className="text-xs font-heading font-bold text-[#1b3420] uppercase tracking-wider block">
-                      What's Included:
+                {/* Card Image Banner */}
+                <div 
+                  onClick={() => openQuickView(pkg)}
+                  className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#112314] cursor-pointer"
+                >
+                  <img
+                    src={resolveMediaUrl(pkg.image, '/images/treatment_mother_care_1794639745090.jpg')}
+                    alt={pkg.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3.5 py-1 rounded-full bg-[#112314]/85 text-[#fae788] border border-[#d4a034]/40 text-xs font-heading font-bold uppercase tracking-wider backdrop-blur-md">
+                      {pkg.size}
                     </span>
-                    <ul className="space-y-2 text-xs sm:text-[13px] text-[#354f38]">
-                      {pkg.inclusions.map((item: string, hIdx: number) => (
-                        <li key={hIdx} className="flex items-start space-x-2">
-                          <Check className="w-3.5 h-3.5 text-[#b18137] shrink-0 mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
                   </div>
-                )}
-
-                {/* Card CTAs: View Package Details & Explore Now via WhatsApp */}
-                <div className="space-y-2 pt-2">
-                  <button
-                    onClick={() => openQuickView(pkg)}
-                    className="w-full py-3 px-4 rounded-full bg-white hover:bg-[#112314] text-[#112314] hover:text-[#fae788] border-2 border-[#1b3420]/15 hover:border-[#d4a034]/60 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-xs transition-all cursor-pointer group/btn"
-                  >
-                    <Eye className="w-4 h-4 text-[#d4a034] group-hover/btn:text-[#fae788] transition-colors" />
-                    <span>View Package Details</span>
-                  </button>
-
-                  <a
-                    href={pkg.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#112314] via-[#1a3820] to-[#112314] hover:from-[#19361e] hover:to-[#224828] text-[#fae788] border border-[#d4a034]/40 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all cursor-pointer group-hover:border-[#fae788]"
-                  >
-                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
-                    <span>Explore Now!</span>
-                  </a>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="font-heading font-bold text-lg sm:text-xl leading-tight text-white drop-shadow-md">
+                      {pkg.name}
+                    </h3>
+                    <p className="text-xs text-[#fae788] font-medium mt-1">
+                      {pkg.subtitle}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+
+                {/* Card Body */}
+                <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-5">
+                  <p className="text-xs sm:text-sm text-[#48604a] leading-relaxed">
+                    {pkg.description}
+                  </p>
+
+                  {/* Highlights list */}
+                  {pkg.keyIngredients && pkg.keyIngredients.length > 0 && (
+                    <div className="space-y-2.5 pt-3 border-t border-[#1b3420]/10">
+                      <span className="text-xs font-heading font-bold text-[#1b3420] uppercase tracking-wider block">
+                        What's Included:
+                      </span>
+                      <ul className="space-y-2 text-xs sm:text-[13px] text-[#354f38]">
+                        {pkg.keyIngredients.slice(0, 4).map((item: string, hIdx: number) => (
+                          <li key={hIdx} className="flex items-start space-x-2">
+                            <Check className="w-3.5 h-3.5 text-[#b18137] shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Card CTAs: View Package Details & Explore Now via WhatsApp */}
+                  <div className="space-y-2 pt-2">
+                    <button
+                      onClick={() => openQuickView(pkg)}
+                      className="w-full py-3 px-4 rounded-full bg-white hover:bg-[#112314] text-[#112314] hover:text-[#fae788] border-2 border-[#1b3420]/15 hover:border-[#d4a034]/60 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-xs transition-all cursor-pointer group/btn"
+                    >
+                      <Eye className="w-4 h-4 text-[#d4a034] group-hover/btn:text-[#fae788] transition-colors" />
+                      <span>View Package Details</span>
+                    </button>
+
+                    <a
+                      href={
+                        pkg.whatsappUrl ||
+                        `https://wa.me/917034641282?text=${encodeURIComponent(
+                          `Hello Aaramam Ayurveda Sanctuary, I am interested in inquiring about the "${pkg.name}" (${pkg.size}) at your Feroke Centre.`
+                        )}`
+                      }
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-[#112314] via-[#1a3820] to-[#112314] hover:from-[#19361e] hover:to-[#224828] text-[#fae788] border border-[#d4a034]/40 font-heading font-bold text-xs uppercase tracking-wider flex items-center justify-center space-x-2 shadow-md hover:shadow-lg transition-all cursor-pointer group-hover:border-[#fae788]"
+                    >
+                      <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                      <span>Explore Now!</span>
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Classical In-Sanctuary Therapies Grid */}
@@ -190,23 +291,13 @@ export const ServicesPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div>
-                    <h4 className="font-heading font-bold text-lg text-[#112314] mb-1.5">
-                      {treatment.name}
-                    </h4>
-                    <p className="text-xs text-[#48604a] leading-relaxed line-clamp-3">
-                      {treatment.description}
-                    </p>
-                  </div>
-
-                  <button
-                    onClick={() => openQuickView(treatment)}
-                    className="w-full py-2.5 px-3 rounded-full bg-[#112314] hover:bg-[#1c3a21] text-[#fae788] text-xs font-heading font-bold uppercase tracking-wider flex items-center justify-center space-x-1.5 transition-colors cursor-pointer"
-                  >
-                    <Eye className="w-3.5 h-3.5 text-[#d4a034]" />
-                    <span>View Package Details</span>
-                  </button>
+                <div className="p-5 flex-1 flex flex-col">
+                  <h4 className="font-heading font-bold text-lg text-[#112314] mb-1.5">
+                    {treatment.name}
+                  </h4>
+                  <p className="text-xs sm:text-[13px] text-[#48604a] leading-relaxed line-clamp-4">
+                    {treatment.description}
+                  </p>
                 </div>
               </motion.div>
             ))}

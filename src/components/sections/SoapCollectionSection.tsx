@@ -4,14 +4,51 @@ import { Star, Sparkles, Clock, MapPin, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { POSTNATAL_CARE_PACKAGES } from '../../data/products';
 import type { Product } from '../../types/product';
+import { useServiceCategories, useServicePackages } from '../../hooks/useAaramamApi';
+import { mapServiceListItemToProduct } from '../../lib/adapters';
+import { resolveMediaUrl } from '../../lib/apiClient';
+import { PackageCardSkeleton, ErrorFallback } from '../common/LoadingAndErrorStates';
 
 export const SoapCollectionSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
-  const filteredTreatments = POSTNATAL_CARE_PACKAGES.filter((treatment) => {
-    if (activeFilter === 'all') return true;
-    return treatment.id === activeFilter;
-  });
+  const { data: categories = [] } = useServiceCategories();
+  const {
+    data: packagesData,
+    isLoading: isPackagesLoading,
+    isError: isPackagesError,
+    refetch,
+  } = useServicePackages(
+    activeFilter !== 'all' ? { category: activeFilter } : undefined
+  );
+
+  const displayTreatments: Product[] = React.useMemo(() => {
+    if (packagesData && packagesData.length > 0) {
+      return packagesData.map(mapServiceListItemToProduct);
+    }
+    // Fallback if backend returned empty or offline
+    if (activeFilter === 'all') {
+      return POSTNATAL_CARE_PACKAGES;
+    }
+    return POSTNATAL_CARE_PACKAGES.filter((t) => t.id === activeFilter || t.category === activeFilter);
+  }, [packagesData, activeFilter]);
+
+  // Merge default tabs with dynamic backend categories
+  const filterTabs = React.useMemo(() => {
+    if (categories && categories.length > 0) {
+      return [
+        { id: 'all', label: 'All Services' },
+        ...categories.map((c) => ({ id: c.slug, label: c.name })),
+      ];
+    }
+    return [
+      { id: 'all', label: 'All Services' },
+      { id: 'ayurvedic-postnatal-care', label: 'Postnatal Care' },
+      { id: 'ayurvedic-postnatal-therapies', label: 'Postnatal Therapies' },
+      { id: 'ayurvedic-wellness-therapies', label: 'Wellness Therapies' },
+      { id: 'beauty-and-skin-care', label: 'Beauty & Skin Care' },
+    ];
+  }, [categories]);
 
   return (
     <section id="services" className="w-full max-w-[1440px] mx-auto relative pt-16 sm:pt-20 md:pt-24 pb-16 md:pb-24 px-4 sm:px-6 lg:px-8">
@@ -49,13 +86,7 @@ export const SoapCollectionSection: React.FC = () => {
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="w-full sm:w-auto flex overflow-x-auto sm:flex-wrap gap-2 pb-1.5 sm:pb-0 no-scrollbar touch-momentum -mx-4 px-4 sm:mx-0 sm:px-0 shrink-0"
         >
-          {[
-            { id: 'all', label: 'All Services' },
-            { id: 'ayurvedic-postnatal-care', label: 'Postnatal Care' },
-            { id: 'ayurvedic-postnatal-therapies', label: 'Postnatal Therapies' },
-            { id: 'ayurvedic-wellness-therapies', label: 'Wellness Therapies' },
-            { id: 'beauty-and-skin-care', label: 'Beauty & Skin Care' },
-          ].map((tab) => (
+          {filterTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => setActiveFilter(tab.id)}
@@ -71,95 +102,117 @@ export const SoapCollectionSection: React.FC = () => {
         </motion.div>
       </div>
 
+      {/* Error Notice */}
+      {isPackagesError && (
+        <div className="mb-8">
+          <ErrorFallback
+            title="Showing Archived Sanctuary Services"
+            message="Unable to reach the live services registry. Showing offline sanctuary records."
+            onRetry={() => refetch()}
+          />
+        </div>
+      )}
+
+      {/* Loading Skeletons */}
+      {isPackagesLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
+          {[1, 2, 3, 4].map((n) => (
+            <PackageCardSkeleton key={n} />
+          ))}
+        </div>
+      )}
+
       {/* 4 Authentic Ayurvedic Services Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
-        {filteredTreatments.map((treatment: Product, index: number) => {
-          return (
-            <motion.div
-              key={treatment.id}
-              initial={{ opacity: 0, y: 45, scale: 0.96 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.1 }}
-              transition={{ duration: 1.1, delay: index * 0.14, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-              className="group bg-white rounded-[28px] overflow-hidden shadow-[0_12px_32px_rgba(20,35,22,0.06)] hover:shadow-[0_24px_50px_rgba(20,35,22,0.14)] border-2 border-[#d4a034]/25 hover:border-[#d4a034]/60 flex flex-col justify-between transition-all duration-300"
-            >
-              <div>
-                {/* Edge-to-edge Package Image with Zoom & Badges */}
-                <div className="relative w-full aspect-[16/11] overflow-hidden bg-[#eef3ed]">
-                  <img
-                    src={treatment.image}
-                    alt={treatment.name}
-                    className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
-                  />
+      {!isPackagesLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-4.5 lg:gap-4.5 xl:gap-5">
+          {displayTreatments.map((treatment: Product, index: number) => {
+            return (
+              <motion.div
+                key={treatment.id}
+                initial={{ opacity: 0, y: 45, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 1.1, delay: index * 0.14, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+                className="group bg-white rounded-[28px] overflow-hidden shadow-[0_12px_32px_rgba(20,35,22,0.06)] hover:shadow-[0_24px_50px_rgba(20,35,22,0.14)] border-2 border-[#d4a034]/25 hover:border-[#d4a034]/60 flex flex-col justify-between transition-all duration-300"
+              >
+                <div>
+                  {/* Edge-to-edge Package Image with Zoom & Badges */}
+                  <div className="relative w-full aspect-[16/11] overflow-hidden bg-[#eef3ed]">
+                    <img
+                      src={resolveMediaUrl(treatment.image, '/images/treatment_mother_care_1794639745090.jpg')}
+                      alt={treatment.name}
+                      className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
+                    />
 
-                  {/* Gradient vignette for badges */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
+                    {/* Gradient vignette for badges */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/30 pointer-events-none" />
 
-                  {/* Best Seller / Signature Badge */}
-                  <span className="absolute top-3 left-3 px-3 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md flex items-center space-x-1">
-                    <Sparkles className="w-2.5 h-2.5 text-[#d4a034]" />
-                    <span>{treatment.isBestSeller ? 'Signature Care' : 'Ayurvedic Care'}</span>
-                  </span>
-
-                  {/* Duration Pill */}
-                  <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-white/60 text-[#112314] text-[10.5px] font-bold shadow-sm flex items-center space-x-1">
-                    <Clock className="w-3 h-3 text-[#d4a034]" />
-                    <span>{treatment.size}</span>
-                  </div>
-                </div>
-
-                {/* Card Content */}
-                <div className="p-5 sm:p-6">
-                  {/* Rating & Postnatal Category Tag */}
-                  <div className="flex items-center justify-between text-xs">
-                    <div className="flex items-center space-x-1 text-[#d4a034] font-bold">
-                      <Star className="w-3.5 h-3.5 fill-[#d4a034] text-[#d4a034]" />
-                      <span>{treatment.rating}</span>
-                      <span className="text-gray-400 font-normal">({treatment.reviewsCount})</span>
-                    </div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#2e5433] bg-[#edf4ed] px-2.5 py-0.5 rounded-full">
-                      Postnatal Care
+                    {/* Best Seller / Signature Badge */}
+                    <span className="absolute top-3 left-3 px-3 py-1 bg-[#112314]/90 backdrop-blur-md text-[#fae788] border border-[#d4a034]/40 text-[10px] font-extrabold uppercase tracking-wider rounded-full shadow-md flex items-center space-x-1">
+                      <Sparkles className="w-2.5 h-2.5 text-[#d4a034]" />
+                      <span>{treatment.isBestSeller ? 'Signature Care' : 'Ayurvedic Care'}</span>
                     </span>
+
+                    {/* Duration Pill */}
+                    <div className="absolute top-3 right-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md border border-white/60 text-[#112314] text-[10.5px] font-bold shadow-sm flex items-center space-x-1">
+                      <Clock className="w-3 h-3 text-[#d4a034]" />
+                      <span>{treatment.size}</span>
+                    </div>
                   </div>
 
-                  {/* Package Title */}
-                  <h3 className="mt-2.5 text-[18px] sm:text-[19px] font-heading font-extrabold text-[#112314] leading-snug">
-                    {treatment.name}
-                  </h3>
+                  {/* Card Content */}
+                  <div className="p-5 sm:p-6">
+                    {/* Rating & Postnatal Category Tag */}
+                    <div className="flex items-center justify-between text-xs">
+                      <div className="flex items-center space-x-1 text-[#d4a034] font-bold">
+                        <Star className="w-3.5 h-3.5 fill-[#d4a034] text-[#d4a034]" />
+                        <span>{treatment.rating}</span>
+                        <span className="text-gray-400 font-normal">({treatment.reviewsCount})</span>
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2e5433] bg-[#edf4ed] px-2.5 py-0.5 rounded-full">
+                        {treatment.skinType || 'Postnatal Care'}
+                      </span>
+                    </div>
 
-                  {/* Subtitle / Tagline */}
-                  <p className="mt-1 text-xs font-semibold text-[#8b6521]">
-                    {treatment.subtitle}
-                  </p>
+                    {/* Package Title */}
+                    <h3 className="mt-2.5 text-[18px] sm:text-[19px] font-heading font-extrabold text-[#112314] leading-snug">
+                      {treatment.name}
+                    </h3>
 
-                  {/* Short Description */}
-                  <p className="mt-2 text-xs sm:text-[13px] text-[#4d5e4f] line-clamp-3 leading-relaxed font-normal">
-                    {treatment.shortDesc}
-                  </p>
+                    {/* Subtitle / Tagline */}
+                    <p className="mt-1 text-xs font-semibold text-[#8b6521]">
+                      {treatment.subtitle}
+                    </p>
 
-                  {/* Location Info */}
-                  <div className="mt-4 flex items-center space-x-1.5 text-[11px] text-[#637664] bg-[#f7f9f6] px-3 py-1.5 rounded-xl border border-[#e4ede3]">
-                    <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
-                    <span className="truncate">Near Govt Taluk Hospital, Feroke, Kozhikode</span>
+                    {/* Short Description */}
+                    <p className="mt-2 text-xs sm:text-[13px] text-[#4d5e4f] line-clamp-3 leading-relaxed font-normal">
+                      {treatment.shortDesc}
+                    </p>
+
+                    {/* Location Info */}
+                    <div className="mt-4 flex items-center space-x-1.5 text-[11px] text-[#637664] bg-[#f7f9f6] px-3 py-1.5 rounded-xl border border-[#e4ede3]">
+                      <MapPin className="w-3.5 h-3.5 text-[#d4a034] shrink-0" />
+                      <span className="truncate">Near Govt Taluk Hospital, Feroke, Kozhikode</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Bottom Action (Explore Now! Arrow Button connecting to Service Page) */}
-              <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
-                <Link
-                  to="/services#packages"
-                  className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#112314] via-[#1a381d] to-[#112314] hover:from-[#1a381d] hover:to-[#244f28] text-[#fae788] hover:text-[#fffbcf] border border-[#d4a034]/50 hover:border-[#fae788]/80 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2 transition-all shadow-md hover:shadow-xl cursor-pointer group"
-                >
-                  <span>Explore Now!</span>
-                  <ArrowRight className="w-4 h-4 text-[#fae788] group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            </motion.div>
-          );
-        })}
-      </div>
+                {/* Bottom Action (Explore Now! Arrow Button connecting to Service Page) */}
+                <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-0">
+                  <Link
+                    to="/services#packages"
+                    className="w-full py-3 px-5 rounded-full bg-gradient-to-r from-[#112314] via-[#1a381d] to-[#112314] hover:from-[#1a381d] hover:to-[#244f28] text-[#fae788] hover:text-[#fffbcf] border border-[#d4a034]/50 hover:border-[#fae788]/80 text-xs sm:text-sm font-bold flex items-center justify-center space-x-2 transition-all shadow-md hover:shadow-xl cursor-pointer group"
+                  >
+                    <span>Explore Now!</span>
+                    <ArrowRight className="w-4 h-4 text-[#fae788] group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 };

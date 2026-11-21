@@ -2,6 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Star, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
+import { useTestimonials } from '../../hooks/useAaramamApi';
+import { resolveMediaUrl } from '../../lib/apiClient';
+import { ReviewCardSkeleton, ErrorFallback } from '../common/LoadingAndErrorStates';
 
 interface CustomerReviewsSectionProps {
   showFeedbackButton?: boolean;
@@ -10,32 +13,47 @@ interface CustomerReviewsSectionProps {
 export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
   showFeedbackButton = true,
 }) => {
-  const reviews = [
+  const { data: testimonialsData, isLoading, isError, refetch } = useTestimonials();
+
+  const fallbackReviews = [
     {
-      name: 'Dr. Ananya Nambiar',
-      role: 'Integrative Medicine & Holistic Physician • Kozhikode',
+      id: 1,
+      author_name: 'Dr. Ananya Nambiar',
+      author_title: 'Integrative Medicine & Holistic Physician • Kozhikode',
       avatar: '/images/avatar-1.jpg',
       rating: 5,
-      product: 'Abhyanga Herbal Body Therapy',
-      text: 'Experiencing the synchronized Abhyanga with warm Dhanwantharam thailam completely relieved my chronic lower back stiffness and nervous fatigue. The classical rhythmic strokes and authentic herbal decoctions are truly world-class.'
+      treatment_tag: 'Abhyanga Herbal Body Therapy',
+      quote:
+        'Experiencing the synchronized Abhyanga with warm Dhanwantharam thailam completely relieved my chronic lower back stiffness and nervous fatigue. The classical rhythmic strokes and authentic herbal decoctions are truly world-class.',
     },
     {
-      name: 'Rahul K. Panicker',
-      role: 'Verified Sanctuary Guest • Kochi',
+      id: 2,
+      author_name: 'Rahul K. Panicker',
+      author_title: 'Verified Sanctuary Guest • Kochi',
       avatar: '/images/avatar-2.jpg',
       rating: 5,
-      product: 'Shirodhara Medicated Oil Stream',
-      text: 'Shirodhara here is transcendent. After months of chronic insomnia and mental burnout, a single 45-minute continuous warm oil stream session brought immediate mental stillness and the deepest sleep I have had in years.'
+      treatment_tag: 'Shirodhara Medicated Oil Stream',
+      quote:
+        'Shirodhara here is transcendent. After months of chronic insomnia and mental burnout, a single 45-minute continuous warm oil stream session brought immediate mental stillness and the deepest sleep I have had in years.',
     },
     {
-      name: 'Sreedevi Warrier',
-      role: 'Postnatal Care Guest & Educator • Thrissur',
+      id: 3,
+      author_name: 'Sreedevi Warrier',
+      author_title: 'Postnatal Care Guest & Educator • Thrissur',
       avatar: '/images/avatar-3.jpg',
       rating: 5,
-      product: 'Herbal Kizhi & Panchakarma Detox',
-      text: 'The Herbal Kizhi poultice fomentation and Panchakarma protocols follow authentic Kerala Ayurvedic traditions with meticulous precision. My joint inflammation resolved, and my bodily vitality feels completely renewed.'
-    }
+      treatment_tag: 'Herbal Kizhi & Panchakarma Detox',
+      quote:
+        'The Herbal Kizhi poultice fomentation and Panchakarma protocols follow authentic Kerala Ayurvedic traditions with meticulous precision. My joint inflammation resolved, and my bodily vitality feels completely renewed.',
+    },
   ];
+
+  const displayReviews = React.useMemo(() => {
+    if (testimonialsData && testimonialsData.length > 0) {
+      return testimonialsData;
+    }
+    return fallbackReviews;
+  }, [testimonialsData]);
 
   return (
     <section id="feedback" className="pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-14 md:pb-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto relative">
@@ -74,85 +92,109 @@ export const CustomerReviewsSection: React.FC<CustomerReviewsSectionProps> = ({
         </motion.p>
       </div>
 
+      {isError && (
+        <div className="mb-10">
+          <ErrorFallback
+            title="Showing Archived Sanctuary Testimonials"
+            message="Connecting to the feedback registry. Showing verified testimonials."
+            onRetry={() => refetch()}
+          />
+        </div>
+      )}
+
+      {/* Loading State */}
+      {isLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 sm:gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
+          {[1, 2, 3].map((n) => (
+            <ReviewCardSkeleton key={n} />
+          ))}
+        </div>
+      )}
+
       {/* Modern Stunning Ayurvedic Testimonial Cards (Overlapping Avatar & Flanking Quotes) */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 sm:gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
-        {reviews.map((rev, idx) => (
-          <motion.div
-            key={rev.name}
-            initial={{ opacity: 0, y: 45, scale: 0.96 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: idx * 0.18, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
-            className="group relative flex flex-col justify-between rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#18341d] to-[#0f2113] p-5 xs:p-7 sm:p-8 pt-14 xs:pt-16 sm:pt-20 border border-[#d4a034]/35 hover:border-[#fae788]/60 shadow-[0_18px_45px_rgba(14,29,17,0.22)] hover:shadow-[0_26px_60px_rgba(14,29,17,0.36)] transition-all duration-500 text-center max-w-md md:max-w-none mx-auto w-full"
-          >
-            {/* Ambient Background Gold Glow */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#d4a034]/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#d4a034]/20 transition-all duration-700" />
+      {!isLoading && (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-y-16 sm:gap-y-20 md:gap-y-0 md:gap-x-7 mt-16 sm:mt-20">
+          {displayReviews.map((rev, idx) => {
+            const avatarUrl = resolveMediaUrl(
+              rev.avatar,
+              idx === 0 ? '/images/avatar-1.jpg' : idx === 1 ? '/images/avatar-2.jpg' : '/images/avatar-3.jpg'
+            );
 
-            {/* Top Overlapping Avatar & Flanking Quotation Marks */}
-            <div className="absolute -top-12 xs:-top-14 sm:-top-16 left-0 right-0 flex items-center justify-center pointer-events-none z-20">
-              
-              {/* Left Quotation Mark */}
-              <div className="mr-2 xs:mr-3 sm:mr-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:-translate-x-1 drop-shadow-sm">
-                <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
+            return (
+              <motion.div
+                key={rev.id || idx}
+                initial={{ opacity: 0, y: 45, scale: 0.96 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: idx * 0.18, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } }}
+                className="group relative flex flex-col justify-between rounded-[32px] sm:rounded-[36px] bg-gradient-to-b from-[#18341d] to-[#0f2113] p-5 xs:p-7 sm:p-8 pt-14 xs:pt-16 sm:pt-20 border border-[#d4a034]/35 hover:border-[#fae788]/60 shadow-[0_18px_45px_rgba(14,29,17,0.22)] hover:shadow-[0_26px_60px_rgba(14,29,17,0.36)] transition-all duration-500 text-center max-w-md md:max-w-none mx-auto w-full"
+              >
+                {/* Ambient Background Gold Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-32 bg-[#d4a034]/10 rounded-full blur-[50px] pointer-events-none group-hover:bg-[#d4a034]/20 transition-all duration-700" />
 
-              {/* Central Circular Avatar */}
-              <div className="relative w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-3 xs:border-4 border-[#18341d] ring-3 xs:ring-4 ring-[#d4a034]/40 group-hover:ring-[#fae788] shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105 pointer-events-auto bg-[#18341d] shrink-0">
-                <img
-                  src={rev.avatar}
-                  alt={rev.name}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-              </div>
+                {/* Top Overlapping Avatar & Flanking Quotation Marks */}
+                <div className="absolute -top-12 xs:-top-14 sm:-top-16 left-0 right-0 flex items-center justify-center pointer-events-none z-20">
+                  {/* Left Quotation Mark */}
+                  <div className="mr-2 xs:mr-3 sm:mr-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:-translate-x-1 drop-shadow-sm">
+                    <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                  </div>
 
-              {/* Right Quotation Mark (mirrored horizontally) */}
-              <div className="ml-2 xs:ml-3 sm:ml-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:translate-x-1 drop-shadow-sm">
-                <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current transform scale-x-[-1]" viewBox="0 0 24 24">
-                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                </svg>
-              </div>
+                  {/* Central Circular Avatar */}
+                  <div className="relative w-20 h-20 xs:w-24 xs:h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-3 xs:border-4 border-[#18341d] ring-3 xs:ring-4 ring-[#d4a034]/40 group-hover:ring-[#fae788] shadow-[0_12px_32px_rgba(0,0,0,0.5)] transition-all duration-500 group-hover:scale-105 pointer-events-auto bg-[#18341d] shrink-0">
+                    <img
+                      src={avatarUrl}
+                      alt={rev.author_name}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                    />
+                  </div>
 
-            </div>
+                  {/* Right Quotation Mark (mirrored horizontally) */}
+                  <div className="ml-2 xs:ml-3 sm:ml-4 text-white/85 group-hover:text-[#fae788] transition-all duration-400 group-hover:translate-x-1 drop-shadow-sm">
+                    <svg className="w-6 h-6 xs:w-8 xs:h-8 sm:w-10 sm:h-10 fill-current transform scale-x-[-1]" viewBox="0 0 24 24">
+                      <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                    </svg>
+                  </div>
+                </div>
 
-            {/* Top Info: Stars & Treatment Badge */}
-            <div className="relative z-10 flex flex-col items-center space-y-2.5 mb-4">
-              {/* Star Rating */}
-              <div className="flex items-center space-x-1 text-[#fae788]">
-                {[...Array(rev.rating)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-[#fae788] text-[#fae788] drop-shadow-xs" />
-                ))}
-              </div>
+                {/* Top Info: Stars & Treatment Badge */}
+                <div className="relative z-10 flex flex-col items-center space-y-2.5 mb-4">
+                  <div className="flex items-center space-x-1 text-[#fae788]">
+                    {[...Array(rev.rating || 5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-[#fae788] text-[#fae788] drop-shadow-xs" />
+                    ))}
+                  </div>
 
-              {/* Treatment Pill */}
-              <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 border border-[#d4a034]/35 text-[#fae788] text-[11px] font-semibold tracking-wide shadow-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#fae788] animate-pulse" />
-                <span className="line-clamp-1">{rev.product}</span>
-              </div>
-            </div>
+                  <div className="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-white/10 border border-[#d4a034]/35 text-[#fae788] text-[11px] font-semibold tracking-wide shadow-xs">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#fae788] animate-pulse" />
+                    <span className="line-clamp-1">{rev.treatment_tag || 'Ayurvedic Sanctuary Care'}</span>
+                  </div>
+                </div>
 
-            {/* Testimonial Quote Body */}
-            <div className="relative z-10 flex-1 flex items-center justify-center my-3 px-1 sm:px-2">
-              <p className="text-[13.5px] sm:text-[14.5px] text-[#e3ece2] leading-relaxed font-normal italic">
-                "{rev.text}"
-              </p>
-            </div>
+                {/* Testimonial Quote Body */}
+                <div className="relative z-10 flex-1 flex items-center justify-center my-3 px-1 sm:px-2">
+                  <p className="text-[13.5px] sm:text-[14.5px] text-[#e3ece2] leading-relaxed font-normal italic">
+                    "{rev.quote}"
+                  </p>
+                </div>
 
-            {/* Reviewer Identity Footer */}
-            <div className="relative z-10 mt-6 pt-4 border-t border-white/10 flex flex-col items-center justify-center space-y-1">
-              <h4 className="text-base sm:text-[17px] font-heading font-extrabold text-white tracking-wide group-hover:text-[#fae788] transition-colors">
-                {rev.name}
-              </h4>
-              <div className="flex items-center space-x-1.5 text-xs text-[#9eb5a0] font-medium">
-                <CheckCircle className="w-3.5 h-3.5 text-[#fae788]" />
-                <span>{rev.role}</span>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+                {/* Reviewer Identity Footer */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-white/10 flex flex-col items-center justify-center space-y-1">
+                  <h4 className="text-base sm:text-[17px] font-heading font-extrabold text-white tracking-wide group-hover:text-[#fae788] transition-colors">
+                    {rev.author_name}
+                  </h4>
+                  <div className="flex items-center space-x-1.5 text-xs text-[#9eb5a0] font-medium">
+                    <CheckCircle className="w-3.5 h-3.5 text-[#fae788]" />
+                    <span>{rev.author_title || 'Verified Sanctuary Guest'}</span>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      )}
 
       {/* Action Button: Link to Feedback Page */}
       {showFeedbackButton && (
