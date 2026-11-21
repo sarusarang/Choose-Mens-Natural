@@ -15,6 +15,11 @@ export const admissionInquirySchema = z.object({
     .string()
     .min(10, 'Please enter a valid phone number (at least 10 digits)')
     .regex(/^[0-9+\-\s()]+$/, 'Please enter a valid phone format with country code'),
+  email: z
+    .string()
+    .email('Please enter a valid email address')
+    .optional()
+    .or(z.literal('')),
   program: z.enum([
     'postnatal',
     'shirodhara',
@@ -55,6 +60,7 @@ export const AdmissionInquiryForm: React.FC<AdmissionInquiryFormProps> = ({
     defaultValues: {
       name: '',
       phone_number: '',
+      email: '',
       program: initialProgram,
       bystander_accommodation: '1_bystander',
       requirements_or_due_date: '',
@@ -75,6 +81,7 @@ export const AdmissionInquiryForm: React.FC<AdmissionInquiryFormProps> = ({
       {
         name: data.name,
         phone_number: data.phone_number,
+        email: data.email?.trim() || undefined,
         program: data.program as AdmissionProgramType,
         bystander_accommodation: data.bystander_accommodation as BystanderAccommodationType,
         requirements_or_due_date: data.requirements_or_due_date || '',
@@ -123,6 +130,11 @@ export const AdmissionInquiryForm: React.FC<AdmissionInquiryFormProps> = ({
               <strong className="text-[#fae788]">{successData.data.program_display || successData.data.program}</strong>{' '}
               has been recorded in the Aaramam Feroke admissions register.
             </p>
+            {successData.data.email && (
+              <p className="text-xs text-[#fae788]/95 bg-white/10 p-2.5 rounded-xl border border-white/15 mt-2">
+                ✓ A confirmation receipt and summary have been sent to <strong>{successData.data.email}</strong>.
+              </p>
+            )}
             {successData.whatsapp_url && (
               <a
                 href={successData.whatsapp_url}
@@ -178,24 +190,49 @@ export const AdmissionInquiryForm: React.FC<AdmissionInquiryFormProps> = ({
             )}
           </div>
 
-          {/* Phone / WhatsApp Number */}
-          <div className="space-y-1.5">
-            <label className="block text-xs font-bold text-[#112314] tracking-wide">
-              Phone / WhatsApp Number <span className="text-rose-600">*</span>
-            </label>
-            <input
-              type="tel"
-              placeholder="+91 97451 23456"
-              {...register('phone_number')}
-              className={`w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all bg-[#f8faf8] text-[#112314] placeholder:text-gray-400 focus:bg-white focus:outline-none focus:ring-2 ${
-                errors.phone_number
-                  ? 'border-rose-400 focus:ring-rose-200'
-                  : 'border-[#1b3420]/20 focus:border-[#1b3420] focus:ring-[#1b3420]/10'
-              }`}
-            />
-            {errors.phone_number && (
-              <p className="text-[11px] text-rose-600 font-semibold">{errors.phone_number.message}</p>
-            )}
+          {/* Phone & Email Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* Phone / WhatsApp Number */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-[#112314] tracking-wide">
+                Phone / WhatsApp Number <span className="text-rose-600">*</span>
+              </label>
+              <input
+                type="tel"
+                placeholder="+91 97451 23456"
+                {...register('phone_number')}
+                className={`w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all bg-[#f8faf8] text-[#112314] placeholder:text-gray-400 focus:bg-white focus:outline-none focus:ring-2 ${
+                  errors.phone_number
+                    ? 'border-rose-400 focus:ring-rose-200'
+                    : 'border-[#1b3420]/20 focus:border-[#1b3420] focus:ring-[#1b3420]/10'
+                }`}
+              />
+              {errors.phone_number && (
+                <p className="text-[11px] text-rose-600 font-semibold">{errors.phone_number.message}</p>
+              )}
+            </div>
+
+            {/* Email Address (Optional) */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-[#112314] tracking-wide">
+                Email Address <span className="text-gray-400 font-normal">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                placeholder="guest@example.com"
+                {...register('email')}
+                className={`w-full px-4 py-3 rounded-xl border text-sm font-medium transition-all bg-[#f8faf8] text-[#112314] placeholder:text-gray-400 focus:bg-white focus:outline-none focus:ring-2 ${
+                  errors.email
+                    ? 'border-rose-400 focus:ring-rose-200'
+                    : 'border-[#1b3420]/20 focus:border-[#1b3420] focus:ring-[#1b3420]/10'
+                }`}
+              />
+              {errors.email ? (
+                <p className="text-[11px] text-rose-600 font-semibold">{errors.email.message}</p>
+              ) : (
+                <p className="text-[10px] text-[#4d6650]">Triggers instant email receipt &amp; confirmation</p>
+              )}
+            </div>
           </div>
 
           {/* Program & Bystander Grid */}

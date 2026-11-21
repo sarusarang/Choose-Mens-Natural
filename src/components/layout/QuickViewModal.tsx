@@ -30,6 +30,7 @@ export const QuickViewModal: React.FC = () => {
   const [showEnquiryForm, setShowEnquiryForm] = useState(false);
   const [enquirerName, setEnquirerName] = useState('');
   const [enquirerPhone, setEnquirerPhone] = useState('');
+  const [enquirerEmail, setEnquirerEmail] = useState('');
   const [enquirerMessage, setEnquirerMessage] = useState('');
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isSliderPaused, setIsSliderPaused] = useState(false);
@@ -154,6 +155,7 @@ export const QuickViewModal: React.FC = () => {
       {
         name: enquirerName,
         phone_number: enquirerPhone,
+        email: enquirerEmail.trim() || undefined,
         message: enquirerMessage || `Inquiry for ${displayTitle}`,
       },
       {
@@ -496,6 +498,13 @@ export const QuickViewModal: React.FC = () => {
                       placeholder="Phone / WhatsApp Number *"
                       value={enquirerPhone}
                       onChange={(e) => setEnquirerPhone(e.target.value)}
+                      className="w-full px-3 py-2 text-xs rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-1 focus:ring-[#112314]"
+                    />
+                    <input
+                      type="email"
+                      placeholder="Email Address (Optional — for acknowledgment receipt)"
+                      value={enquirerEmail}
+                      onChange={(e) => setEnquirerEmail(e.target.value)}
                       className="w-full px-3 py-2 text-xs rounded-lg border border-gray-200 bg-white focus:outline-none focus:ring-1 focus:ring-[#112314]"
                     />
                     <textarea

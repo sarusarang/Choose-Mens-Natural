@@ -300,6 +300,7 @@ export type BystanderAccommodationType =
 export interface AdmissionInquiryPayload {
   name: string;
   phone_number: string;
+  email?: string; // Optional: triggers instant client email receipt
   program: AdmissionProgramType;
   bystander_accommodation: BystanderAccommodationType;
   requirements_or_due_date?: string;
@@ -309,6 +310,7 @@ export interface AdmissionInquiryResponse {
   id: number;
   name: string;
   phone_number: string;
+  email: string | null;
   program: AdmissionProgramType;
   program_display: string;
   bystander_accommodation: BystanderAccommodationType;
